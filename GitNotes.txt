@@ -1,0 +1,261 @@
+Version Control (Git)
+
+Git is a version control system that allows to keep track of changes made. It is helpful for collaborative work, prevent losses from crash, rolling back etc.
+
+    • Diff. Between git and github: Git is a version control system that allows developers to track changes in their code. GitHub is a web-based hosting service for git repositories. In simple terms, you can use git without Github, but you cannot use GitHub without Git.
+
+    • Distributed Version Control: What this means is that git doesnot consider any repo a central repo, all repos are equal and they are their own version of that particular project. Though we have one master in git it is not included by git we just decide to call that branch a master so it acts as a central base where everyone will submit their changes.
+
+    • Configure git files: Git configuration can be done in three ways:
+        1. System wide: git config --system 
+        2. For particular user: git config --global
+        3. For particular project: git config
+
+	    To edit user name and email : git config --global user.name “Avneet”
+						 git config --global user.email “email”
+
+		To setup editor: git config --global core.editor “atom –wait”
+		To setup ui: git config --global color.ui true
+		To view any config info: git config user.name
+
+		We can also view .gitconfig folder using cat.
+
+    • For help :  git help
+                   git help commandname
+	         man git-commandname
+
+    • Initialize a git repo: to initialize a git repo in a project go to the project directory and type git init.
+
+    • Commit change: to commit chnages three steps are followed: make change, add change to repo, commit change.
+              To add: git add filename 
+              To commit: git commit -m “message”
+
+    • Best practices for commit message:
+        1. keep it short. (optionally followed by a blank line and then desc if req)
+        2. use present tense, since it should tell the bug that this commit is going to fix.
+        3. Add tracking id of the issue.
+        4. Be clear and descriptive.
+
+
+    • Git log: it is useful to check a repository’s history.
+		Command: git log
+	op: commit 10d51a102940703f03d83899ac33c86f23e69ee3 (HEAD -> master)
+			Author: Avneet <avneet.bhatia@berylsystems.com>
+				Date:   Wed Oct 18 17:09:53 2023 +0530
+
+					    Initial commit
+
+	 10d51a102940703f03d83899ac33c86f23e69ee3 => this no is the sha-1 value of the commit.
+	Sha-1 value is generated using a check sum and this checksum is a value generated for each set of changes done. This checksum is then passed through a 	hashing algorithm.
+
+	Sha-1 value’s checksum for each commit also contains hash value of prev commit so each commitis linked to previous similar to blockchain/.
+
+	Options: 
+		git log -n 5: useful to show most recent no of commits if commits are many.
+
+		git log --since=2023-09-10:  useful to show logs from a particular date.
+
+		git log --until=2023-09-10:  useful to show logs till a particular date.
+
+		git log --author=Avneet:  useful to show logs by a particular user.
+
+		git log –grep=“Init”:  useful to show particular logs.
+
+		git log --oneline: gives all logs first line containging hash value and commit message.
+
+    • Multi line commit message:  to give multi line commit message 
+      just do : git commit this will open nano editor automatically as it has been set by us to get opened whenever a commit messg is req. Remember commit mssg are imp without them there will be no commit.
+
+    Three Tree Architecture
+
+					Repository(changes being tracked by git)
+						|
+					          v
+					Staging area(changes about to be commited)
+						|
+					          v
+					Working file(changes not being tracked by git)
+
+
+    • Head pointer is used by git to tell the current position of where we are working.
+
+    • git status: used to check status of the current project about what changes are being tracked and what not.
+
+        Outputs: If the changes have been made but not staged
+
+        On branch master
+        Untracked files:
+        (use "git add <file>..." to include in what will be committed)
+
+                    second_file.txt
+                    third_file.txt
+
+        nothing added to commit but untracked files present (use "git add" to track)
+
+        If the changes have been made and staged but not committed.
+
+        On branch master
+        Changes to be committed:
+        (use "git reset HEAD <file>..." to unstage)
+
+            new file:   second_file.txt
+            new file:   third_file.txt
+
+        If the changes have been staged and committed too.
+        
+        On branch master
+	    nothing to commit, working tree clean
+
+    • git checkout: this is used to bring back file from repo in case of file loss.
+              Command: git checkout -- filename 
+ 	        This -- in checkout is used too tell checkout that dont go looking on any other branch we have to fetch the file from this current branch only.
+
+    • git reset: this command is used to unstage the change.(if the changes were made to some file after being staged then this will not change the current file in working dir this will only unstage the file and current file condition will prevail).
+                      Command: git reset head filename
+
+	If we stage some file then make changes to it after then there will be two diff versions of our file one in staging area one in curr working tree and obv there will be one in git repo.
+
+
+    • git diff: used to compare the changes in file between working directory and staging area.
+          Command: git diff
+
+    • git diff --staged: used to compare changes between staging area and repo.
+          Coomand: git diff --staged 
+
+    • git diff --color-words: used to show only changes and that too side by side.
+
+    • git rm: used to stage changes after or while deleting a file (like git add does).
+	
+		Two situations are present in it: 
+            1. When we delete file manually using gui. Then we need to stage chages so we use : git rm filename
+            This will ensure that file is still present in the machine’s trash.
+            2. When we delete using the cmd. It permanently deletes the file using unix delete. Command is same as above:	
+                git rm filename
+                    This also prevents the need of two steps first deleting then staging 
+                    automatically deletes and stages the change simultaneously.
+                Also one imp note is it will delete permanently the file from 
+                so use this is another copy is present somewhere else or if you 
+                dont want the file.
+
+    • Move and rename: we can do this in two ways:
+        1. Manual renaming then we first need to stage deleted file name(git rm) and then stage new filename (git add). Then in the staging area git will understand that the deleted file and new file are same and actually rename has taken place.
+        2. Using git mv command: moving is similar to rename here. 
+               Command : git mv first_file.txt newfile.txt
+               this will automatically stage the rename.
+
+    • To directly commit without staging: this command directly commits without staging but if there is a newfile which has not been committed even once then it wont commit that particular file and we will have to put that new file to staging .
+	
+		Command: git commit -a 
+				git commit -all
+
+    • git show: shows the changes made in a specific commit
+              Command: git show [hash value initials > 5] 
+              Eg: git show 6cf807 –color-words
+
+    • compare two commits: used to compare changes between two commits.
+              Command: git diff HEAD..ea4a22a1f70c9 –color-words
+                              Just simply add .. between the two hash values of commits
+
+
+    • Atomic commits: it is imp to make atomic commit so that in future if we want one specific feature we can use it and similar category changes should be comitted together.
+
+    • Amending a commit: Git doesnot allow us to amend past commits since amending any past commit will change that commit’s sha value and thus breaking the chain of all commits. But we can amend the previous commit since it is not the parent of any next commit till now.
+          Command: git commit --amend -m “Amends the commit”
+
+    • Retrieving an old version: git doesnt allow getting back an old commit since bringing back an old version wont maintain data integrity as sha value will repeat. Best way to retrieve old version is too convert it into a new commit change.
+
+		Command: git checkout 22584cffb -- first_file.txt 
+
+    • Going back to a commit: we can go back to a commit using two ways:
+        1. In this we have accidentally made the commit of a file name A, now we want to revert the commit so we can do this by command:
+                git reset Head~1
+            
+            This will make the file again in staging area so that we can edit file 			further and make one commit
+        2.  In this we want to restore the previous version of a commit completely
+                Command : git reset --hard HEAD~1 
+                        git reset [hash] --hard
+            We have to be careful while using this command since once we return to 		a particular commit stage we wont be able to go back in the future.
+        
+
+    • git revert: we can also go back to old stage using git revert
+		
+			Command: git revert
+
+    • git clean: this is used to clean untracked files 
+                  Command: git clean -n (this will only show what it can remove)
+                                  git clean -f (this will actually remove the files)
+
+    • .gitignore: If there is a log file that is being constantly logged, git will notice the changes and give us status notifications of commits pnding but we dont want that too happen since logs are going to change evrytime and we dont want to get bothered everytume so in order too do that we add those files too .gitignore folder and git will ignore those folders everytime even if we make changes inside them.
+
+	To ignore files on a global(user) level we hve to create .gitignore file on global 	
+	mainly in the home dir with any name like .gitignore_global and then configure 	it using the Command: 
+			git config --global core.excludesfile ~/.gitignore_global
+
+    • How to ignore a tracked file: One way is to delete it from repo using rm command but it will also delete it from working repo. So We delete it from staging idx using Command:
+                           git rm --cached filename
+	
+	Now git will	 stop tracking this file.
+
+    • How to track empty dir: git tracks empty file but not empty dir so in order to track empty dir we create a .file which is empty and will stay hidden but git will now be tracking the empty folder.
+
+
+Github
+
+    • git clone: it is used to clone complete code from a git repo.
+                       Command: git clone [repo-link]
+
+    • git push: now when we add and commit the code starts getting tracked by git on our machine that is locally. In order to show these changes and start it getting tracked by the remote repo we have to push it to that repo.
+                      Command: git push origin main
+                                      git push -u origin main (to set origin main path as default)
+                      origin – here is the remote repo name
+                      main – is the branch we are working on
+
+
+    • git remote add origin: When we clone a repo it already has a remote repo (origin) but when we create a project in our local machine and then we init it we have to add a remote origin in order to push to github. 
+                      Command: git remote add origin [repo-link]
+					 git remote -v (to verify remote origin)
+
+    • git branch: This is used to check curr branch.
+                      Command: git branch (to check all branches)
+                                      git branch -M newname (-M option is used to rename the beranch)
+                                      git checkout branchname (to go to any specific branch)
+                                      git checkout -b newBranchname (to create a new branch)
+                                      git branch -d branchname (to delete a branch)
+	We cannot delete a branch if we are on it. 
+
+    • How to see diff bw two branch: git diff command is used
+			Command: git diff branchname (this branchname is the 					branchname you want to compare your curr branch with)
+
+    • Merge code: It can be done in two ways
+        1. one is through pull req through github. Manually merge the branch through github and then to make those code sync with local machine we use 
+                Command: git pull origin main
+            Pull is used to sync the local git with remote repository.
+
+        2. To merge using cmd we use 
+                Command: git merge branchname (name of branch that you want 			to merge with your curr branch)
+
+    • Merge Conflicts: Sometimes merge conflicts may arise if there are two different changes at a same place and git is unable to decide which feature to keep so in that case we have to manually resolve the conflict and then commit the changes.
+
+    • Fork: Forking a repository means creating exact duplicate of an exisitng repo. It is done manually in github.A fork is a copy of a repository that allows you to make your own changes without impacting the original project. 
+      Diff bw fork and clone: A fork differs from a cloned copy in that it doesn't allow for direct collaboration with the root using local commands like git push and git pull.
+
+    • Stash: stash is used when we have made some changes and staged them but we dont want to commit them right now. We want to go back to our last repository state but also dont wanna lose the staged changes so we will send these changes to stash from staging area and will pop/bring back whenever required.
+                          Command: git add .
+                                          git stash (to add to stash)
+                                          git stash pop (to call back from stash)
+                                          git stash clear (to clear the stash)
+
+
+    • Squashing commits: means squashing 2 or more commits into one single commit. Two ways: 
+        1. Use reset: git reset hash
+        This command will take our head to that hash and all the commits after this commit will be unstaged now and then we can simply commit all these changes as one commit. (this trick only useful for squashing latest commits only not in between)
+
+        2. REBASE: Used to squash any commit.
+            Command: git rebase -i db7f421
+
+            This will bring all the commits after it and we can then merge the 
+            commits after it.
+
+        • Cherry-pick: This is used to add a certain commit from another branch to our branch like a bug that has been already fixed in some other branch i will just use cherry pick to add that particular commit to my head: 
+            Command: git cherry-pick [hash]
+                    git cherry-pick [hash] -n (if u dont want to commit directly 				but stage the changes first)
