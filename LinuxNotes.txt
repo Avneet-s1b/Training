@@ -1,0 +1,469 @@
+LINUX
+
+Command Line Interface (CLI) : Used to interact with the os.
+
+Command Structure: Command      Options      Arguments
+			       eg: ls -lh /usr/bin
+
+Keyboard Shortcuts For CLI : 
+1. CTRL+R : Search command history.
+2. CTRL+C :  Cancel Command.
+3. Tab : Auto completes the command by making guess. If mpre than one options then press tab again to see all the possible guesses.
+4. CTRL+A : Move to the beginning of the line.
+5. CTRL+E : Move to the end of the line.
+6. CTRL+(Left-arrow) : Move left by one word.
+7. CTRL+(Right-arrow) : Move right by one word.
+8. CTRL+U : Remove from cursor to start.
+9. CTRL+K : Remove from cursor to end.
+10. CTRL+Shift+C : Copy.
+11. CTRL+Shift+V : Paste.
+
+
+CLI COMMANDS
+
+1. man: Used to display the user manual of any command.
+	    Syntax: man Command
+              Argument: Command
+              eg: man ls
+
+2. --help: provides information on commands in shorter terms.
+	    Syntax: ls --help
+              eg: ls –help
+
+3. apropos: helps to search for commands by providing one keyword which is functionality of that command.
+	    Syntax: apropos “functionality”
+	    eg: apropos “list”
+
+4. file: tell file type.
+	Syntax: file example.txt
+	eg: file LinuxNotes.odt
+	op: LinuxNotes.odt: OpenDocument Text
+
+5. stat: tell other properties like modification type, ownership etc.
+	Syntax: stat example.txt
+	eg: stat LinuxNotes.odt
+
+6. cd: used to change directory.
+	Syntax: cd foldername
+	eg: cd test
+	op: ~/test$
+	
+	imp points: to comeback from a directory we use “cd ..”. If we have to comeback two folder we do “cd ../..”. this can be replicated any number of times. There is also “\” which is used to indicate that next char has literal meaning. This is helpful in adding space in file names.
+
+	Options:
+		cd - :  takes to previous directory.
+
+		Cd : takes to home directory os user.
+	
+		cd ~username: takes to this new users home directory
+
+7. cd - : prints previous directory’s path.
+
+8. pwd: prints current directory path.
+	Syntax: pwd
+	op: /home/beryl/test
+
+9. ls:  list all content of the current directory.
+	
+	Options: 
+	-l: known as a long format that displays detailed information about files and 	    directories.
+ 	     Eg: ls -l
+	     op: total 48K
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Desktop
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Documents
+		drwxr-xr-x 2 beryl beryl 4096 Oct 16 10:40 Downloads
+		-rw-r--r-- 1 beryl beryl 8080 Oct 14 17:59 examples.desktop
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Music
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Pictures
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Public
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Templates
+		drwxrwxr-x 2 beryl beryl 4096 Oct 16 14:39 test
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Videos
+
+	-h: Print file sizes in human-readable format
+	      eg: ls -lh
+	      op: total 48K
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Desktop
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Documents
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 16 10:40 Downloads
+		-rw-r--r-- 1 beryl beryl 8.8K Oct 14 17:59 examples.desktop
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Music
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Pictures
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Public
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Templates
+		drwxrwxr-x 2 beryl beryl 4.0K Oct 16 14:39 test
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Videos
+		
+	-a: Represent all files Include hidden files and directories in the listing.
+	     eg: ls -a
+	     op: .              .cache     examples.desktop  Music     .ssh
+		..             .config    .gnupg            Pictures  .sudo_as_admin_successful
+		.bash_history  Desktop    .ICEauthority     .pki      Templates
+		.bash_logout   Documents  .local            .profile  test
+		.bashrc        Downloads  .mozilla          Public    Videos
+
+	-S: Sort files and directories by their sizes, listing the largest ones first.
+	   Eg: ls -lS
+	   op: total 48
+		-rw-r--r-- 1 beryl beryl 8980 Oct 14 17:59 examples.desktop
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Desktop
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Documents
+		drwxr-xr-x 2 beryl beryl 4096 Oct 16 10:40 Downloads
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Music
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Pictures
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Public
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Templates
+		drwxrwxr-x 2 beryl beryl 4096 Oct 16 14:39 test
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Videos
+
+	-R: Used to print in recursive way what is present inside all folders.
+		Eg: ls -R
+		op: 	.:
+			Desktop    Downloads         Music     Public     test
+			Documents  examples.desktop  Pictures  Templates  Videos
+
+			./Desktop:
+
+			./Documents:
+
+			./Downloads:
+			google-chrome-stable_current_amd64.deb  slack-desktop-				4.34.121-amd64.deb
+
+			./Music:
+
+			./Pictures:
+
+			./Public:
+
+			./Templates:
+
+			./test:
+			LinuxNotes.odt
+
+			./Videos:
+
+	Some other options:
+		-r: used to print in reverse order
+
+		-t: sort files in order of modification time(most recent first).
+		
+		-i: used to display the idx number of each file.
+
+		-g: used to display group ownership of files instead of owner.
+
+10. mkdir: make new directory at specified location.
+		Eg: mkdir new_folder
+		op: makes new dorectory inside current directory.
+
+	Options:
+	
+	-p: used to create two or more folders in a heirarchy based order.
+		Eg: mkdir -p legal/contract
+		op: this will create legal first then contract inside legal.
+
+11. rmdir: used to remove directory. (will remove only if the directory is empty).
+		Eg: rmdir legal/contract
+		op: removes directory.
+
+12. cp: used to make copy of a file in same folder.
+		Eg: cp LinuxNotes.odt Notes2.odt
+		op: legal  LinuxNotes.odt  new_folder  Notes2.odt
+
+13. mv:  used to move file from one loc to another or can also be used to rename a 	     file.
+		Eg: mv ./notes legal/ 
+		op: moves notes from curr dir to legal
+ 
+	     to rename a file
+		Eg: mv legal/notes legal/notes_renamed
+		op: file will be renamed from notes to notes_renamed
+
+Wildcard characters
+*: means anything like in sql
+?: means this one char could be anything
+
+14. rm: used to remove one or more files. This command can also help to delete a folder having files in it unlike rmdir.
+
+		Eg: rm legal/*
+		op: this will remove all the file inside legal.
+
+	Options:
+	-r : used to recursively travel inside each folder in order to delete a folder 		       having multiple files.
+		Eg: rm -r ./legal
+		op: this will delete the whole legal folder no matter if there is something 		present in it or not.
+
+15. find:  used to find a specific file in the specified location.
+		Eg: find . -name "Lin*"   
+		op: ./test/LinuxNotes.odt
+		      ./.config/libreoffice/4/user/backup/LinuxNotes.odt_0.odt
+
+
+
+There are 2 types of users in linux:
+1. Normal user(can’t access or modify system files)
+2. Super user(access and modify system files)
+
+16. sudo: this command helps to gain temporary access as a super user.
+		Eg: sudo ls /root
+		op: shows content of root directory
+
+	Options:
+		-k: to give up temp sudo access.
+			Eg: sudo -k
+
+		-s: to go into permanent super user mode.
+			Eg: sudo -s (use exit command to go back to permanent normal 					user)
+			
+
+17. Links: Two types:
+1. Soft Links (point to the file on disk, neither link nor the original file can be moved otherwise link will break)
+2. Hard Links (point to data on disk, link as well as original file’s movement does not affect anything since link points to the data which is inside the file)
+
+	Options:
+		ln: Used to create hard link
+			Syntax: ln LinuxNotes.odt words.odt
+			op: new link created in the same directory
+
+		ln -s: used to create soft link
+			Syntax:  ln -s LinuxNotes.odt poem.odt
+			op: soft link created in the same directory.
+
+18. pipe( | ): used to connect two commands or used to give output of one command as input for another command.
+		Syntax: echo "hello" | wc
+		op:  1       1       6
+
+19. echo: used to create new text file.
+		Syntax:  echo "this is file">file.txt
+		op: creates file
+
+20. cat: used to read file.
+		Syntax: cat file.txt
+		op: file content shown
+
+21. head/tail: used to show fix number of lines of a text file. (by default 10 only)
+		Syntax: head -n5 file.txt
+		op: shows first 5 lines of file.txt
+
+22. less: similar to man gives a new window of text file to easily navigate and read using (f,b).
+		Syntax: less file.txt
+
+
+Access Permission in Linux
+
+Represented as : rw-rw-r-x 
+This can be understood as: [user][group][others]
+User has first set of three letters, then group, then others.
+
+Permission can be represented in two ways:
+1. octal notation (744, 655 etc).
+2. symbolic notation (a=rwx).
+
+In octal notation:
+read(r) = 4
+write(w) = 2
+execute(x) = 1
+
+so for user to have read and write permission only is must have octal notation of 6.
+
+
+
+In symbolic notation, we play with symbols:
+user(u)
+group(g)
+others(o)
+all(a)
+(+) = add this permission (u+rx)
+(-) = remove this permision (a-x)
+(=) = rest the permission to specified (g=w)
+
+23. chmod: this is used to change the permission of the file folder.
+		Syntax: chmod 444 filename
+		eg: chmod u=w file.txt
+		op: before : rw-rw-r--
+		      after : -w-rw-r--
+
+24. chown: used to change the owner of the file/folder. It's important to note that chown generally requires sudo/root permissions. Owning the file alone is not enough to be able to change the owner.
+
+		Eg: sudo chown root file.txt
+		op: -rw-rw-r-- 1 root  beryl   986 Oct 16 18:28 file.txt
+
+25. chgrp: used to change the group ownership of a file or directory.
+		Eg: sudo chgrp beryl file.txt
+		op: before: rw-rw-r-- 1 beryl root    986 Oct 16 18:28 file.txt
+		      after: rw-rw-r-- 1 beryl beryl    986 Oct 16 18:28 file.txt
+
+26. grep:  used to search for words in a text file.
+		Eg: grep "is" file.txt 
+		op: returns all the line having “is” in them.
+
+	Options:
+		-i : grep by default is case sensitive. This options makes case insensitive 		search.
+			Eg: grep -i "the" file.txt
+			op: I like the generosity of numbers.
+			      The way, for example,...
+
+		-v: it gives the lines that doesnot have the specified word.
+			Eg:  grep -vi "the" file.txt
+			op: anything or anyone:
+			      eight dancers dressed as swans....
+
+
+		-E : this is used to specify we are making search using regular 				expressions(regex).
+			Eg: grep -E "[the]" file.txt
+			op: all lines having t,h,e chars
+
+  		        It can also be used to search using word length
+			Eg: grep -E "\w{6,}" file.txt 
+			op: all lines having a word whose length is greater than 6.
+
+
+27. sort: used to sort the text.
+
+	Options:
+		-n: sort numerically.
+			Eg: sort -n file.txt
+			op: Avneet	55	Fbd
+				Deepu	6	sonepat
+				Dpk	843	delhi
+				Kunal	77	delhi
+				name	id 	city
+				Vipul	123	shahdra
+			sorted on the basis of ascii value in first column
+		-k1/2/3 : specifies the column if table given acc to which you want to sort.
+			Eg: sort -k2 -n file.txt 
+			op: 	name		id 	city
+				Deepu	6	sonepat
+				Avneet	55	Fbd
+				Kunal		77	delhi
+				Vipul		123	shahdra
+				Dpk		843	delhi
+		-u: gives unique lines only
+			Eg: sort -k3 -u file.txt
+			op: name	id 	city
+				Kunal	77	delhi
+				Avneet55	Fbd
+				Vipul	123	shahdra
+				Deepu6	sonepat
+
+28. sed: used to manipulate the data.
+	Eg: sed "s/delhi/dilli/" file.txt
+
+
+
+
+op: name	id 	city
+Avneet	55	Fbd
+Kunal	77	dilli
+Dpk	843	dilli
+Vipul	123	shahdra
+Deepu	6	sonepat
+
+29. awk: used to programatically manipulate data. We can write programm explaining how we want to manipulate data.
+	Eg: awk '{print $1"\t"$2}' file.txt
+op: name	id
+Avneet	55
+Kunal		77
+Dpk		843
+Vipul		123
+Deepu	6
+
+30. vim: vim is the text editor provided for linux.
+	Installation : sudo apt install vim
+	to enter the editor: vim
+	to open exisiting file in vim: vim filename.txt
+	to switch between insert and command mode: i(to go to insert mode) esc(to comm mode)
+	to save a file- :w newfile.txt (if file new else=>) :w
+	to save and exit- :wq
+	to exit without save- :q!
+
+31. nano: similar to vim, another editor, more user friendly.
+	(commands already mentioned in the nano editor).
+	To open: nano filename.txt
+	To exit: ^x.
+
+TAR files: Common way to package data. Full form: Tape archives. Linux native.
+	
+
+32. tar cvf: c: to create tar file, v: to create verbose report of tar file, f: to determine archive files name type.
+	Eg: tar cvf myfolder.tar new_folder/
+
+33. tar caf: this creates compressed tar file. a determines compression type.
+	Eg: tar caf myfolder.tar.gz new_folder/
+
+34. zip/unzip: to create zip files and extract from them.
+	Eg: zip -r exfiles.zip new_folder/
+		-r is a good practice to use since if we pass a folder to be extracted then 
+		sometimes it will return an empty zip file.
+	Eg: unzip exfiles.zip
+
+
+Redirection
+means redirecting the output to a particular direction.
+
+There are three streams generally:
+1. std in (0)
+2. std out (1)
+3. std err (2)
+
+With redirection we can save output of a command in a particular file.
+
+35. > : this operator redirects the output to a particular file.
+	Eg: ls 1>redirected.txt
+ 	Similarly we can also store error output in other files too.
+
+36. >> : this operators helps in storing in already existing files
+	Eg: ls 1>>redirected.txt
+
+37. env: to print env variables.
+
+38. uname -a: used to show kernel version.
+
+39. / etc / *release : is the folder in which the distro version is kept but release filename can vary thats why we used aestrik.
+	Eg: cat /etc/*release
+
+40. install/upgrade package: sudo apt update (to fetch updated information then)
+				         sudo apt upgrade
+
+	to install new package : sudo apt install
+
+41. shred: overwrites the contents of files with random data, making it much more difficult to recover the original data after deletion also.
+	Eg: shred filename
+
+42. ssh: It is a protocol used to securely connect to a remote server/system. ssh is secure in the sense that it transfers the data in encrypted form between the host and the client.
+	Eg: ssh host_name@hostIPaddress
+	To disconnect: logout (^D)
+	
+
+43. shutdown: used to shutdown the linux box.
+	Eg: sudo shutdown -h now
+	to shutdown with a warning message.
+	Eg: shutdown -h +1 "warning"
+
+	to cancel a schduled shutdown
+	Eg: sudo shutdown -c
+
+
+44. ps: ps command is used to list the currently running processes and their PIDs along with some other information depends on different options.
+
+45. scp: The SCP command or secure copy allows the secure transferring of files between the local host and the remote host or between two remote hosts.
+	Eg: To copy from local machine to remote server
+		scp LinuxNotes.odt avneet@20.237.223.113:/home/avneet
+	
+	       To copy from remote server to local machine
+		scp avneet@20.237.223.113:/home/avneet/remote_file.txt .
+
+46. whoami: tells about the current user working on machine.
+
+47. who: tells about all the users in the current system.
+
+48. su: allows us to run the shell as another user:
+	  Eg: su username
+	Options:
+		su - : will change the user to root.
+
+		
+49. To Add Another User : command: useradd -m username (using -m option will add the home directory to the user)
+
+				     set password: passwd username
+
+50. To delete a user:  deluser username
+
