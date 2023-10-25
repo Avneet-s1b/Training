@@ -402,3 +402,83 @@ all(a)
 	(commands already mentioned in the nano editor).
 	To open: nano filename.txt
 	To exit: ^x.
+
+TAR files: Common way to package data. Full form: Tape archives. Linux native.
+	
+
+32. tar cvf: c: to create tar file, v: to create verbose report of tar file, f: to determine archive files name type.
+	Eg: tar cvf tar_folder.tar folder1/
+	op: file.txt  folder1  hard_link.txt  soft_link.txt  tar_folder.tar
+
+33. tar caf: this creates compressed tar file. a determines compression type.
+	Eg: tar caf myfolder.tar.gz new_folder/
+	op: comp_folder.tar.gz  folder1        soft_link.txt
+		file.txt   hard_link.txt  tar_folder.tar
+
+34. zip/unzip: to create zip files and extract from them.
+	Eg: zip -r exfiles.zip new_folder/
+		(-r is a good practice to use since if we pass a folder to be extracted then 
+		sometimes it will return an empty zip file.)
+	op: comp_folder.tar.gz  file.txt  hard_link.txt  tar_folder.tar   exfiles.zip
+	
+	Eg: unzip exfiles.zip
+
+
+
+Redirection
+means redirecting the output to a particular direction.
+
+There are three streams generally:
+1. std in (0)
+2. std out (1)
+3. std err (2)
+
+With redirection we can save output of a command in a particular file.
+
+35. > : this operator redirects the output to a particular file.
+	Eg: ls 1>redirected.txt
+	op: :
+		comp_folder.tar.gz
+		exfiles.zip
+		file.txt
+		folder1
+		hard_link.txt
+		redirected_file.txt
+		redirected.txt
+		soft_link.txt
+		tar_folder.tar
+
+ 	Similarly we can also store error output in other files too.
+
+36. >> : this operators helps in storing in already existing files
+	Eg: ls 1>>redirected.txt
+	op: :
+		comp_folder.tar.gz
+		exfiles.zip
+		file.txt
+		folder1
+		hard_link.txt
+		redirected_file.txt
+		redirected.txt
+		soft_link.txt
+		tar_folder.tar
+		total 44K
+		-rw-rw-r-- 1 beryl beryl    0 Oct 25 18:17 :
+		drwxrwxr-x 3 beryl beryl 4.0K Oct 25 18:20 .
+		drwxrwxr-x 6 beryl beryl 4.0K Oct 25 17:58 ..
+		-rw-rw-r-- 1 beryl beryl  136 Oct 25 18:14 comp_folder.tar.gz
+		-rw-rw-r-- 1 beryl beryl  326 Oct 25 18:16 exfiles.zip
+		-rw-rw-r-- 2 beryl beryl   37 Oct 25 18:03 file.txt
+		drwxrwxr-x 3 beryl beryl 4.0K Oct 25 18:11 folder1
+		lrwxrwxrwx 1 beryl beryl    8 Oct 25 18:00 hard_link.txt -> file.txt
+		-rw-rw-r-- 1 beryl beryl  128 Oct 25 18:20 redirected_file.txt
+		-rw-rw-r-- 1 beryl beryl    0 Oct 25 18:17 redirected.txt
+		-rw-rw-r-- 2 beryl beryl   37 Oct 25 18:03 soft_link.txt
+		-rw-rw-r-- 1 beryl beryl  10K Oct 25 18:12 tar_folder.tar
+
+37. env: to print env variables.
+
+38. uname -a: used to show kernel version.
+			  op: Linux beryl-HP-ProBook-6560b 5.4.0-150-generic #167~18.04.1-Ubuntu SMP Wed May 24 00:51:42 
+			  	  UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+
