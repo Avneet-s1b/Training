@@ -496,8 +496,14 @@ Git is a version control system that allows to keep track of changes made. It is
                     (END)
 
 
-    • Atomic commits: it is imp to make atomic commit so that in future if we want one specific feature we can use it and similar category changes should be comitted together.
+    • Atomic commits: it is imp to make atomic commit so that in future if we want one specific 
+                      feature we can use it and similar category changes should be comitted together.
 
-    
+    • Amending a commit: Git doesnot allow us to amend past commits since amending any past commit 
+                         will change that commit’s sha value and thus breaking the chain of all commits. 
+                         But we can amend the previous commit since it is not the parent of any next commit 
+                         till now.
+          Command: git commit --amend -m “Amends the commit”
+          Example: 
 
    
