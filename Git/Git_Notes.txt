@@ -433,6 +433,45 @@ Git is a version control system that allows to keep track of changes made. It is
             Result: [main df6b91d] Adds terminal o/p of rename command to Git_notes.txt
                     1 file changed, 9 insertions(+)
 
+    • git show: shows the changes made in a specific commit
+              Command: git show [hash value initials > 5] 
+              
+              Example:
+              Command: git show 6a31046
+              Result:   commit 6a3104668bbe81e0f2da6520ee592ef517233e3f (HEAD -> main)
+                        Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                        Date:   Wed Oct 25 13:21:22 2023 +0530
+
+                            Adds git commit all notes to Git_Notes.txt
+
+                        diff --git a/Git/Git_Notes.txt b/Git/Git_Notes.txt
+                        index 32a0eb1..26fe85b 100644
+                        --- a/Git/Git_Notes.txt
+                        +++ b/Git/Git_Notes.txt
+                        @@ -421,4 +421,18 @@ Git is a version control system that allows to keep track of changes made. It is
+                                                Changes to be committed:
+                                                (use "git reset HEAD <file>..." to unstage)
+                        
+                        -                            renamed:    GitNotes.txt -> Git_Notes.txt
+                        \ No newline at end of file
+                        +                            renamed:    GitNotes.txt -> Git_Notes.txt
+                        +
+                        +    • To directly commit without staging: this command directly commits without staging but if there is a newfile which has not been committed even once then it wont commit that particular file and we will have to put that new file to staging .
+                        +       
+                        +               Command: git commit -a 
+                        +                               git commit -all
+                        +
+                        +        Example: 
+                        +            Command: git commit -am "Adds terminal o/p of rename command to Git_notes.txt"
+                        +            Result: [main df6b91d] Adds terminal o/p of rename command to Git_notes.txt
+                        +                    1 file changed, 9 insertions(+)
+                        +
+                        +    
+                        +
+                        +   
+                        \ No newline at end of file
+
+
     
 
    
