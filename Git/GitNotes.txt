@@ -46,3 +46,15 @@ Git is a version control system that allows to keep track of changes made. It is
                   git help commandname
 	              man git-commandname
 
+    • Initialize a git repo: to initialize a git repo in a project go to the project directory and type git init.
+
+    • Commit change: to commit chnages three steps are followed: make change, add change to repo, commit change.
+              To add: git add filename 
+              To commit: git commit -m “message”
+
+            Example: 
+                Command: git add .
+                         git commit -m "Adds help command notes to GitNotes"
+                
+                Result: [main 5c42dea] Adds help command notes to GitNotes
+                        1 file changed, 1 insertion(+)
