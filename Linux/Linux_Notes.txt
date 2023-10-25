@@ -196,3 +196,79 @@ Wildcard characters
 		op: ./test/LinuxNotes.odt
 		      ./.config/libreoffice/4/user/backup/LinuxNotes.odt_0.odt
 
+
+There are 2 types of users in linux:
+1. Normal user(can’t access or modify system files)
+2. Super user(access and modify system files)
+
+16. sudo: this command helps to gain temporary access as a super user.
+		Eg: sudo ls -lah /root
+		op: total 24K
+			drwx------  4 root root 4.0K Oct 14 18:08 .
+			drwxr-xr-x 24 root root 4.0K Oct 17 11:01 ..
+			-rw-r--r--  1 root root 3.1K Apr  9  2018 .bashrc
+			drwx------  3 root root 4.0K Oct 18 14:33 .cache
+			-rw-r--r--  1 root root  148 Aug 17  2015 .profile
+			drwxr-xr-x  6 root root 4.0K Oct 16 10:26 snap
+
+
+	Options:
+		-k: to give up temp sudo access.
+			Eg: sudo -k
+
+		-s: to go into permanent super user mode.
+			Eg: sudo -s (use exit command to go back to permanent normal 
+								user)
+			
+
+17. Links: Two types:
+1. Soft Links (point to the file on disk, neither link nor the original file can be moved otherwise link will break)
+2. Hard Links (point to data on disk, link as well as original file’s movement does not affect anything since link points to the data which is inside the file)
+
+	Options:
+		ln: Used to create hard link
+			Syntax: ln -s file.txt hard_link.txt
+			op: file.txt  hard_link.txt  soft_link.txt
+
+		ln -s: used to create soft link
+			Syntax:  ln -s file.txt soft_link.txt
+			op: file.txt  soft_link.txt
+
+
+18. pipe( | ): used to connect two commands or used to give output of one command as input for another command.
+		Syntax: echo "hello" | wc
+		op:  1       1       6
+
+19. echo: used to create new text file.
+		Syntax:  echo "this is file">file.txt
+		op: creates file
+
+20. cat: used to read file.
+		Syntax: cat file.txt
+		op: "New file is created"
+
+21. head/tail: used to show fix number of lines of a text file. (by default 10 only)
+		Syntax: head -n5 file.txt
+		op: shows first 5 lines of file.txt
+			"New file is created
+			1
+			2
+			3
+			4"
+
+
+22. less: similar to man gives a new window of text file to easily navigate and read using (f,b).
+		Syntax: less file.txt
+		op: "New file is created
+			1
+			2
+			3
+			4
+			5
+			6
+			7
+			8
+
+			file.txt (END)"
+
+
