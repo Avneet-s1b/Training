@@ -228,7 +228,15 @@ Git is a version control system that allows to keep track of changes made. It is
         them there will be no commit.
 
         Command: git commit 
-        Result: 
+        Result: commit 12ea1e022fc220b4ba0b86bccd9bd92ec287bee7 (HEAD -> main)
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 12:26:04 2023 +0530
+
+                    Adds multi line commit eg and three tier architecture
+                    
+                    This commit adds multi line commit example to notes and three tier architecture description too.
+
+
 
 
     Three Tree Architecture
