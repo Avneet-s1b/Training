@@ -222,4 +222,11 @@ Git is a version control system that allows to keep track of changes made. It is
                 db0274d Adds Linux Notes
                 ee40834 Initial commit
 
+    • Multi line commit message:  to give multi line commit message just do : 
+        git commit this will open nano editor automatically as it has been set by us to 
+        get opened whenever a commit messg is req. Remember commit mssg are imp without 
+        them there will be no commit.
+
+        Command: git commit 
+        Result: 
 
