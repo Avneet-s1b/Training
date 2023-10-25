@@ -646,29 +646,160 @@ Github
                             f1b565a..ea4441e  main -> main
 
     • git branch: This is used to check curr branch.
-                        Command: git branch (to check all branches)
-                                git branch -M newname (-M option is used to rename the beranch)
-                                git checkout branchname (to go to any specific branch)
-                                git checkout -b newBranchname (to create a new branch)
-                                git branch -d branchname (to delete a branch)
-	We cannot delete a branch if we are on it. 
 
-                        Example: 
+                    to check all branches:
                         Command: git branch 
                         Result: * master
 
-                        Command: git branch -M main
+                    to rename the branch:
+                        Command: git branch -M newname 
                         Result: this will change current branch name to main on showing git branch 
                                 * main
 
-                        Command: git checkout -b branch1
-                        Result:  Switched to a new branch 'branch1'
+                    to go to any specific branch:
+                    Command: git checkout branchname 
+                    Result:  Switched to branch 'main'
 
-                        Command: git checkout main
-                        Result:  Switched to branch 'main'
+                    to create a new branch:
+                    Command: git checkout -b newBranchname 
+                    Result: Switched to a new branch 'branch1'
 
-                        Command: git branch -d branch1
-                        Result:  Deleted branch branch1 (was 67aaf4e).
+                    to delete a branch locally:
+                    Command: git branch -d branchname  
+                    Result:  Deleted branch branch1 (was 67aaf4e).
+
+                    to delete a branch on remote repo         
+                    Command: git push origin --delete branchname 
+
+                    to view remote branches stored on local machine:
+                    Command: git remote -r
+
+	We cannot delete a branch if we are on it. 
+
+    • How to see diff bw two branch: git diff command is used
+			Command: git diff branchname (this branchname is the 
+					branchname you want to compare your curr branch with)
+
+            Example:
+            Command: git diff branch1
+            Result: diff --git a/demo.txt b/demo.txt
+                    index c8d6a06..5e99fe6 100644
+                    --- a/demo.txt
+                    +++ b/demo.txt
+                    @@ -1,7 +1,6 @@
+                    This is demo file.
+                    List 1 : 1. apple
+                            2. banana
+                    -        3. grapes
+                            4. cherry
+ 
+
+    • Merge code: It can be done in two ways
+        1. one is through pull req through github. Manually merge the branch through github and then to make those code sync with local machine we use 
+                Command: git pull origin main
+            Pull is used to sync the local git with remote repository.
+
+        2. To merge using cmd we use 
+                Command: git merge branchname (name of branch that you want 
+            			 to merge with your curr branch)
+
+                Example:
+                Command: git merge branch1
+                Result: Updating c5df131..4331e1e
+                        Fast-forward
+                        demo.txt | 8 +-------
+                        1 file changed, 1 insertion(+), 7 deletions(-)
+
+                        Branches merged without any conflicts
+
+    • Merge Conflicts: Sometimes merge conflicts may arise if there are two different changes at a same place and git 
+                       is unable to decide which feature to keep so in that case we have to manually resolve the conflict and
+                       then commit the changes.
+
+                Example:
+                Command: git merge branch1
+                Result: Auto-merging demo.txt
+                        CONFLICT (content): Merge conflict in demo.txt
+                        Automatic merge failed; fix conflicts and then commit the result.ches merged without any conflicts
+
+    • pull/fetch: git pull copies changes from a remote repository directly into our working directory, while git fetch does not. 
+                The git fetch command only copies changes into our local Git repo.
+
+                Example:
+                Command: git pull origin main
+                Result: From https://github.com/Avneet-s1b/demorepo
+                        * branch            main       -> FETCH_HEAD
+                        Auto-merging file.txt
+                        CONFLICT (content): Merge conflict in file.txt
+                        Automatic merge failed; fix conflicts and then commit the result.
+
+    • Fork: Forking a repository means creating exact duplicate of an exisitng repo. It is done manually in github.
+            A fork is a copy of a repository that allows you to make your own changes without impacting the original project. 
+            Diff bw fork and clone: A fork differs from a cloned copy in that it doesn't allow for direct collaboration with the root using
+            local commands like git push and git pull.
+
+
+    • Stash: stash is used when we have made some changes and staged them but we dont want to commit them right now. We want to go back to our last repository state but also dont wanna lose the staged changes so we will send these changes to stash from staging area and will pop/bring back whenever required.
+                          Command: git add .
+                                          git stash (to add to stash)
+                                          git stash pop (to call back from stash)
+                                          git stash clear (to clear the stash)
+
+                        Example: 
+                        Command: git stash
+                        Result: Saved working directory and index state WIP on main: 20a192b Resolves merge cnflict during git pul
+
+                        Command: git stash pop 
+                        Result: On branch main
+                                Changes not staged for commit:
+                                (use "git add <file>..." to update what will be committed)
+                                (use "git checkout -- <file>..." to discard changes in working directory)
+
+                                        modified:   demo.txt
+
+                                no changes added to commit (use "git add" and/or "git commit -a")
+                                Dropped refs/stash@{0} (04ace3347525b20b37e29f5801d6a0bf931b4b8d)
+
+                        Command: git stash clear
+                        Result: git stash pop
+                                No stash entries found. 
+
+    • Squashing commits: means squashing 2 or more commits into one single commit. Two ways: 
+        1. Use reset: git reset hash
+        This command will take our head to that hash and all the commits after this commit will be unstaged now and then we can simply commit all these changes as one commit. (this trick only useful for squashing latest commits only not in between)
+
+        2. REBASE: Used to squash any commit.
+            Command: git rebase -i db7f421
+
+            This will bring all the commits after it and we can then merge the 
+            commits after it.
+
+            Example:
+            Command: git rebase -i 660ef65
+            Result: Before
+                    d9749ec (HEAD -> main) Adds Quality4,5 together
+                    fc9e409 Adds quality 3 to demo.txt
+                    bc716b6 Adds quality 2 to demo.txt
+                    660ef65 Adds quality 1 to demo.txt
+                    3e67bc8 Uses stash to save staged changes
+
+                    After 
+                    e86e054 (HEAD -> main) Adds Quality1,2,3,4,5 together using rebase
+                    660ef65 Adds quality 1 to demo.txt
+
+        • Cherry-pick: This is used to add a certain commit from another branch to our branch like a bug that has been already fixed in some other branch i will just use cherry pick to add that particular commit to my head: 
+            Command: git cherry-pick [hash]
+                    git cherry-pick [hash] -n (if u dont want to commit directly 	
+                                    			but stage the changes first)
+
+            Example:
+            Command: git cherry-pick 2c15ae5
+            Result: [main c012ca8] Removes 4,5 Quality in desc of branch1
+                    Date: Wed Oct 25 17:38:04 2023 +0530
+                    1 file changed, 2 deletions(-)
+                    
+                
+
                             
 
    
