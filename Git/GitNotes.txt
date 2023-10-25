@@ -1,1 +1,47 @@
 Git
+
+Git is a version control system that allows to keep track of changes made. It is helpful for collaborative work, prevent losses from crash, rolling back etc.
+
+    • Diff. Between git and github: Git is a version control system that allows developers to track changes in their code. GitHub is a web-based hosting service for git repositories. In simple terms, you can use git without Github, but you cannot use GitHub without Git.
+
+    • Distributed Version Control: What this means is that git doesnot consider any repo a central repo, all repos are equal and they are their own version of that particular project. Though we have one master in git it is not included by git we just decide to call that branch a master so it acts as a central base where everyone will submit their changes.
+
+    • Configure git files: Git configuration can be done in three ways:
+        1. System wide: git config --system 
+        2. For particular user: git config --global
+        3. For particular project: git config
+
+	    To edit user name and email : git config --global user.name "Avneet-s1b"
+						              git config --global user.email “email”
+
+		To setup editor: git config --global core.editor “atom –wait”
+		To setup ui: git config --global color.ui true
+		
+        To view any config info: 
+
+            Username
+            Command: git config user.name
+            Result: Avneet-s1b
+
+            email 
+            Command: git config user.email
+            Result: avneet.bhatia@berylsystems.com
+
+            editor
+            Command: git config core.editor
+            Result: nano
+
+		We can also view .gitconfig folder using cat.
+            Command: cat .gitconfig 
+            Result: [user]
+                        name = Avneet-s1b
+                        email = avneet.bhatia@berylsystems.com
+                    [core]
+                        editor = nano
+                    [color]
+                        ui = true
+
+    • For help :  git help
+                  git help commandname
+	              man git-commandname
+
