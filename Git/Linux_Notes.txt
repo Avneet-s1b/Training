@@ -1,0 +1,198 @@
+LINUX
+
+Command Line Interface (CLI) : Used to interact with the os.
+
+Command Structure: Command      Options      Arguments
+			       eg: ls -lh /usr/bin
+
+Keyboard Shortcuts For CLI : 
+1. CTRL+R : Search command history.
+2. CTRL+C :  Cancel Command.
+3. Tab : Auto completes the command by making guess. If mpre than one options then press tab again to see all the possible guesses.
+4. CTRL+A : Move to the beginning of the line.
+5. CTRL+E : Move to the end of the line.
+6. CTRL+(Left-arrow) : Move left by one word.
+7. CTRL+(Right-arrow) : Move right by one word.
+8. CTRL+U : Remove from cursor to start.
+9. CTRL+K : Remove from cursor to end.
+10. CTRL+Shift+C : Copy.
+11. CTRL+Shift+V : Paste.
+
+
+CLI COMMANDS
+
+1. man: Used to display the user manual of any command.
+	    Syntax: man Command
+              Argument: Command
+              eg: man ls
+
+2. --help: provides information on commands in shorter terms.
+	    Syntax: ls --help
+              eg: ls –help
+
+3. apropos: helps to search for commands by providing one keyword which is functionality of that command.
+	    Syntax: apropos “functionality”
+	    eg: apropos “list”
+
+4. file: tell file type.
+	Syntax: file example.txt
+	eg: file LinuxNotes.odt
+	op: LinuxNotes.odt: OpenDocument Text
+
+5. stat: tell other properties like modification type, ownership etc.
+	Syntax: stat example.txt
+	eg: stat LinuxNotes.odt
+
+6. cd: used to change directory.
+	Syntax: cd foldername
+	eg: cd test
+	op: ~/test$
+	
+	imp points: to comeback from a directory we use “cd ..”. If we have to comeback two folder we do “cd ../..”. this can be replicated any number of times. There is also “\” which is used to indicate that next char has literal meaning. This is helpful in adding space in file names.
+
+	Options:
+		cd - :  takes to previous directory.
+
+		Cd : takes to home directory os user.
+	
+		cd ~username: takes to this new users home directory
+
+7. cd - : prints previous directory’s path.
+
+8. pwd: prints current directory path.
+	Syntax: pwd
+	op: /home/beryl/test
+
+9. ls:  list all content of the current directory.
+	
+	Options: 
+	-l: known as a long format that displays detailed information about files and 	    directories.
+ 	     Eg: ls -l
+	     op: total 48K
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Desktop
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Documents
+		drwxr-xr-x 2 beryl beryl 4096 Oct 16 10:40 Downloads
+		-rw-r--r-- 1 beryl beryl 8080 Oct 14 17:59 examples.desktop
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Music
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Pictures
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Public
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Templates
+		drwxrwxr-x 2 beryl beryl 4096 Oct 16 14:39 test
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Videos
+
+	-h: Print file sizes in human-readable format
+	      eg: ls -lh
+	      op: total 48K
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Desktop
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Documents
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 16 10:40 Downloads
+		-rw-r--r-- 1 beryl beryl 8.8K Oct 14 17:59 examples.desktop
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Music
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Pictures
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Public
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Templates
+		drwxrwxr-x 2 beryl beryl 4.0K Oct 16 14:39 test
+		drwxr-xr-x 2 beryl beryl 4.0K Oct 14 18:07 Videos
+		
+	-a: Represent all files Include hidden files and directories in the listing.
+	     eg: ls -a
+	     op: .              .cache     examples.desktop  Music     .ssh
+		..             .config    .gnupg            Pictures  .sudo_as_admin_successful
+		.bash_history  Desktop    .ICEauthority     .pki      Templates
+		.bash_logout   Documents  .local            .profile  test
+		.bashrc        Downloads  .mozilla          Public    Videos
+
+	-S: Sort files and directories by their sizes, listing the largest ones first.
+	   Eg: ls -lS
+	   op: total 48
+		-rw-r--r-- 1 beryl beryl 8980 Oct 14 17:59 examples.desktop
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Desktop
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Documents
+		drwxr-xr-x 2 beryl beryl 4096 Oct 16 10:40 Downloads
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Music
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Pictures
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Public
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Templates
+		drwxrwxr-x 2 beryl beryl 4096 Oct 16 14:39 test
+		drwxr-xr-x 2 beryl beryl 4096 Oct 14 18:07 Videos
+
+	-R: Used to print in recursive way what is present inside all folders.
+		Eg: ls -R
+		op: 	.:
+			Desktop    Downloads         Music     Public     test
+			Documents  examples.desktop  Pictures  Templates  Videos
+
+			./Desktop:
+
+			./Documents:
+
+			./Downloads:
+			google-chrome-stable_current_amd64.deb  slack-desktop-				4.34.121-amd64.deb
+
+			./Music:
+
+			./Pictures:
+
+			./Public:
+
+			./Templates:
+
+			./test:
+			LinuxNotes.odt
+
+			./Videos:
+
+	Some other options:
+		-r: used to print in reverse order
+
+		-t: sort files in order of modification time(most recent first).
+		
+		-i: used to display the idx number of each file.
+
+		-g: used to display group ownership of files instead of owner.
+
+10. mkdir: make new directory at specified location.
+		Eg: mkdir new_folder
+		op: makes new dorectory inside current directory.
+
+	Options:
+	
+	-p: used to create two or more folders in a heirarchy based order.
+		Eg: mkdir -p legal/contract
+		op: this will create legal first then contract inside legal.
+
+11. rmdir: used to remove directory. (will remove only if the directory is empty).
+		Eg: rmdir legal/contract
+		op: removes directory.
+
+12. cp: used to make copy of a file in same folder.
+		Eg: cp LinuxNotes.odt Notes2.odt
+		op: legal  LinuxNotes.odt  new_folder  Notes2.odt
+
+13. mv:  used to move file from one loc to another or can also be used to rename a 	     file.
+		Eg: mv ./notes legal/ 
+		op: moves notes from curr dir to legal
+ 
+	     to rename a file
+		Eg: mv legal/notes legal/notes_renamed
+		op: file will be renamed from notes to notes_renamed
+
+Wildcard characters
+*: means anything like in sql
+?: means this one char could be anything
+
+14. rm: used to remove one or more files. This command can also help to delete a folder having files in it unlike rmdir.
+
+		Eg: rm legal/*
+		op: this will remove all the file inside legal.
+
+	Options:
+	-r : used to recursively travel inside each folder in order to delete a folder 		       having multiple files.
+		Eg: rm -r ./legal
+		op: this will delete the whole legal folder no matter if there is something 		present in it or not.
+
+15. find:  used to find a specific file in the specified location.
+		Eg: find . -name "Lin*"   
+		op: ./test/LinuxNotes.odt
+		      ./.config/libreoffice/4/user/backup/LinuxNotes.odt_0.odt
+
