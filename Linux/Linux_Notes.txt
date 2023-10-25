@@ -341,3 +341,64 @@ all(a)
 			Eg: grep -E "\w{6,}" file.txt 
 			op: all lines having a word whose length is greater than 6.
 
+
+27. sort: used to sort the text.
+
+	Options:
+		-n: sort numerically.
+			Eg: sort -n file.txt
+			op: Avneet	55	Fbd
+				Deepu	6	sonepat
+				Dpk	843	delhi
+				Kunal	77	delhi
+				name	id 	city
+				Vipul	123	shahdra
+			sorted on the basis of ascii value in first column
+		-k1/2/3 : specifies the column if table given acc to which you want to sort.
+			Eg: sort -k2 -n file.txt 
+			op: 	name		id 	city
+				Deepu	6	sonepat
+				Avneet	55	Fbd
+				Kunal		77	delhi
+				Vipul		123	shahdra
+				Dpk		843	delhi
+		-u: gives unique lines only
+			Eg: sort -k3 -u file.txt
+			op: name	id 	city
+				Kunal	77	delhi
+				Avneet55	Fbd
+				Vipul	123	shahdra
+				Deepu6	sonepat
+
+28. sed: used to manipulate the data.
+	Eg: sed "s/delhi/dilli/" file.txt
+
+	op: name	id 	city
+	Avneet	55	Fbd
+	Kunal	77	dilli
+	Dpk	843	dilli
+	Vipul	123	shahdra
+	Deepu	6	sonepat
+
+29. awk: used to programatically manipulate data. We can write programm explaining how we want to manipulate data.
+	Eg: awk '{print $1"\t"$2}' file.txt
+	op: name	id
+	Avneet	55
+	Kunal		77
+	Dpk		843
+	Vipul		123
+	Deepu	6
+
+30. vim: vim is the text editor provided for linux.
+	Installation : sudo apt install vim
+	to enter the editor: vim
+	to open exisiting file in vim: vim filename.txt
+	to switch between insert and command mode: i(to go to insert mode) esc(to comm mode)
+	to save a file- :w newfile.txt (if file new else=>) :w
+	to save and exit- :wq
+	to exit without save- :q!
+
+31. nano: similar to vim, another editor, more user friendly.
+	(commands already mentioned in the nano editor).
+	To open: nano filename.txt
+	To exit: ^x.
