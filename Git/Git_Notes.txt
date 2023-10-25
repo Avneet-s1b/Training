@@ -617,6 +617,18 @@ Github
                        Result: Cloning into 'testrepo'...
                                warning: You appear to have cloned an empty repository.
 
+    • git remote add origin: When we clone a repo it already has a remote repo (origin) but when we create a project in our local machine and then we init it we have to add a remote origin in order to push to github. 
+                      Command: git remote add origin [repo-link]
+					           git remote -v (to verify remote origin)
+
+                    Example: 
+                    Command: git remote add origin git@github.com:Avneet-s1b/sshrepo.git
+
+                    Command: git remote -v 
+                    Result: origin  git@github.com:Avneet-s1b/sshrepo.git (fetch)
+                            origin  git@github.com:Avneet-s1b/sshrepo.git (push)
+
+
     • git push: now when we add and commit the code starts getting tracked by git on our machine that is locally. In order to show these changes and start it getting tracked by the remote repo we have to push it to that repo.
                     Command: git push origin main
                              git push -u origin main (to set origin main path as default)
@@ -633,6 +645,30 @@ Github
                             To https://github.com/Avneet-s1b/demorepo.git
                             f1b565a..ea4441e  main -> main
 
+    • git branch: This is used to check curr branch.
+                        Command: git branch (to check all branches)
+                                git branch -M newname (-M option is used to rename the beranch)
+                                git checkout branchname (to go to any specific branch)
+                                git checkout -b newBranchname (to create a new branch)
+                                git branch -d branchname (to delete a branch)
+	We cannot delete a branch if we are on it. 
+
+                        Example: 
+                        Command: git branch 
+                        Result: * master
+
+                        Command: git branch -M main
+                        Result: this will change current branch name to main on showing git branch 
+                                * main
+
+                        Command: git checkout -b branch1
+                        Result:  Switched to a new branch 'branch1'
+
+                        Command: git checkout main
+                        Result:  Switched to branch 'main'
+
+                        Command: git branch -d branch1
+                        Result:  Deleted branch branch1 (was 67aaf4e).
                             
 
    
