@@ -413,3 +413,12 @@ Git is a version control system that allows to keep track of changes made. It is
         2. Using git mv command: moving is similar to rename here. 
                Command : git mv first_file.txt newfile.txt
                this will automatically stage the rename.
+
+                Example: git mv GitNotes.txt Git_Notes.txt
+                Result: On branch main
+                        Your branch is up to date with 'origin/main'.
+
+                        Changes to be committed:
+                        (use "git reset HEAD <file>..." to unstage)
+
+                            renamed:    GitNotes.txt -> Git_Notes.txt
