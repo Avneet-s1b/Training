@@ -422,3 +422,17 @@ Git is a version control system that allows to keep track of changes made. It is
                         (use "git reset HEAD <file>..." to unstage)
 
                             renamed:    GitNotes.txt -> Git_Notes.txt
+
+    • To directly commit without staging: this command directly commits without staging but if there is a newfile which has not been committed even once then it wont commit that particular file and we will have to put that new file to staging .
+	
+		Command: git commit -a 
+				git commit -all
+
+        Example: 
+            Command: git commit -am "Adds terminal o/p of rename command to Git_notes.txt"
+            Result: [main df6b91d] Adds terminal o/p of rename command to Git_notes.txt
+                    1 file changed, 9 insertions(+)
+
+    
+
+   
