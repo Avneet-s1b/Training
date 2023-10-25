@@ -482,3 +482,76 @@ With redirection we can save output of a command in a particular file.
 			  op: Linux beryl-HP-ProBook-6560b 5.4.0-150-generic #167~18.04.1-Ubuntu SMP Wed May 24 00:51:42 
 			  	  UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
 
+
+39. / etc / *release : is the folder in which the distro version is kept but release filename can vary thats why we used aestrik.
+	Eg: cat /etc/*release
+	op: DISTRIB_ID=Ubuntu
+		DISTRIB_RELEASE=18.04
+		DISTRIB_CODENAME=bionic
+		DISTRIB_DESCRIPTION="Ubuntu 18.04.6 LTS"
+		NAME="Ubuntu"
+		VERSION="18.04.6 LTS (Bionic Beaver)"
+		ID=ubuntu
+		ID_LIKE=debian
+		PRETTY_NAME="Ubuntu 18.04.6 LTS"
+		VERSION_ID="18.04"
+		HOME_URL="https://www.ubuntu.com/"
+		SUPPORT_URL="https://help.ubuntu.com/"
+		BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+		PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+		VERSION_CODENAME=bionic
+		UBUNTU_CODENAME=bionic
+
+40. install/upgrade package: sudo apt update (to fetch updated information then)
+				         sudo apt upgrade
+
+	to install new package : sudo apt install
+
+41. shred: overwrites the contents of files with random data, making it much more difficult to recover the original data after deletion also.
+	Eg: shred filename
+	op:  �Dr �/<np����tިL�S5̍����
+          ��{�����rBi�tY�
+
+		  (Random output like above)
+
+42. ssh: It is a protocol used to securely connect to a remote server/system. ssh is secure in the sense that it transfers the data in encrypted form between the host and the client.
+	Eg: ssh host_name@hostIPaddress
+	To disconnect: logout (^D)
+	
+
+43. shutdown: used to shutdown the linux box.
+	Eg: sudo shutdown -h now
+	to shutdown with a warning message.
+	Eg: shutdown -h +1 "warning"
+
+	to cancel a schduled shutdown
+	Eg: sudo shutdown -c
+
+
+44. ps: ps command is used to list the currently running processes and their PIDs along with some other information depends on different options.
+
+45. scp: The SCP command or secure copy allows the secure transferring of files between the local host and the remote host or between two remote hosts.
+	Eg: To copy from local machine to remote server
+		scp LinuxNotes.odt avneet@20.237.223.113:/home/avneet
+	
+	       To copy from remote server to local machine
+		scp avneet@20.237.223.113:/home/avneet/remote_file.txt .
+
+46. whoami: tells about the current user working on machine.
+			op:beryl
+
+47. who: tells about all the users in the current system.
+			op: beryl    :0           2023-10-25 15:07 (:0)
+
+48. su: allows us to run the shell as another user:
+	  Eg: su username
+	Options:
+	  su - : will change the user to root.
+
+		
+49. To Add Another User : command: useradd -m username (using -m option will add the home directory to the user)
+
+				     set password: passwd username
+
+50. To delete a user:  deluser username
+
