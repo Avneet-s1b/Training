@@ -302,3 +302,114 @@ Git is a version control system that allows to keep track of changes made. It is
 
 	          If we stage some file then make changes to it after then there will be two diff 
               versions of our file one in staging area one in curr working tree and obv there will be one in git repo.
+
+
+    • git diff: used to compare the changes in file between working directory and staging area.
+          Command: git diff
+
+          Example: 
+          Command: git diff 
+          Result:   diff --git a/demo.txt b/demo.txt
+                    index 525a42e..1b6d18f 100644
+                    --- a/demo.txt
+                    +++ b/demo.txt
+                    @@ -1,2 +1,3 @@
+                    This is demo file.
+                    - List : 1. apple
+                    \ No newline at end of file
+                    + List : 1. apple
+                    +        2. banana
+                    \ No newline at end of file
+
+    • git diff --staged: used to compare changes between staging area and repo.
+          Command: git diff --staged 
+
+          Example: 
+          Command: git diff --staged 
+          Result:   diff --git a/demo.txt b/demo.txt
+                    index b033121..525a42e 100644
+                    --- a/demo.txt
+                    +++ b/demo.txt
+                    @@ -1 +1,2 @@
+                    -This is demo file.
+                    \ No newline at end of file
+                    +This is demo file.
+                    + List : 1. apple
+                    \ No newline at end of file
+
+    • git diff --color-words: used to show only changes and that too side by side.
+
+            Example: 
+            Command: git diff --color-words
+            Result: diff --git a/demo.txt b/demo.txt
+                    index 525a42e..1b6d18f 100644
+                    --- a/demo.txt
+                    +++ b/demo.txt
+                    @@ -1,2 +1,3 @@
+                    This is demo file.
+                    List : 1. apple
+                           2. banana 
+
+                "2.Banana" comes in green color in op showing it was added.
+
+    • git rm: used to stage changes after or while deleting a file (like git add does).
+	
+		Two situations are present in it: 
+            1. When we delete file manually using gui. Then we need to stage chages so we use
+            
+            Command: git rm filename
+            
+            This will ensure that file is still present in the machine’s trash.
+            2. When we delete using the cmd. It permanently deletes the file using unix delete.
+            
+            Command is same as above: git rm filename
+            
+            This also prevents the need of two steps first deleting then staging 
+            automatically deletes and stages the change simultaneously.
+            Also one imp note is it will delete permanently the file from 
+            so use this is another copy is present somewhere else or if you 
+            dont want the file.
+
+            Example:
+            Command: git rm file.txt
+            Result:  rm 'file.txt'
+
+                    on git status it shows
+
+                    On branch main
+                    Changes to be committed:
+                    (use "git reset HEAD <file>..." to unstage)
+
+                            deleted:    file.txt
+
+    • Move and rename: we can do this in two ways:
+        1. Manual renaming then we first need to stage deleted file name(git rm) and then stage new filename (git add). 
+           Then in the staging area git will understand that the deleted file and new file are same and actually rename has taken place.
+
+           Example: After manual renaming status will show mssg like:
+                        On branch main
+                        Changes not staged for commit:
+                        (use "git add/rm <file>..." to update what will be committed)
+                        (use "git checkout -- <file>..." to discard changes in working directory)
+
+                                deleted:    demo.txt
+
+                        Untracked files:
+                        (use "git add <file>..." to include in what will be committed)
+
+                                demo_renamed.txt
+
+                    Then we write followin commands: git rm demo.txt
+                                                     git add demo_renamed.txt
+                                                     git status
+
+                    Now the git status message will be: 
+                    On branch main
+                    Changes to be committed:
+                    (use "git reset HEAD <file>..." to unstage)
+
+                            renamed:    demo.txt -> demo_renamed.txt                                
+
+        2. Using git mv command: moving is similar to rename here. 
+               Command : git mv first_file.txt newfile.txt
+               this will automatically stage the rename.
