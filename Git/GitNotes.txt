@@ -18,18 +18,20 @@ Git is a version control system that allows to keep track of changes made. It is
 		To setup ui: git config --global color.ui true
 		
         To view any config info: 
-
-            Username
             Command: git config user.name
-            Result: Avneet-s1b
 
-            email 
-            Command: git config user.email
-            Result: avneet.bhatia@berylsystems.com
+            Example: 
+                Username
+                Command: git config user.name
+                Result: Avneet-s1b
 
-            editor
-            Command: git config core.editor
-            Result: nano
+                email 
+                Command: git config user.email
+                Result: avneet.bhatia@berylsystems.com
+
+                editor
+                Command: git config core.editor
+                Result: nano
 
 		We can also view .gitconfig folder using cat.
             Command: cat .gitconfig 
@@ -65,3 +67,159 @@ Git is a version control system that allows to keep track of changes made. It is
             2. use present tense, since it should tell the bug that this commit is going to fix.
             3. Add tracking id of the issue.
             4. Be clear and descriptive.
+
+
+    • Git log: it is useful to check a repository’s history.
+        Command: git log
+
+        Example:
+            Command: git log
+            Result: commit 10d51a102940703f03d83899ac33c86f23e69ee3 (HEAD -> master)
+                    Author: Avneet <avneet.bhatia@berylsystems.com>
+                        Date:   Wed Oct 18 17:09:53 2023 +0530
+
+                                Initial commit
+
+            10d51a102940703f03d83899ac33c86f23e69ee3 => this no is the sha-1 value of the commit.
+	
+    Sha-1 value is generated using a check sum and this checksum is a value generated for each set of changes done. This checksum is then passed through a 	hashing algorithm.
+
+	Sha-1 value’s checksum for each commit also contains hash value of prev commit so each commitis linked to previous similar to blockchain/.
+
+	Options: 
+		    Command: git log -n 5: useful to show most recent no of commits if commits are many.
+            Result: commit 13d54feac85da466808faef58a3eecd7856172e8 (HEAD -> main, origin/main, origin/HEAD)
+                    Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                    Date:   Wed Oct 25 12:06:27 2023 +0530
+
+                        Adds Best Practice for commit message notes to GitNotes
+
+                    commit dcbb96df693370a2b96eb52005eb9d193eef4518
+                    Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                    Date:   Wed Oct 25 12:04:48 2023 +0530
+
+                        Adds Initialize and commit commands notes to GitNotes
+
+                    commit 5c42dea76cd736f55a4ca8992f59ab4e59087bdd
+                    Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                    Date:   Wed Oct 25 11:59:18 2023 +0530
+
+                        Adds help command notes to GitNotes
+
+                    commit bebbe2caffaa0d08e240bf98be25318f52fd88af
+                    Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                    Date:   Wed Oct 25 11:57:07 2023 +0530
+
+                        Adds configuring git notes to GitNotes
+
+                    commit 2e4e22b25a762c5eb2eecefa94864a9406b379e0
+                    Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                    Date:   Wed Oct 25 11:40:20 2023 +0530
+
+                        Creates GitNotes file
+
+
+		Command: git log --since=2023-09-10:  useful to show logs from a particular date.
+        Result: commit 13d54feac85da466808faef58a3eecd7856172e8 (HEAD -> main, origin/main, origin/HEAD)
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 12:06:27 2023 +0530
+
+                    Adds Best Practice for commit message notes to GitNotes
+
+                commit dcbb96df693370a2b96eb52005eb9d193eef4518
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 12:04:48 2023 +0530
+
+                    Adds Initialize and commit commands notes to GitNotes
+
+                commit 5c42dea76cd736f55a4ca8992f59ab4e59087bdd
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 11:59:18 2023 +0530
+
+                Adds help command notes to GitNotes
+
+                commit bebbe2caffaa0d08e240bf98be25318f52fd88af
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 11:57:07 2023 +0530
+
+                    Adds configuring git notes to GitNotes
+
+                commit 2e4e22b25a762c5eb2eecefa94864a9406b379e0
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 11:40:20 2023 +0530
+
+                    Creates GitNotes file
+
+                commit 7abf03fadbeb7286cd93a92e451dc230ea6748c5
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 11:36:49 2023 +0530
+
+                    Starts Maintaining Proper Notes
+
+                commit a443630a9374d67e10914688e6c6386fc67f0b9a
+                :
+
+		Command: git log --until=2023-09-10:  useful to show logs till a particular date.
+
+		Command: git log --author=Avneet:  useful to show logs by a particular user.
+        Result: commit 13d54feac85da466808faef58a3eecd7856172e8 (HEAD -> main, origin/main, origin/HEAD)
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 12:06:27 2023 +0530
+
+                    Adds Best Practice for commit message notes to GitNotes
+
+                commit dcbb96df693370a2b96eb52005eb9d193eef4518
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 12:04:48 2023 +0530
+
+                    Adds Initialize and commit commands notes to GitNotes
+
+                commit 5c42dea76cd736f55a4ca8992f59ab4e59087bdd
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 11:59:18 2023 +0530
+
+                    Adds help command notes to GitNotes
+
+                commit bebbe2caffaa0d08e240bf98be25318f52fd88af
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 11:57:07 2023 +0530
+
+                    Adds configuring git notes to GitNotes
+
+                commit 2e4e22b25a762c5eb2eecefa94864a9406b379e0
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 11:40:20 2023 +0530
+
+                    Creates GitNotes file
+
+                commit 7abf03fadbeb7286cd93a92e451dc230ea6748c5
+                Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 11:36:49 2023 +0530
+
+                    Starts Maintaining Proper Notes
+
+                commit a443630a9374d67e10914688e6c6386fc67f0b9a
+                beryl@beryl-HP-ProBook-6560b:~/Documents/Training$ 
+
+
+		Command: git log --grep="Best":  useful to show particular logs.
+        Result: Author: Avneet-s1b <avneet.bhatia@berylsystems.com>
+                Date:   Wed Oct 25 12:06:27 2023 +0530
+
+                    Adds Best Practice for commit message notes to GitNotes
+
+		Command: git log --oneline: gives all logs first line containging hash value and commit message.
+        Result: 13d54fe (HEAD -> main, origin/main, origin/HEAD) Adds Best Practice for commit message notes to GitNotes
+                dcbb96d Adds Initialize and commit commands notes to GitNotes
+                5c42dea Adds help command notes to GitNotes
+                bebbe2c Adds configuring git notes to GitNotes
+                2e4e22b Creates GitNotes file
+                7abf03f Starts Maintaining Proper Notes
+                a443630 Adds Postgres Notes Starting
+                9966757 Adds Linux notes odt file
+                f859bc7 Readable Linux Notes Add
+                ab3f3d2 Add Git notes
+                db0274d Adds Linux Notes
+                ee40834 Initial commit
+
+
