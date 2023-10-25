@@ -251,3 +251,54 @@ Git is a version control system that allows to keep track of changes made. It is
 
 
     • Head pointer is used by git to tell the current position of where we are working.
+
+    • git status: used to check status of the current project about what changes are being tracked and what not.
+
+        Command: git status
+        Example Outputs: If the changes have been made but not staged
+
+        On branch master
+        Untracked files:
+        (use "git add <file>..." to include in what will be committed)
+
+                    second_file.txt
+                    third_file.txt
+
+        nothing added to commit but untracked files present (use "git add" to track)
+
+        If the changes have been made and staged but not committed.
+
+        On branch master
+        Changes to be committed:
+        (use "git reset HEAD <file>..." to unstage)
+
+            new file:   second_file.txt
+            new file:   third_file.txt
+
+        If the changes have been staged and committed too.
+        
+        On branch master
+	    nothing to commit, working tree clean
+
+    • git checkout: this is used to bring back file from repo in case of file loss.
+              Command: git checkout -- filename 
+
+              Example: 
+                Command: git checkout --
+                Result: M	Git/GitNotes.txt
+                        Your branch is up to date with 'origin/main'.
+ 	        
+              This -- in checkout is used too tell checkout that dont go looking on any 
+              other branch we have to fetch the file from this current branch only.
+
+    • git reset: this command is used to unstage the change.(if the changes were made to some file after being staged then this will not change the current file in working dir this will only unstage the file and current file condition will prevail).
+                      
+                      Command: git reset head filename
+
+                      Example: git reset HEAD
+                      Result: Unstaged changes after reset:
+                              M	  Git/GitNotes.txt
+
+
+	          If we stage some file then make changes to it after then there will be two diff 
+              versions of our file one in staging area one in curr working tree and obv there will be one in git repo.
