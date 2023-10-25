@@ -230,3 +230,16 @@ Git is a version control system that allows to keep track of changes made. It is
         Command: git commit 
         Result: 
 
+
+    Three Tree Architecture
+
+					Repository(changes being tracked by git)
+						|
+					          v
+					Staging area(changes about to be commited)
+						|
+					          v
+					Working file(changes not being tracked by git)
+
+
+    • Head pointer is used by git to tell the current position of where we are working.
