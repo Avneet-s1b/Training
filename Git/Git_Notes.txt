@@ -601,9 +601,31 @@ Git is a version control system that allows to keep track of changes made. It is
                                     Comand: git rm --cached file.txt
                                     Result: rm 'Git/file.txt'
 
-    • How to track empty dir: git tracks empty file but not empty dir so in order to track empty dir we create a .file which is empty and will stay hidden but git will now be tracking the empty folder.
+    • How to track empty dir: git tracks empty file but not empty dir so in order to track empty dir we create a .file (.gitkeep) 
+                            which is empty and will stay hidden but git will now be tracking the empty folder.
 
 
+Github
 
+    • git clone: it is used to clone complete code from a git repo.
+                       Command: git clone [repo-link]
+
+    • git push: now when we add and commit the code starts getting tracked by git on our machine that is locally. In order to show these changes and start it getting tracked by the remote repo we have to push it to that repo.
+                    Command: git push origin main
+                             git push -u origin main (to set origin main path as default)
+                      origin – here is the remote repo name
+                      main – is the branch we are working on
+
+                    Example: 
+                    Command: git push origin main
+                    Result: Counting objects: 4, done.
+                            Delta compression using up to 4 threads.
+                            Compressing objects: 100% (2/2), done.
+                            Writing objects: 100% (4/4), 332 bytes | 332.00 KiB/s, done.
+                            Total 4 (delta 0), reused 0 (delta 0)
+                            To https://github.com/Avneet-s1b/demorepo.git
+                            f1b565a..ea4441e  main -> main
+
+                            
 
    
