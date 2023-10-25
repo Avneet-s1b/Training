@@ -272,3 +272,72 @@ There are 2 types of users in linux:
 			file.txt (END)"
 
 
+
+Access Permission in Linux
+
+Represented as : rw-rw-r-x 
+This can be understood as: [user][group][others]
+User has first set of three letters, then group, then others.
+
+Permission can be represented in two ways:
+1. octal notation (744, 655 etc).
+2. symbolic notation (a=rwx).
+
+In octal notation:
+read(r) = 4
+write(w) = 2
+execute(x) = 1
+
+so for user to have read and write permission only is must have octal notation of 6.
+
+
+
+In symbolic notation, we play with symbols:
+user(u)
+group(g)
+others(o)
+all(a)
+(+) = add this permission (u+rx)
+(-) = remove this permision (a-x)
+(=) = rest the permission to specified (g=w)
+
+23. chmod: this is used to change the permission of the file folder.
+		Syntax: chmod 444 filename
+		eg: chmod u=w file.txt
+		op: before : rw-rw-r--
+		      after : -w-rw-r--
+
+24. chown: used to change the owner of the file/folder. It's important to note that chown generally requires sudo/root permissions. Owning the file alone is not enough to be able to change the owner.
+
+		Eg: sudo chown root file.txt
+		op: -rw-rw-r-- 1 root  beryl   986 Oct 16 18:28 file.txt
+
+25. chgrp: used to change the group ownership of a file or directory.
+		Eg: sudo chgrp beryl file.txt
+		op: before: rw-rw-r-- 1 beryl root    986 Oct 16 18:28 file.txt
+		      after: rw-rw-r-- 1 beryl beryl    986 Oct 16 18:28 file.txt
+
+26. grep:  used to search for words in a text file.
+		Eg: grep "is" file.txt 
+		op: returns all the line having “is” in them.
+
+	Options:
+		-i : grep by default is case sensitive. This options makes case insensitive 		search.
+			Eg: grep -i "the" file.txt
+			op: I like the generosity of numbers.
+			      The way, for example,...
+
+		-v: it gives the lines that doesnot have the specified word.
+			Eg:  grep -vi "the" file.txt
+			op: anything or anyone:
+			      eight dancers dressed as swans....
+
+
+		-E : this is used to specify we are making search using regular 				expressions(regex).
+			Eg: grep -E "[the]" file.txt
+			op: all lines having t,h,e chars
+
+  		        It can also be used to search using word length
+			Eg: grep -E "\w{6,}" file.txt 
+			op: all lines having a word whose length is greater than 6.
+
