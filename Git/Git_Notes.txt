@@ -569,4 +569,32 @@ Git is a version control system that allows to keep track of changes made. It is
                     1 file changed, 1 insertion(+), 2 deletions(-)
 
 
+    • git clean: this is used to clean untracked files 
+                  Command: git clean -n (this will only show what it can remove)
+                           git clean -f (this will actually remove the files)
+
+                  Example: 
+
+                  Command: git clean -n 
+                  Result: Would remove file.txt
+
+                  Command: git clean -f 
+                  Result: Removing file.txt
+
+    • .gitignore: If there is a log file that is being constantly logged, git will notice the changes and give us status notifications of commits pnding but we dont want that too happen since logs are going to change evrytime and we dont want to get bothered everytume so in order too do that we add those files too .gitignore folder and git will ignore those folders everytime even if we make changes inside them.
+
+	To ignore files on a global(user) level we hve to create .gitignore file on global 	
+	mainly in the home dir with any name like .gitignore_global and then configure 	it using the Command: 
+			git config --global core.excludesfile ~/.gitignore_global
+
+    • How to ignore a tracked file: One way is to delete it from repo using rm command but it will also delete it from working repo. So We delete it from staging idx using Command:
+                           git rm --cached filename
+	
+	Now git will stop tracking this file.
+
+    • How to track empty dir: git tracks empty file but not empty dir so in order to track empty dir we create a .file which is empty and will stay hidden but git will now be tracking the empty folder.
+
+
+
+
    
