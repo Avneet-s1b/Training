@@ -41,6 +41,7 @@ Git is a version control system that allows to keep track of changes made. It is
                     [color]
                         ui = true
 
+
     • For help :  git help
                   git help commandname
 	              man git-commandname
