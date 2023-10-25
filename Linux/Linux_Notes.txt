@@ -25,14 +25,29 @@ CLI COMMANDS
 	    Syntax: man Command
               Argument: Command
               eg: man ls
+			  
 
 2. --help: provides information on commands in shorter terms.
 	    Syntax: ls --help
               eg: ls –help
+			  op: Usage: ls [OPTION]... [FILE]...
+				List information about the FILEs (the current directory by default).
+				Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
 
+				Mandatory arguments to long options are mandatory for short options too.
+				-a, --all                  do n...
+				
 3. apropos: helps to search for commands by providing one keyword which is functionality of that command.
 	    Syntax: apropos “functionality”
 	    eg: apropos “list”
+		op: LISTEN (7)           - listen for a notification
+			acl (5)              - Access Control Lists
+			acpi_listen (8)      - ACPI event listener
+			add-apt-repository (1) - Adds a repository into the /etc/apt/sources.list or ...
+			add-shell (8)        - add shells to the list of valid login shells
+			Algorithm::Diff (3pm) - Compute `intelligent' differences between two files /...
+			Algorithm::DiffOld (3pm) - Compute `intelligent' differences between two file...
+			american-english (5) - ...
 
 4. file: tell file type.
 	Syntax: file example.txt
