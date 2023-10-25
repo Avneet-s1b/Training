@@ -610,6 +610,13 @@ Github
     • git clone: it is used to clone complete code from a git repo.
                        Command: git clone [repo-link]
 
+                       This repo link could be https as well as ssh link.
+
+                       Example: 
+                       Command: git clone git@github.com:Avneet-s1b/sshrepo.git
+                       Result: Cloning into 'testrepo'...
+                               warning: You appear to have cloned an empty repository.
+
     • git push: now when we add and commit the code starts getting tracked by git on our machine that is locally. In order to show these changes and start it getting tracked by the remote repo we have to push it to that repo.
                     Command: git push origin main
                              git push -u origin main (to set origin main path as default)
