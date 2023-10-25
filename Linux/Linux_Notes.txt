@@ -36,7 +36,7 @@ CLI COMMANDS
 
 				Mandatory arguments to long options are mandatory for short options too.
 				-a, --all                  do n...
-				
+
 3. apropos: helps to search for commands by providing one keyword which is functionality of that command.
 	    Syntax: apropos “functionality”
 	    eg: apropos “list”
@@ -57,13 +57,23 @@ CLI COMMANDS
 5. stat: tell other properties like modification type, ownership etc.
 	Syntax: stat example.txt
 	eg: stat LinuxNotes.odt
+	op: File: file.txt
+		Size: 4096      	Blocks: 8          IO Block: 4096   regular file
+		Device: 801h/2049d	Inode: 11014754    Links: 2
+		Access: (0664/-rw-rw-r--)  Uid: ( 1000/   beryl)   Gid: ( 1000/   beryl)
+		Access: 2023-10-25 18:26:31.249247736 +0530
+		Modify: 2023-10-25 18:26:28.873247753 +0530
+		Change: 2023-10-25 18:26:28.873247753 +0530
+		Birth: -
 
 6. cd: used to change directory.
 	Syntax: cd foldername
 	eg: cd test
 	op: ~/test$
 	
-	imp points: to comeback from a directory we use “cd ..”. If we have to comeback two folder we do “cd ../..”. this can be replicated any number of times. There is also “\” which is used to indicate that next char has literal meaning. This is helpful in adding space in file names.
+	imp points: to comeback from a directory we use “cd ..”. If we have to comeback two folder we do “cd ../..”.
+	 this can be replicated any number of times. There is also “\” which is used to indicate that next char has literal meaning. 
+	 This is helpful in adding space in file names.
 
 	Options:
 		cd - :  takes to previous directory.
@@ -168,17 +178,26 @@ CLI COMMANDS
 
 10. mkdir: make new directory at specified location.
 		Eg: mkdir new_folder
-		op: makes new dorectory inside current directory.
+		op: directory           folder1      redirected.txt
 
 	Options:
 	
 	-p: used to create two or more folders in a heirarchy based order.
 		Eg: mkdir -p legal/contract
-		op: this will create legal first then contract inside legal.
+		op: ./folder1:
+			folder2
+
+			./folder1/folder2:
+
+			./legal:
+			contract
+
+			./legal/contract:
+
 
 11. rmdir: used to remove directory. (will remove only if the directory is empty).
 		Eg: rmdir legal/contract
-		op: removes directory.
+		op: ./legal (removes directory.)
 
 12. cp: used to make copy of a file in same folder.
 		Eg: cp LinuxNotes.odt Notes2.odt
@@ -202,7 +221,7 @@ Wildcard characters
 		op: this will remove all the file inside legal.
 
 	Options:
-	-r : used to recursively travel inside each folder in order to delete a folder 		       having multiple files.
+	-r : used to recursively travel inside each folder in order to delete a folder having multiple files.
 		Eg: rm -r ./legal
 		op: this will delete the whole legal folder no matter if there is something 		present in it or not.
 
@@ -242,7 +261,7 @@ There are 2 types of users in linux:
 
 	Options:
 		ln: Used to create hard link
-			Syntax: ln -s file.txt hard_link.txt
+			Syntax: ln file.txt hard_link.txt
 			op: file.txt  hard_link.txt  soft_link.txt
 
 		ln -s: used to create soft link
@@ -334,7 +353,9 @@ all(a)
 
 26. grep:  used to search for words in a text file.
 		Eg: grep "is" file.txt 
-		op: returns all the line having “is” in them.
+		op: this is our new file
+			Avneet is my name
+
 
 	Options:
 		-i : grep by default is case sensitive. This options makes case insensitive 		search.
