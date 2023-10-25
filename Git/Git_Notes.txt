@@ -472,6 +472,32 @@ Git is a version control system that allows to keep track of changes made. It is
                         \ No newline at end of file
 
 
+    • compare two commits: used to compare changes between two commits.
+              Command: git diff HEAD..ea4a22a1f70c9 –color-words
+             Just simply add .. between the two hash values of commits
+
+            Example:
+            Command: git diff HEAD..6a31046 --color-words
+            Result: diff --git a/Git/Git_Notes.txt b/Git/Git_Notes.txt
+                    index 0b23a5d..26fe85b 100644
+                    --- a/Git/Git_Notes.txt
+                    +++ b/Git/Git_Notes.txt
+                    @@ -433,45 +433,6 @@ Git is a version control system that allows to keep track of changes made. It is
+                                Result: [main df6b91d] Adds terminal o/p of rename command to Git_notes.txt
+                                        1 file changed, 9 insertions(+)
+
+                        • git show: shows the changes made in a specific commit
+                                Command: git show [hash value initials > 5] 
+                                            +    
+                                            +
+                                            +   
+                                            \ No newline at end of file
+                    
+                    (END)
+
+
+    • Atomic commits: it is imp to make atomic commit so that in future if we want one specific feature we can use it and similar category changes should be comitted together.
+
     
 
    
