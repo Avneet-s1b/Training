@@ -504,6 +504,69 @@ Git is a version control system that allows to keep track of changes made. It is
                          But we can amend the previous commit since it is not the parent of any next commit 
                          till now.
           Command: git commit --amend -m “Amends the commit”
-          Example: 
+          Example: [main 6bbd472] Amends previous commit to add example in Git_Notes.txt
+                    Date: Wed Oct 25 13:37:15 2023 +0530
+                    1 file changed, 9 insertions(+), 3 deletions(-)
+
+    
+    • Retrieving an old version: git doesnt allow getting back an old commit since bringing back an old version wont
+                                 maintain data integrity as sha value will repeat. Best way to retrieve old version is 
+                                 too convert it into a new commit change.
+
+		Command: git checkout [Hash-value] --
+
+        Example:
+        Command: git checkout b94b68c --
+        Result: Note: checking out 'b94b68c'.
+
+                You are in 'detached HEAD' state. You can look around, make experimental
+                changes and commit them, and you can discard any commits you make in this
+                state without impacting any branches by performing another checkout.
+
+                If you want to create a new branch to retain commits you create, you may
+                do so (now or later) by using -b with the checkout command again. Example:
+
+                git checkout -b <new-branch-name>
+
+                HEAD is now at b94b68c Adds mango to demo list
+
+    • Going back to a commit: we can go back to a commit using two ways:
+        1. In this we have accidentally made the commit of a file name A, now we want to revert the commit so we can do this by 
+        Command: git reset HEAD~1
+
+        Example:
+        Command: git reset HEAD~1
+        Result : (Head will now be at previous commit) 
+
+                Unstaged changes after reset:
+                M        demo.txt
+            
+            This will make the file again in staging area so that we can edit file 	
+    		further and make one commit
+
+        2.  In this we want to restore the previous version of a commit completely
+                Command : git reset --hard HEAD~1 
+                                or
+                          git reset [hash] --hard
+
+                Example: 
+                Command: git reset --hard HEAD~2
+                Result: HEAD is now at 93f3418 Renames demo_renamed.txt to demo.txt
+            
+            We have to be careful while using this command since once we return to
+     		a particular commit stage we wont be able to go back in the future.
+        
+
+    • git revert: we can also go back to old stage using git revert
+		
+			Command: git revert HEAD~1
+                            or 
+                     git revert [hash]
+
+            Example: 
+            Command: git revert HEAD
+            Result: [main b53a4f2] Revert "Adds cherry to list in demo.txt"
+                    1 file changed, 1 insertion(+), 2 deletions(-)
+
 
    
