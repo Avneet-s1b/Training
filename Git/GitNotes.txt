@@ -58,3 +58,10 @@ Git is a version control system that allows to keep track of changes made. It is
                 
                 Result: [main 5c42dea] Adds help command notes to GitNotes
                         1 file changed, 1 insertion(+)
+
+
+    • Best practices for commit message:
+            1. keep it short. (optionally followed by a blank line and then desc if req)
+            2. use present tense, since it should tell the bug that this commit is going to fix.
+            3. Add tracking id of the issue.
+            4. Be clear and descriptive.
