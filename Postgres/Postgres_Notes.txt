@@ -53,6 +53,9 @@
 
         Example: DROP DATABASE school_db
         Result: DROP DATABASE (Deletes db school_db)
+
+        - 'DROP DATABASE IF EXISTS db_name'
+        this prevents error if database doesnot exist
     
     HOW TO CREATE A TABLE
         - 'CREATE TABLE table_name (
@@ -107,5 +110,143 @@
         
         Result: INSERT 0 1
 
+
+    CREATE A SCHEMA 
+        - A schema is a named collection of tables. It organizes database objects into 
+        logical groups to make them more manageable.
+
+        - CREATE SCHEMA myschema;
+        Result: CREATE SCHEMA
+
+    CREATE A TABLE IN A SCHEMA 
+     
+        - CREATE TABLE myschema.schematable(
+            market(# id INT
+            market(# , fist_name VARCHAR(50));
+        Result : CREATE TABLE
+
+
+    DROP A SCHEMA 
+
+        -  DROP SCHEMA myschema CASCADE;
+        Result: NOTICE:  drop cascades to table myschema.schematable
+                DROP SCHEMA
+
+        - DROP SCHEMA myschema (if the schema is empty)
+
+
+
+    VIEW A TABLE (SELECT QUERY)
+
+        - SELECT * FROM customer;
+        Result:   
+                id | first_name | last_name |   mobile   |       email        
+                ----+------------+-----------+------------+--------------------
+                1 | Avneet     | Singh     | 8178646325 | avneet@gmail.com
+                2 | Kunal      |           | 8178646325 | avneet@gmail.com
+                3 | Vipul      | Kumar     | 8178645625 | vipsi@gmail.com
+                4 | Deepak     | Chaudhary | 9978644585 | dpkk@gmail.com
+                5 | Ishita     | Saxena    | 4538644585 | isaxerna@gmail.com
+                (5 rows)
+
+
+    ORDER BY QUERY
+        - used to sort in asc or desc order.
+
+        - SELECT id,first_name FROM customer ORDER BY id DESC;
+        Result: 
+                id | first_name 
+                ----+------------
+                5 | Ishita
+                4 | Deepak
+                3 | Vipul
+                2 | Kunal
+                1 | Avneet
+                (5 rows)
+
+
+    DISTINCT QUERY 
+        - used to show distinct items
+
+        - SELECT DISTINCT(mobile) FROM customer;
+        Result:       
+                mobile   
+                ------------
+                8178645625
+                8178646325
+                9978644585
+                4538644585
+                (4 rows)
+
+
+    WHERE, AND, OR, QUERY
+        - where is used to specify a condition
+
+        - SELECT id,first_name FROM customer WHERE email = 'avneet@gmail.com' OR first_name = 'Deepak';
+        Result:
+                id | first_name 
+                ----+------------
+                1 | Avneet
+                2 | Kunal
+                4 | Deepak
+                (3 rows)
+
+
+    COMPARISON OPERATORS (<,<=,>,>=,=,<>(not equal),!=)
         
+        - SELECT * FROM customer WHERE id <= 3;
+        Result:
+                id | first_name | last_name |   mobile   |      email       
+                ----+------------+-----------+------------+------------------
+                1 | Avneet     | Singh     | 8178646325 | avneet@gmail.com
+                2 | Kunal      |           | 8178646325 | avneet@gmail.com
+                3 | Vipul      | Kumar     | 8178645625 | vipsi@gmail.com
+                (3 rows)
+
+
+    LIMIT OFFSET FETCH 
+
+        - these are used to limit the number of results shown to a user.
+
+            Limit: SELECT * FROM customer LIMIT 2;
+
+            Result: 
+                    id | first_name | last_name |   mobile   |      email       
+                    ----+------------+-----------+------------+------------------
+                    1 | Avneet     | Singh     | 8178646325 | avneet@gmail.com
+                    2 | Kunal      |           | 8178646325 | avneet@gmail.com
+                    (2 rows)
+
+            Offset: SELECT * FROM customer LIMIT 2 OFFSET 2;
+            Result:id | first_name | last_name |   mobile   |      email      
+                    ----+------------+-----------+------------+-----------------
+                    3 | Vipul      | Kumar     | 8178645625 | vipsi@gmail.com
+                    4 | Deepak     | Chaudhary | 9978644585 | dpkk@gmail.com
+                    (2 rows)
+
+            Fetch: SELECT * FROM customer FETCH FIRST 2 ROW ONLY OFFSET 3;
+            result: id | first_name | last_name |   mobile   |       email        
+                    ----+------------+-----------+------------+--------------------
+                    4 | Deepak     | Chaudhary | 9978644585 | dpkk@gmail.com
+                    5 | Ishita     | Saxena    | 4538644585 | isaxerna@gmail.com
+                    (2 rows)
+
+
+    IN QUERY 
+        - To search in a specific group specified by user 
+
+        - SELECT * FROM customer WHERE first_name IN ('Avneet','kunal','Deepak');
+        
+        Result: id | first_name | last_name |   mobile   |      email       
+                ----+------------+-----------+------------+------------------
+                1 | Avneet     | Singh     | 8178646325 | avneet@gmail.com
+                4 | Deepak     | Chaudhary | 9978644585 | dpkk@gmail.com
+                (2 rows)
+
+    
+
+
+
+
+
 
