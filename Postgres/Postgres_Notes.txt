@@ -1,0 +1,111 @@
+                            POSTGRESQL
+    
+    HOW TO ENTER PSQL MODE
+        - 'sudo -i -u postgres'
+            This will change user to postgres through it we can enter psql mode 
+        - 'psql'
+            This will start the psql mode 
+        - 'help'
+            To seek help 
+        - '\q' 
+            To exit psql mode 
+        - '\l'
+            To list all the databases.
+
+            Example:
+            Name    |  Owner   | Encoding | Collate | Ctype | ICU Locale | Locale Provider |   Access privileges   
+            -----------+----------+----------+---------+-------+------------+-----------------+-----------------------
+            postgres  | postgres | UTF8     | en_IN   | en_IN |            | libc            | 
+            template0 | postgres | UTF8     | en_IN   | en_IN |            | libc            | =c/postgres          +
+                    |          |          |         |       |            |                 | postgres=CTc/postgres
+            template1 | postgres | UTF8     | en_IN   | en_IN |            | libc            | =c/postgres          +
+                    |          |          |         |       |            |                 | postgres=CTc/postgres
+            test      | postgres | UTF8     | en_IN   | en_IN |            | libc            | 
+            (4 rows)
+
+            
+
+    HOW TO CREATE A DB IN PSQL 
+        - 'CREATE DATABASE db_name;'
+
+        Example: CREATE DATABASE market;
+        Result: CREATE DATABASE
+                Name    |  Owner   | Encoding | Collate | Ctype | ICU Locale | Locale Provider |   Access privileges   
+                -----------+----------+----------+---------+-------+------------+-----------------+-----------------------
+                market    | postgres | UTF8     | en_IN   | en_IN |            | libc            | 
+                postgres  | postgres | UTF8     | en_IN   | en_IN |            | libc            | 
+                template0 | postgres | UTF8     | en_IN   | en_IN |            | libc            | =c/postgres          +
+                        |          |          |         |       |            |                 | postgres=CTc/postgres
+                template1 | postgres | UTF8     | en_IN   | en_IN |            | libc            | =c/postgres          +
+                        |          |          |         |       |            |                 | postgres=CTc/postgres
+                test      | postgres | UTF8     | en_IN   | en_IN |            | libc            | 
+                (5 rows)
+
+
+    HOW TO CONNECT TO DB 
+        - '\c db_name'
+        Example: \c market 
+        Result: You are now connected to database "market" as user "postgres".
+
+
+    HOW TO DELETE A DB 
+        - 'DROP DATABASE db_name'
+
+        Example: DROP DATABASE school_db
+        Result: DROP DATABASE (Deletes db school_db)
+    
+    HOW TO CREATE A TABLE
+        - 'CREATE TABLE table_name (
+            id INT NOT NULL PRIMARY KEY,
+            ...
+        )
+
+        Example: 
+                market=# CREATE TABLE customer (
+                market(# id BIGSERIAL NOT NULL PRIMARY KEY,
+                market(# first_name VARCHAR(50) NOT NULL,
+                market(# last_name VARCHAR(50) NOT NULL,
+                market(# mobile VARCHAR(50) NOT NULL,
+                market(# email VARCHAR(50));
+        
+        Result: CREATE TABLE
+
+
+    HOW TO DISPLAY A TABLE 
+        - '\d' (to view all the tables in db)
+        Example:
+                            List of relations
+                Schema |      Name       |   Type   |  Owner   
+                --------+-----------------+----------+----------
+                public | customer        | table    | postgres
+                public | customer_id_seq | sequence | postgres
+                (2 rows)
+
+                We can do 'dt' to show tables only
+
+        - '\d table_name' (to view specific table)
+
+        Example:
+                                                    Table "public.customer"
+                Column   |         Type          | Collation | Nullable |               Default                
+                ------------+-----------------------+-----------+----------+--------------------------------------
+                id         | bigint                |           | not null | nextval('customer_id_seq'::regclass)
+                first_name | character varying(50) |           | not null | 
+                last_name  | character varying(50) |           | not null | 
+                mobile     | character varying(50) |           | not null | 
+                email      | character varying(50) |           |          | 
+                Indexes:
+                    "customer_pkey" PRIMARY KEY, btree (id)
+
+
+    HOW TO DELETE A TABLE 
+        - 'DROP TABLE table_name'
+
+    HOW TO INSERT VALUES INTO TABLE
+        - market=# INSERT INTO customer (first_name , last_name , mobile , email)
+          market-# VALUES ('Avneet' , 'Singh' , '8178646325' , 'avneet@gmail.com' );
+        
+        Result: INSERT 0 1
+
+        
+
