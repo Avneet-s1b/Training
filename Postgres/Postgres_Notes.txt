@@ -150,6 +150,23 @@
                 (5 rows)
 
 
+    UPDATE A TABLE ENTRY
+
+        - UPDATE customer SET age = null WHERE gender='Female';
+        Result: UPDATE 1
+
+        Change in table: 
+                id | first_name | last_name | gender | age 
+                ----+------------+-----------+--------+-----
+                1 | Avneet     | Singh     | Male   |  22
+                2 | Kunal      | Singh     | Male   |  20
+                3 | Deepak     | Chaudhary | Male   |  30
+                4 | Vipul      | Kumar     | Male   |  15
+                5 | Naman      | Chaudhary | Male   |  22
+                6 | Vishakha   | Pandey    | Female |    
+                (6 rows)
+
+
     ORDER BY QUERY
         - used to sort in asc or desc order.
 
@@ -326,6 +343,72 @@
                 (2 rows)
 
 
+    MIN, MAX, AVG, SUM 
+
+        Table:
+                id |   name   | company | price  
+                ----+----------+---------+--------
+                1 | Iphone13 | Apple   |  80000
+                3 | S23      | Samsung |  80000
+                4 | Pixel    | Google  |  80000
+                5 | Galaxy   | Samsung |  80000
+                6 | Iphone15 | Apple   | 100000
+                7 | Iphone6  | Apple   |  15000
+                2 | Note8    | Redmi   |  20000
+                8 | Fold     | Samsung | 130000
+                9 | Note10   | Redmi   |  40000
+                (9 rows)
+
+        Max: SELECT company,MAX(price) FROM product GROUP BY company;
+        Result: company |  max   
+                ---------+--------
+                Google  |  80000
+                Samsung | 130000
+                Redmi   |  40000
+                Apple   | 100000
+                (4 rows)
+
+        Avg: SELECT company,ROUND(AVG(price),2) FROM product GROUP BY company;
+        Result: company |  round   
+                ---------+----------
+                Google  | 80000.00
+                Samsung | 96666.67
+                Redmi   | 30000.00
+                Apple   | 65000.00
+                (4 rows)
 
 
+    HOW TO MANIPULATE DATA (ARITHMETIC OPERATIONS)
+        - We can make new columns while returning using select statement and also manipulate data
+        from already existing columns too in these new columns.
 
+        - SELECT name , company , price AS original_price , ROUND(price - price*0.1) AS ten_percent_discount_price FROM product;
+        Result:   name   | company | original_price | ten_percent_discount_price 
+                ----------+---------+----------------+----------------------------
+                Iphone13 | Apple   |          80000 |                      72000
+                S23      | Samsung |          80000 |                      72000
+                Pixel    | Google  |          80000 |                      72000
+                Galaxy   | Samsung |          80000 |                      72000
+                Iphone15 | Apple   |         100000 |                      90000
+                Iphone6  | Apple   |          15000 |                      13500
+                Note8    | Redmi   |          20000 |                      18000
+                Fold     | Samsung |         130000 |                     117000
+                Note10   | Redmi   |          40000 |                      36000
+                (9 rows)
+
+    ALIAS
+        - changing name of columns using AS keyword.
+
+    COALESCE
+        - it is a fn which returns the first non null value.
+
+        - SELECT first_name,COALESCE( age , 0) FROM customer;
+        Result: first_name | coalesce 
+                ------------+----------
+                Avneet     |       22
+                Kunal      |       20
+                Deepak     |       30
+                Vipul      |       15
+                Naman      |       22
+                Vishakha   |        0
+                (6 rows)
