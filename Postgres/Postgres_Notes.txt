@@ -412,3 +412,38 @@
                 Naman      |       22
                 Vishakha   |        0
                 (6 rows)
+
+    
+    NULLIF
+        - it takes to input parameters and gives output 
+
+            NULLIF(EXPR1,EXPR2) 
+
+            if expr1=expr2 then it return null else it returns expr1.
+
+            Example:
+            NULLIF(0,0) = null 
+            NULLIF(10,0) = 10
+
+
+    NOW 
+        - used to print date and time 
+
+        - SELECT NOW();
+        Result:          now                
+            ----------------------------------
+            2023-10-26 18:06:37.565344+05:30
+            (1 row)
+
+        - SELECT NOW()::DATE;
+        Result:     now     
+                ------------
+                2023-10-26
+                (1 row)
+
+        - SELECT NOW()::TIME;
+        Result:   now       
+            -----------------
+            18:07:59.335877
+            (1 row)
+
