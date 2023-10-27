@@ -491,3 +491,135 @@
                         22
                     (1 row)
 
+
+
+    ALTER TABLE
+        - DROP CONSTRAINT:
+            ALTER TABLE practice DROP CONSTRAINT practice_pkey;
+            Result: ALTER TABLE (now table will no longer have primary key constraint to id)
+
+                    Table before:
+                        id | first_name | date_of_birth 
+                        ----+------------+---------------
+                        1 | Raman      | 2004-09-15
+                        (1 row)
+
+                    Table after can have two entries with same id:
+                        id | first_name | date_of_birth 
+                        ----+------------+---------------
+                        1 | Raman      | 2004-09-15
+                        1 | Raman      | 2004-09-15
+                        (2 rows)
+
+        - ADD PRIMARY KEY CONSTRAINT:
+            ALTER TABLE practice ADD PRIMARY KEY (id);
+            Result: ALTER TABLE
+
+            In table now id will be a primary key: 
+                                                    Table "public.practice"
+                    Column     |         Type          | Collation | Nullable |               Default                
+                ---------------+-----------------------+-----------+----------+--------------------------------------
+                id            | bigint                |           | not null | nextval('practice_id_seq'::regclass)
+                first_name    | character varying(50) |           | not null | 
+                date_of_birth | character varying(50) |           | not null | 
+                Indexes:
+                    "practice_pkey" PRIMARY KEY, btree (id)
+
+
+        - ADD CONSTRAINT:
+            ALTER TABLE practice ADD CONSTRAINT unique_first_name UNIQUE (first_name);
+            Result : ALTER TABLE
+
+                                                   Table "public.practice"
+                    Column     |         Type          | Collation | Nullable |               Default                
+                ---------------+-----------------------+-----------+----------+--------------------------------------
+                id            | bigint                |           | not null | nextval('practice_id_seq'::regclass)
+                first_name    | character varying(50) |           | not null | 
+                date_of_birth | character varying(50) |           | not null | 
+                Indexes:
+                    "practice_pkey" PRIMARY KEY, btree (id)
+                    "unique_first_name" UNIQUE CONSTRAINT, btree (first_name)
+
+
+            Another way to add a unique constraint is:
+            ALTER TABLE practice ADD UNIQUE (first_name);
+
+                                                   Table "public.practice"
+                    Column     |         Type          | Collation | Nullable |               Default                
+                ---------------+-----------------------+-----------+----------+--------------------------------------
+                id            | bigint                |           | not null | nextval('practice_id_seq'::regclass)
+                first_name    | character varying(50) |           | not null | 
+                date_of_birth | character varying(50) |           | not null | 
+                Indexes:
+                    "practice_pkey" PRIMARY KEY, btree (id)
+                    "practice_first_name_key" UNIQUE CONSTRAINT, btree (first_name)
+
+        
+        - ADD A CHECK CONSTRAINT : it is used to specify values that can be entered in a col like male/female only in gender col.
+             ALTER TABLE practice ADD CONSTRAINT dob_constraint CHECK (date_of_birth = '2001-07-19');
+            Result: ALTER TABLE
+
+                                                   Table "public.practice"
+                Column     |         Type          | Collation | Nullable |               Default                
+            ---------------+-----------------------+-----------+----------+--------------------------------------
+            id            | bigint                |           | not null | nextval('practice_id_seq'::regclass)
+            first_name    | character varying(50) |           | not null | 
+            date_of_birth | character varying(50) |           | not null | 
+            Indexes:
+                "practice_pkey" PRIMARY KEY, btree (id)
+                "unique_first_name" UNIQUE CONSTRAINT, btree (first_name)
+            Check constraints:
+                "dob_constraint" CHECK (date_of_birth::text = '2001-07-19'::text)
+
+    
+    DELETE AN ENTRY 
+        -DELETE FROM practice WHERE id = 3;
+        Result: DELETE 1
+
+        table before:
+            id | first_name | date_of_birth 
+            ----+------------+---------------
+            3 | Avneet     | 2001-07-19
+            (1 row)
+
+        table after:
+            id | first_name | date_of_birth 
+            ----+------------+---------------
+            (0 rows)
+
+    UPDATE AN ENTRY 
+        -UPDATE practice SET first_name = 'Avi';
+        Result: UPDATE 1
+               
+        TABLE AFTER:
+                id | first_name | date_of_birth 
+                ----+------------+---------------
+                3 | Avi        | 2001-07-19
+                (1 row)
+
+
+    ON CONFLICT
+        - DO NOTHING: 
+
+            Command:INSERT INTO practice (id, first_name , date_of_birth)
+                    VALUES (3, 'Avneet' , '2001-07-19')
+                    ON CONFLICT(id) DO NOTHING;
+            Result: INSERT 0 0
+
+            on adding same id entry this command doesnt show error instead it does nothing 
+
+        - UPSERT
+
+            Command:INSERT INTO practice (id, first_name , date_of_birth)
+                    VALUES (3, 'Avneet' , '2001-07-19')
+                    ON CONFLICT(id) DO UPDATE SET first_name = EXCLUDED.first_name;
+            Result: INSERT 0 1
+
+            Table now: 
+                        id | first_name | date_of_birth 
+                        ----+------------+---------------
+                        3 | Avneet     | 2001-07-19
+                        (1 row)
+
+
+
