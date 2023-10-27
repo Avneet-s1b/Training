@@ -623,3 +623,189 @@
 
 
 
+    JOINS
+        - A JOIN clause is used to combine rows from two or more tables,
+        based on a related column between them.
+
+        - parent table - table whose colimn is refrenced
+          child table - table that refrences the column from other table 
+
+        Example:
+
+            Table 1: (parent)       
+            CREATE TABLE car (
+            test(# car_id BIGSERIAL NOT NULL PRIMARY KEY,
+            test(# make VARCHAR(50) NOT NULL,
+            test(# model VARCHAR(50) NOT NULL,
+            test(# price INT NOT NULL);
+
+            car_id |   make   | model  |  price  
+            --------+----------+--------+---------
+                1 | Maruti   | WagonR |  600000
+                2 | Mahindra | Thar   | 1500000
+                3 | Hyundai  | Creta  | 1500000
+                4 | Maruti   | Swift  |  900000
+
+            Table 2:(child)
+            CREATE TABLE person (
+            test(# id BIGSERIAL NOT NULL PRIMARY KEY,
+            test(# first_name VARCHAR(50) NOT NULL,
+            test(# last_name VARCHAR(50) NOT NULL,
+            test(# mobile VARCHAR(50) NOT NULL,
+            test(# date_of_birth VARCHAR(50) NOT NULL,
+            test(# car_id INT REFERENCES car (car_id));
+            
+            id | first_name | last_name |   mobile   | date_of_birth | car_id 
+            ----+------------+-----------+------------+---------------+--------
+            1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |       
+            2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |       
+            3 | Shourya    | Aggarwal  | 9911163459 | 2001-12-05    |       
+            4 | Karan      | Pant      | 5611112567 | 1996-06-10    |       
+            5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |       
+            (5 rows)
+
+            Now we have to establish the join relation by passing in the value of car_id in person.
+
+        
+        -UPDATING JOINS:
+
+            Command: UPDATE person SET car_id = 3 WHERE id = 1;
+
+            this will set car_id = 3 in person table in row having id = 1;
+
+        
+        -INNER JOIN: selects records that have matching values in both tables.
+
+            Command: SELECT * FROM person JOIN car ON person.car_id = car.car_id;
+                    
+            Result:id | first_name | last_name |   mobile   | date_of_birth | car_id | car_id |   make   | model  |  price  
+                    ----+------------+-----------+------------+---------------+--------+--------+----------+--------+---------
+                    1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      3 |      3 | Hyundai  | Creta  | 1500000
+                    2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4 |      4 | Maruti   | Swift  |  900000
+                    4 | Karan      | Pant      | 5611112567 | 1996-06-10    |      1 |      1 | Maruti   | WagonR |  600000
+                    5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |      2 |      2 | Mahindra | Thar   | 1500000
+                    (4 rows)
+
+            Another way of inner join : SELECT * FROM person INNER JOIN car ON person.car_id = car.car_id;
+
+        - LEFT JOIN: used to show all the values in first table along with common values in sec table.
+
+            Command: SELECT * FROM person LEFT JOIN car ON person.car_id = car.car_id ORDER BY person.id;
+            Result:id | first_name | last_name |   mobile   | date_of_birth | car_id | car_id |   make   | model  |  price  
+                    ----+------------+-----------+------------+---------------+--------+--------+----------+--------+---------
+                    1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      3 |      3 | Hyundai  | Creta  | 1500000
+                    2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4 |      4 | Maruti   | Swift  |  900000
+                    3 | Shourya    | Aggarwal  | 9911163459 | 2001-12-05    |        |        |          |        |        
+                    4 | Karan      | Pant      | 5611112567 | 1996-06-10    |      1 |      1 | Maruti   | WagonR |  600000
+                    5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |      2 |      2 | Mahindra | Thar   | 1500000
+                    (5 rows)
+
+        
+        - RIGHT JOIN: SELECT * FROM person RIGHT JOIN car ON person.car_id = car.car_id;
+ 
+            Result:id | first_name | last_name |   mobile   | date_of_birth | car_id | car_id |   make   |  model  |  price  
+                    ----+------------+-----------+------------+---------------+--------+--------+----------+---------+---------
+                    1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      3 |      3 | Hyundai  | Creta   | 1500000
+                    2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4 |      4 | Maruti   | Swift   |  900000
+                    4 | Karan      | Pant      | 5611112567 | 1996-06-10    |      1 |      1 | Maruti   | WagonR  |  600000
+                    5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |      2 |      2 | Mahindra | Thar    | 1500000
+                        |            |           |            |               |        |      5 | Mahindra | Scorpio | 2500000
+                    (5 rows)
+
+        
+        - FULL JOIN: SELECT * FROM person RIGHT JOIN car ON person.car_id = car.car_id
+                     UNION
+                     SELECT * FROM person LEFT JOIN car ON person.car_id = car.car_id;
+            Result:    id | first_name | last_name |   mobile   | date_of_birth | car_id | car_id |   make   |  model  |  price  
+                        ----+------------+-----------+------------+---------------+--------+--------+----------+---------+---------
+                        3 | Shourya    | Aggarwal  | 9911163459 | 2001-12-05    |        |        |          |         |        
+                        4 | Karan      | Pant      | 5611112567 | 1996-06-10    |      1 |      1 | Maruti   | WagonR  |  600000
+                        2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4 |      4 | Maruti   | Swift   |  900000
+                            |            |           |            |               |        |      5 | Mahindra | Scorpio | 2500000
+                        5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |      2 |      2 | Mahindra | Thar    | 1500000
+                        1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      3 |      3 | Hyundai  | Creta   | 1500000
+                        (6 rows)
+
+        - CROSS JOIN: SELECT * FROM person CROSS JOIN car;
+            Result:id | first_name | last_name |   mobile   | date_of_birth | car_id | car_id |   make   |  model  |  price  
+                    ----+------------+-----------+------------+---------------+--------+--------+----------+---------+---------
+                    3 | Shourya    | Aggarwal  | 9911163459 | 2001-12-05    |        |      1 | Maruti   | WagonR  |  600000
+                    1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      3 |      1 | Maruti   | WagonR  |  600000
+                    2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4 |      1 | Maruti   | WagonR  |  600000
+                    4 | Karan      | Pant      | 5611112567 | 1996-06-10    |      1 |      1 | Maruti   | WagonR  |  600000
+                    5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |      2 |      1 | Maruti   | WagonR  |  600000
+                    3 | Shourya    | Aggarwal  | 9911163459 | 2001-12-05    |        |      2 | Mahindra | Thar    | 1500000
+                    1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      3 |      2 | Mahindra | Thar    | 1500000
+                    2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4 |      2 | Mahindra | Thar    | 1500000
+                    4 | Karan      | Pant      | 5611112567 | 1996-06-10    |      1 |      2 | Mahindra | Thar    | 1500000
+                    5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |      2 |      2 | Mahindra | Thar    | 1500000
+                    3 | Shourya    | Aggarwal  | 9911163459 | 2001-12-05    |        |      3 | Hyundai  | Creta   | 1500000
+                    1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      3 |      3 | Hyundai  | Creta   | 1500000
+                    2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4 |      3 | Hyundai  | Creta   | 1500000
+                    4 | Karan      | Pant      | 5611112567 | 1996-06-10    |      1 |      3 | Hyundai  | Creta   | 1500000
+                    5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |      2 |      3 | Hyundai  | Creta   | 1500000
+                    3 | Shourya    | Aggarwal  | 9911163459 | 2001-12-05    |        |      4 | Maruti   | Swift   |  900000
+                    1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      3 |      4 | Maruti   | Swift   |  900000
+                    2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4 |      4 | Maruti   | Swift   |  900000
+                    4 | Karan      | Pant      | 5611112567 | 1996-06-10    |      1 |      4 | Maruti   | Swift   |  900000
+                    5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |      2 |      4 | Maruti   | Swift   |  900000
+                    3 | Shourya    | Aggarwal  | 9911163459 | 2001-12-05    |        |      5 | Mahindra | Scorpio | 2500000
+                    1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      3 |      5 | Mahindra | Scorpio | 2500000
+                    2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4 |      5 | Mahindra | Scorpio | 2500000
+                    4 | Karan      | Pant      | 5611112567 | 1996-06-10    |      1 |      5 | Mahindra | Scorpio | 2500000
+                    5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |      2 |      5 | Mahindra | Scorpio | 2500000
+                    (25 rows)
+
+        - SELF JOIN: It is used to get the output from a particular table when the same table is joined to itself.
+
+                    SELECT columns FROM table as t1 INNER JOIN table as t2 ON t1.id = t2.id;
+
+        
+        - JOIN OPERATION WITHOUT JOIN KEYWORD: SELECT person.first_name, car.model, car.price FROM  person,car WHERE person.car_id = car.car_id;
+            Result: first_name | model  |  price  
+                    ------------+--------+---------
+                    Avneet     | Creta  | 1500000
+                    Deepak     | Swift  |  900000
+                    Karan      | WagonR |  600000
+                    Kamal      | Thar   | 1500000
+                    (4 rows)
+
+    DELETE OPERATION ON FORIEGN KEY 
+        A key cant be deleted from a parent table till it is present in child table that is being refrenced
+
+        - We can do it in 3 ways:
+            1. manually removing foriegn key from child table by updating it to null ordeleting the whole row
+            and then using delete from to delete in parent table.
+
+            2. ON DELETE CASECADE: set as a constraint while making the child table. it will automaticlly delete
+            the row that is refrencing the fk when fk is deleted in the parent table.
+
+            3. ON DELETE SET NULL: insteadof deleting whole row in child table it will set the fk value in child table
+            to null. 
+
+            Example: create table newcustomer (
+                    test(# id BIGSERIAL NOT NULL PRIMARY KEY,
+                    test(#  first_name VARCHAR(50) NOT NULL,
+                    test(# last_name VARCHAR(50) NOT NULL,
+                    test(# mobile VARCHAR(50) NOT NULL,
+                    test(# date_of_birth VARCHAR(50) NOT NULL,
+                    test(# car_id INT REFERENCES newcar (car_id) ON DELETE CASCADE);
+
+            before : select * from newcustomer join newcar on newcustomer.car_id = newcar.car_id;
+                    
+                    id | first_name | last_name |   mobile   | date_of_birth | car_id | car_id | model  |   make   |  price  
+                    ----+------------+-----------+------------+---------------+--------+--------+--------+----------+---------
+                    1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      2 |      2 | Thar   | Mahindra | 1500000
+                    3 | Shourya    | Aggarwal  | 9911163459 | 2001-12-05    |      1 |      1 | WagonR | Maruti   |  600000
+                    2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4 |      4 | Swift  | Maruti   |  900000
+                    (3 rows)
+
+            After: DELETE FROM newcar WHERE car_id = 1;
+
+                    id | first_name | last_name |   mobile   | date_of_birth | car_id 
+                    ----+------------+-----------+------------+---------------+--------
+                    1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      2
+                    2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4
+                    (2 rows)
+
+                    record deleted from child table.
