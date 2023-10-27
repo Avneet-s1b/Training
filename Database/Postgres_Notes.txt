@@ -447,3 +447,47 @@
             18:07:59.335877
             (1 row)
 
+
+        - MANIPULATION IN NOW():
+            SELECT (NOW() + INTERVAL '10 YEARS')::DATE;
+            Result:    date    
+                    ------------
+                    2033-10-27
+                    (1 row)
+
+            Similarly, can be done for DAYS(date), MONTHS.
+
+        
+        -EXTRACTING FIELDS FROM NOW()
+            SELECT EXTRACT(YEAR FROM NOW());
+            Result:  extract 
+                    ---------
+                        2023
+                    (1 row)
+
+            Here we can also exxtract DOW (day of week)
+
+
+            Another Example:
+
+            SELECT EXTRACT(DAY FROM (NOW() - INTERVAL '1 DAYS'));
+            Result:  extract 
+                    ---------
+                        26
+                    (1 row)
+
+            
+        -AGE() CALCULATION FROM NOW 
+            SELECT AGE(NOW(), '2001-07-19');
+            Result:                age                   
+                    ----------------------------------------
+                    22 years 3 mons 8 days 10:58:31.189239
+                    (1 row)
+
+
+            SELECT EXTRACT ( YEAR FROM ( AGE(NOW(),'2001-07-19')));
+            Result:  extract 
+                    ---------
+                        22
+                    (1 row)
+
