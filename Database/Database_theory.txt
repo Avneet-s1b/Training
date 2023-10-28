@@ -34,7 +34,7 @@
                         - one to many 
                         - many to one 
                         - many to many 
-
+ 
                     2. Participation constraint
                         - total participation (one entity will always have relation with other entity)
                         - partial participation (entity may not always have a relation eg. bank customer to loan)
