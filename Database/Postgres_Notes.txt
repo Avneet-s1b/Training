@@ -809,3 +809,20 @@
                     (2 rows)
 
                     record deleted from child table.
+
+    
+    CTE(COMMON TABLE EXPRESSION)
+        - used to store result of query as table for a single query
+
+        - WITH CTE AS(
+        test(# SELECT * FROM person JOIN car ON person.car_id = car.car_id) SELECT * FROM CTE;
+
+        Result:
+
+            id | first_name | last_name |   mobile   | date_of_birth | car_id | car_id |   make   | model  |  price  
+            ----+------------+-----------+------------+---------------+--------+--------+----------+--------+---------
+            1 | Avneet     | Singh     | 9911164879 | 2001-07-19    |      3 |      3 | Hyundai  | Creta  | 1500000
+            2 | Deepak     | Chaudhary | 8763264879 | 1998-07-24    |      4 |      4 | Maruti   | Swift  |  900000
+            4 | Karan      | Pant      | 5611112567 | 1996-06-10    |      1 |      1 | Maruti   | WagonR |  600000
+            5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |      2 |      2 | Mahindra | Thar   | 1500000
+            (4 rows)
