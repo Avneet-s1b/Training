@@ -1,0 +1,50 @@
+
+                ***********IMP THEORY TOPICS***********
+
+    
+    ER MODEL 
+        - It is a high level data model based on a perception of a real world that consists of a collection of basic objects, called
+        entities and of relationships among these objects.Graphical representation of ER Model is ER diagram, which acts as a blueprint of DB.
+
+        - Entity: An Entity is aN object in the real world that is distinguishable from all other objects.
+                  It has two types: Strong(Can be uniquely identified.) and 
+                                    weak entity (Can’t be uniquely identified., depends on some other strong entity.)
+
+        - Attributes: An entity is represented by a set of attributes.(properties)
+                    Types:  - simple
+                            - composite
+                            - single valued
+                            - multi valued
+                            - derived
+
+                    - An attribute takes a null value when an entity does not have a value for it.
+
+        - Relationships: Association among two or more entities e.g., Person has vehicle.
+                    Types:  - Strong Relationship, between two independent entities.
+                            - Weak Relationship, between weak entity and its owner/strong entity.
+
+                    Degree of relationship: 
+                    - Unary: only one entity participates
+                    - Binary: two entity participate.
+                    - ternanry: more than two entities participate.
+
+                    Relationship constraints
+                    1. Mapping cardinality
+                        - one to one 
+                        - one to many 
+                        - many to one 
+                        - many to many 
+
+                    2. Participation constraint
+                        - total participation (one entity will always have relation with other entity)
+                        - partial participation (entity may not always have a relation eg. bank customer to loan)
+
+                    
+
+        - Specialisation: Specialisation is splitting up the entity set into further sub entity sets on the basis of their functionalities,
+                        specialities and features. e.g., Person entity set can be divided into customer, student, employee. Person is superclass and other specialised
+                        entity sets are subclasses. because Certain attributes may only be applicable to a few entities of
+                        the parent entity set.
+
+        
+        - Generalization: It is reverse of Specialisation. bottom up approach.
