@@ -922,4 +922,21 @@
                 --------+----------------------------------
                     1 | 2023-10-30 14:19:00.228271+05:30
                 (1 row)
-            
+        
+
+        -To view a trigger associated with a table 
+
+            -SELECT tgname FROM pg_trigger, pg_class WHERE tgrelid=pg_class.oid AND relname='employee';
+            Result: tgname      
+                -----------------
+                example_trigger
+                (1 row)
+
+        -To view all triggers in db 
+
+            - Select * from pg_trigger;
+
+        -To drop a trigger 
+
+            - DROP TRIGGER example_trigger_two[trigger_name] ON newaudit[table_name];
+            Result: DROP TRIGGER
