@@ -1088,3 +1088,30 @@
             public    | audit              | table    | postgres
 
         - dropping a view: DROP VIEW person_view;
+
+
+    SUBQUERIES
+        - A subquery or Inner query or Nested query is a query within another PostgreSQL query 
+        and embedded within the WHERE clause.
+
+            Example:
+            SELECT emp_id,f_name,dept_id from employee where salary in (select salary from employee where salary < 20000);
+            Result:emp_id | f_name | dept_id 
+                    --------+--------+---------
+                        3 | Sameer |       2
+                        5 | Ravi   |       4
+                    (2 rows)
+
+        - IN UPDATE COMMAND 
+
+            EXAMPLE: UPDATE employee SET salary = 50000 WHERE emp_id IN (SELECT emp_id FROM employee WHERE dob = '2001-07-19');
+            Result:  UPDATE 1
+            Table now:
+                    emp_id | f_name |  l_name  |      email      | dept_id |    dob     | salary 
+                    --------+--------+----------+-----------------+---------+------------+--------
+                        2 | Karan  | Aggarwal | karan@comp.com  |       3 | 1988-01-25 |  20000
+                        4 | Tanmay | Baisla   | tanmay@comp.com |       1 | 1995-11-22 |  20000
+                        3 | Sameer | Grover   | sameer@comp.com |       2 | 1998-04-04 |  15000
+                        5 | Ravi   | Sharma   | ravi@comp.com   |       4 | 1992-09-19 |  15000
+                        1 | Avneet | Singh    | avneet@comp.com |       2 | 2001-07-19 |  50000
+                    (5 rows)
