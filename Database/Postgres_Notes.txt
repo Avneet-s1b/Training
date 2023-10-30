@@ -509,6 +509,107 @@
 
 
     ALTER TABLE
+        - ADD NEW COLUMN 
+            Command: ALTER TABLE employee ADD COLUMN email VARCHAR(50);
+            Result: ALTER TABLE
+            Table now:
+            id |  name  | email 
+            ----+--------+-------
+            1 | Avneet | 
+            2 | Raman  | 
+            (2 rows)
+
+        -DROP A COLUMN 
+            Command: ALTER TABLE employee DROP COLUMN email;
+            Result: ALTER TABLE
+            Table now:
+            id |  name  
+            ----+--------
+            1 | Avneet
+            2 | Raman
+            (2 rows)
+
+        -CHANGE COLUMN DATA TYPE 
+            Command:  ALTER TABLE employee ALTER COLUMN EMAIL_RENAMED TYPE VARCHAR(50);
+            Result: ALTER TABLE
+            Table now:
+                                                Table "public.employee"
+                Column     |         Type          | Collation | Nullable |               Default                
+            ---------------+-----------------------+-----------+----------+--------------------------------------
+            id            | bigint                |           | not null | nextval('employee_id_seq'::regclass)
+            name          | character varying(50) |           | not null | 
+            email_renamed | character varying(50) |           |          | 
+            Indexes:
+                "employee_pkey" PRIMARY KEY, btree (id)
+                "name_index" btree (name)
+            Triggers:
+                example_trigger AFTER INSERT ON employee FOR EACH ROW EXECUTE FUNCTION auditlogfunc()
+
+        -SET COLUMN TO NOT NULL 
+            Command:ALTER TABLE employee ALTER COLUMN email_renamed SET NOT NULL;
+            Result: ALTER TABLE
+            table now:
+                                                Table "public.employee"
+                Column     |         Type          | Collation | Nullable |               Default                
+            ---------------+-----------------------+-----------+----------+--------------------------------------
+            id            | bigint                |           | not null | nextval('employee_id_seq'::regclass)
+            name          | character varying(50) |           | not null | 
+            email_renamed | character varying(50) |           | not null | 
+            Indexes:
+                "employee_pkey" PRIMARY KEY, btree (id)
+                "name_index" btree (name)
+            Triggers:
+                example_trigger AFTER INSERT ON employee FOR EACH ROW EXECUTE FUNCTION auditlogfunc()
+
+        -REMOVE NOT NULL FROM COLUMN
+            COMMAND: ALTER TABLE employee ALTER COLUMN email_renamed DROP NOT NULL;
+            Result: ALTER TABLE
+            Table now:
+                                                Table "public.employee"
+                Column     |         Type          | Collation | Nullable |               Default                
+            ---------------+-----------------------+-----------+----------+--------------------------------------
+            id            | bigint                |           | not null | nextval('employee_id_seq'::regclass)
+            name          | character varying(50) |           | not null | 
+            email_renamed | character varying(50) |           |          | 
+            Indexes:
+                "employee_pkey" PRIMARY KEY, btree (id)
+                "name_index" btree (name)
+            Triggers:
+                example_trigger AFTER INSERT ON employee FOR EACH ROW EXECUTE FUNCTION auditlogfunc()
+
+
+        -RENAME COLUMN NAME 
+            COMMAND: ALTER TABLE employee RENAME COLUMN EMAIL_RENAMED TO rename_email;
+            result: ALTER TABLE
+            Table now:
+                                                Table "public.employee"
+                Column    |         Type          | Collation | Nullable |               Default                
+            --------------+-----------------------+-----------+----------+--------------------------------------
+            id           | bigint                |           | not null | nextval('employee_id_seq'::regclass)
+            name         | character varying(50) |           | not null | 
+            rename_email | character varying(50) |           |          | 
+            Indexes:
+                "employee_pkey" PRIMARY KEY, btree (id)
+                "name_index" btree (name)
+            Triggers:
+                example_trigger AFTER INSERT ON employee FOR EACH ROW EXECUTE FUNCTION auditlogfunc()
+
+
+        -CHANGE TABLE NAME 
+            COMMAND: ALTER TABLE employee RENAME TO emp_table;
+            Result: ALTER TABLE
+            Table now:
+                            List of relations
+            Schema |        Name        |   Type   |  Owner   
+            --------+--------------------+----------+----------
+            public | audit              | table    | postgres
+            public | car                | table    | postgres
+            public | car_car_id_seq     | sequence | postgres
+            public | customer           | table    | postgres
+            public | customer_id_seq    | sequence | postgres
+            public | emp_table          | table    | postgres
+
+
         - DROP CONSTRAINT:
             ALTER TABLE practice DROP CONSTRAINT practice_pkey;
             Result: ALTER TABLE (now table will no longer have primary key constraint to id)
