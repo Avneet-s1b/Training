@@ -940,3 +940,24 @@
 
             - DROP TRIGGER example_trigger_two[trigger_name] ON newaudit[table_name];
             Result: DROP TRIGGER
+
+    
+
+    INDEXES 
+        - they are used to optimize large databases by creating indexes of frequently fetched terms/filters.
+
+        Example:
+        CREATE INDEX name_index ON employee(name);
+        Result: CREATE INDEX
+
+        Table now: 
+                                            Table "public.employee"
+            Column |         Type          | Collation | Nullable |               Default                
+            --------+-----------------------+-----------+----------+--------------------------------------
+            id     | bigint                |           | not null | nextval('employee_id_seq'::regclass)
+            name   | character varying(50) |           | not null | 
+            Indexes: (THIS THING IS ADDED PRIMARY KEY INDEX ALREADY EXISTED NAME_INDEX IS NEW)
+                "employee_pkey" PRIMARY KEY, btree (id)
+                "name_index" btree (name)
+            Triggers:
+                example_trigger AFTER INSERT ON employee FOR EACH ROW EXECUTE FUNCTION auditlogfunc()
