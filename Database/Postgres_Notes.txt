@@ -73,6 +73,21 @@
         
         Result: CREATE TABLE
 
+        - HOW TO SET A COMPOSITE PRIMARY KEY 
+
+        Example: CREATE TABLE contact(
+                attend_mgmt(# emp_id INT NOT NULL,
+                attend_mgmt(# mobile_no INT NOT NULL,
+                attend_mgmt(# PRIMARY KEY(emp_id,mobile_no));
+        Result:                 Table "public.contact"
+                Column   |  Type   | Collation | Nullable | Default 
+                -----------+---------+-----------+----------+---------
+                emp_id    | integer |           | not null | 
+                mobile_no | integer |           | not null | 
+                Indexes:
+                    "contact_pkey" PRIMARY KEY, btree (emp_id, mobile_no)
+
+
 
     HOW TO DISPLAY A TABLE 
         - '\d' (to view all the tables in db)
@@ -826,3 +841,6 @@
             4 | Karan      | Pant      | 5611112567 | 1996-06-10    |      1 |      1 | Maruti   | WagonR |  600000
             5 | Kamal      | Singh     | 9437802859 | 2000-10-09    |      2 |      2 | Mahindra | Thar   | 1500000
             (4 rows)
+
+
+    
