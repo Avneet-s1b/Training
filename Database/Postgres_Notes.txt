@@ -871,3 +871,55 @@
                         2 | Karan  | Aggarwal | karan@comp.com  |       3 | 1988-01-25
                         3 | Sameer | Grover   | sameer@comp.com |       2 | 1998-04-04
                     (5 rows)
+
+
+
+    TRIGGERS
+        - used to tell database to perform certain operations by itself after certain actions from user
+
+        Example: 
+
+        Creating a function that contains the operation 
+
+        Command:    CREATE OR REPLACE FUNCTION auditlogfunc() RETURNS TRIGGER AS $example_table$
+                    BEGIN
+                    INSERT INTO audit(emp_id, entry_date) VALUES (new.ID, current_timestamp);
+                    RETURN NEW;
+                    END;
+                    $example_table$ LANGUAGE plpgsql;
+        Result:     CREATE FUNCTION
+
+        After function we create trigger and link it with the function 
+
+        Command:CREATE TRIGGER example_trigger AFTER INSERT ON employee
+                FOR EACH ROW EXECUTE PROCEDURE auditlogfunc();
+
+        Result: CREATE TRIGGER
+
+        Tables before any insertion by used in employee
+
+        test=# select * from employee;
+                 id | name 
+                ----+------
+                (0 rows)
+
+                test=# select * from audit;
+                 emp_id | entry_date 
+                --------+------------
+                (0 rows)
+
+
+        Tables after insertion
+
+        test=# select * from employee;
+                id |  name  
+                ----+--------
+                1 | Avneet
+                (1 row)
+
+                test=# select * from audit; (this table is updated automatically)
+                emp_id |            entry_date            
+                --------+----------------------------------
+                    1 | 2023-10-30 14:19:00.228271+05:30
+                (1 row)
+            
