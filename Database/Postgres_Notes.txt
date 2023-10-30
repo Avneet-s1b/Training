@@ -1115,3 +1115,61 @@
                         5 | Ravi   | Sharma   | ravi@comp.com   |       4 | 1992-09-19 |  15000
                         1 | Avneet | Singh    | avneet@comp.com |       2 | 2001-07-19 |  50000
                     (5 rows)
+
+        
+    
+    DATE_PART()
+        - use to fetch date/time.
+
+        Example: 
+
+         Command: select DATE_PART('hour' , TIMESTAMP '2001-02-16 20:38:40');
+         Result: date_part 
+                -----------
+                        20
+                (1 row)
+
+         Command: select DATE_PART('hour' , TIME '20:38:40');
+         Result: date_part 
+                -----------
+                        20
+                (1 row)
+
+    
+    DATE_TRUNC()
+        - Truncates the specified field in a timestamp.
+
+        Example: select DATE_TRUNC('MONTH' , TIMESTAMP '2001-02-16 20:38:40');
+        Result: date_trunc      
+            ---------------------
+            2001-02-01 00:00:00
+            (1 row)
+
+        
+
+    TO PRINT CURRENT TIME/DATE 
+        -CURRENT_TIMESTAMP 
+        -CURRENT_DATE
+        -CURRENT_TIME 
+        -NOW()
+
+
+    TO JUSTIFY ANY INTERVAL
+
+        - SELECT JUSTIFY_INTERVAL(INTERVAL '2 MONTHS - 1 HOUR');
+        Result: justify_interval    
+            ------------------------
+            1 mon 29 days 23:00:00
+            (1 row)
+
+        - SELECT JUSTIFY_HOURS(INTERVAL '440 HOURS');
+        Result:  justify_hours   
+                ------------------
+                18 days 08:00:00
+                (1 row)
+
+        - select justify_days(interval '444 days');
+        Result: justify_days      
+            -----------------------
+            1 year 2 mons 24 days
+            (1 row)
