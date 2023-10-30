@@ -844,3 +844,30 @@
 
 
     
+    UNION CLAUSE-
+        - used to combine the results of two or more SELECT statements without returning any duplicate rows.
+
+        Example: select * from employee where dept_id = 2
+                    union 
+                    select * from employee where dept_id = 3;
+        Result:    emp_id | f_name |  l_name  |      email      | dept_id |    dob     
+                    --------+--------+----------+-----------------+---------+------------
+                        1 | Avneet | Singh    | avneet@comp.com |       2 | 2001-07-19
+                        2 | Karan  | Aggarwal | karan@comp.com  |       3 | 1988-01-25
+                        3 | Sameer | Grover   | sameer@comp.com |       2 | 1998-04-04
+                    (3 rows)
+
+
+        - union all clause can be used to return duplicate values too.
+
+        Example:  select * from employee where dept_id = 2
+                    union all 
+                    select * from employee where dept_id = 3 or dept_id = 2;
+        Result:    emp_id | f_name |  l_name  |      email      | dept_id |    dob     
+                    --------+--------+----------+-----------------+---------+------------
+                        1 | Avneet | Singh    | avneet@comp.com |       2 | 2001-07-19
+                        3 | Sameer | Grover   | sameer@comp.com |       2 | 1998-04-04
+                        1 | Avneet | Singh    | avneet@comp.com |       2 | 2001-07-19
+                        2 | Karan  | Aggarwal | karan@comp.com  |       3 | 1988-01-25
+                        3 | Sameer | Grover   | sameer@comp.com |       2 | 1998-04-04
+                    (5 rows)
