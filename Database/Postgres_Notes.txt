@@ -119,6 +119,15 @@
     HOW TO DELETE A TABLE 
         - 'DROP TABLE table_name'
 
+        -TO DELETE ONLY VALUES INSIDE THE TABLE AND KEEP THE TABLE STRUCTURE
+            COMMAND: TRUNCATE TABLE emp_table;
+            Result: TRUNCATE TABLE
+            Table :
+                    id | name | rename_email 
+                    ----+------+--------------
+                    (0 rows)
+    
+
     HOW TO INSERT VALUES INTO TABLE
         - market=# INSERT INTO customer (first_name , last_name , mobile , email)
           market-# VALUES ('Avneet' , 'Singh' , '8178646325' , 'avneet@gmail.com' );
