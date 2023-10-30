@@ -1071,3 +1071,20 @@
                 "name_index" btree (name)
             Triggers:
                 example_trigger AFTER INSERT ON employee FOR EACH ROW EXECUTE FUNCTION auditlogfunc()
+
+
+    VIEW 
+        - they are not real tables; nevertheless appear as ordinary tables to SELECT.
+        A view can contain all rows of a table or selected rows from one or more tables.
+
+        Example: CREATE TEMPORARY VIEW person_view AS 
+            SELECT id , first_name , last_name , car_id FROM person;
+        Result:     CREATE VIEW
+        List of tables:
+                            List of relations
+            Schema   |        Name        |   Type   |  Owner   
+            -----------+--------------------+----------+----------
+            pg_temp_4 | person_view        | view     | postgres
+            public    | audit              | table    | postgres
+
+        - dropping a view: DROP VIEW person_view;
