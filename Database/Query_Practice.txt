@@ -191,6 +191,17 @@ Q4. people working hours
                     6 |      1 | 2023-10-30 | 10:02:00 | 19:22:00
                 (4 rows)
 
+    - emp coming afte 10:00:00
+        Command: select * from employee as e join attendance_rec as a on e.emp_id = a.emp_id where Extract(hour from (check_in))>=10 and Extract(minute from (check_in))>0;
+        Result:emp_id | f_name |  l_name  |      email      | dept_id |    dob     | salary | att_id | emp_id |    day     | check_in | check_out 
+                --------+--------+----------+-----------------+---------+------------+--------+--------+--------+------------+----------+-----------
+                    2 | Karan  | Aggarwal | karan@comp.com  |       3 | 1988-01-25 |  20000 |      2 |      2 | 2023-10-28 | 10:02:00 | 20:00:00
+                    4 | Tanmay | Baisla   | tanmay@comp.com |       1 | 1995-11-22 |  20000 |      4 |      4 | 2023-10-28 | 10:15:00 | 19:20:00
+                    1 | Avneet | Singh    | avneet@comp.com |       2 | 2001-07-19 |  50000 |      6 |      1 | 2023-10-30 | 10:02:00 | 19:22:00
+                (3 rows)
+
+
+
 Q5. 
 
 New Table 
@@ -233,3 +244,14 @@ New Table
                     --------+--------+--------+------------+--------+--------+--------+------------
                         4 | Vipul  | Kumar  |            |        |        |        |           
                     (1 row)
+
+
+Q6. People with no mobile phone but with a car 
+    Command: select * from people as p left join mobile as m on p.mobile = m.id join car as c on p.car_id = c.id;
+    Result:id | first_name | last_name | gender | age | mobile | car_id | id |  name  | company | price | id |  name   |  price  
+            ----+------------+-----------+--------+-----+--------+--------+----+--------+---------+-------+----+---------+---------
+            2 | Kunal      | Singh     | Male   |  20 |      3 |      1 |  3 | s20    | Samsung | 80000 |  1 | Thar    | 1500000
+            1 | Avneet     | Singh     | Male   |  22 |      5 |      2 |  5 | Galaxy | Samsung | 80000 |  2 | City    | 1500000
+            4 | Vipul      | Kumar     | Male   |  15 |        |      3 |    |        |         |       |  3 | Scorpio | 2000000
+            3 | Deepak     | Chaudhary | Male   |  30 |      9 |      4 |  9 | Note10 | Redmi   | 40000 |  4 | Creta   | 1500000
+            (4 rows)
