@@ -1,3 +1,23 @@
+                ***********INSTALLATION***********
+
+1. Visit site https://www.postgresql.org/download/ .
+2. Choose Linux operating system.
+3. You will be redirected to PostgreSQL apt repository page.  
+4. You will see the apt repository commands
+5. Now run these commands in your terminal:
+    a) sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+    b) wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    c) sudo apt-get update
+    d) sudo apt-get -y install postgresql
+7. Finally, your postgreSQL will have installed in your system.
+8. To start , type : 
+                sudo -i -u postgres
+9. Fill your password it will move into postgres.
+10. Then type, psql.
+11. It will show you command line interface for postgreSQL.
+12. To check postgre version type command:
+    psql --version 
+
 
                 ***********IMP THEORY TOPICS***********
 
