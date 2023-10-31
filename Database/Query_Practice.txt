@@ -158,3 +158,50 @@ Q3. find nth highest salary
                   --------+--------
                   Avneet |  50000
                   (1 row)
+
+
+
+
+
+Q4. 
+
+New Table 
+
+ emp_id |  f_name   | l_name  | manager_id 
+--------+-----------+---------+------------
+      1 | Avneet    | Singh   |          5
+      2 | Rahul     | Tiwari  |          7
+      3 | Deepanshu | Grover  |          6
+      4 | Vipul     | Kumar   |           
+      5 | Ram       | Charan  |          6
+      6 | Karan     | Jaiswal |          4
+      7 | Harshit   | Godara  |          6
+(7 rows)
+
+    - find all emp with their manager names
+        Command:select * from employee as e1 join employee as e2 on e1.manager_id = e2.emp_id;
+        Result:    emp_id |  f_name   | l_name  | manager_id | emp_id | f_name  | l_name  | manager_id 
+                    --------+-----------+---------+------------+--------+---------+---------+------------
+                        1 | Avneet    | Singh   |          5 |      5 | Ram     | Charan  |          6
+                        2 | Rahul     | Tiwari  |          7 |      7 | Harshit | Godara  |          6
+                        3 | Deepanshu | Grover  |          6 |      6 | Karan   | Jaiswal |          4
+                        5 | Ram       | Charan  |          6 |      6 | Karan   | Jaiswal |          4
+                        7 | Harshit   | Godara  |          6 |      6 | Karan   | Jaiswal |          4
+                        6 | Karan     | Jaiswal |          4 |      4 | Vipul   | Kumar   |           
+                    (6 rows)
+
+    
+    - find emp with no manager 
+        Command: select * from employee as e1 left join employee as e2 on e1.manager_id = e2.emp_id where e1.manager_id is null;
+        Result:    emp_id | f_name | l_name | manager_id | emp_id | f_name | l_name | manager_id 
+                    --------+--------+--------+------------+--------+--------+--------+------------
+                        4 | Vipul  | Kumar  |            |        |        |        |           
+                    (1 row)
+
+    
+    - find emp whose manager has no manager 
+        Command: select * from employee as e1 left join employee as e2 on e1.manager_id = e2.emp_id where e1.manager_id is null;
+        Result:    emp_id | f_name | l_name | manager_id | emp_id | f_name | l_name | manager_id 
+                    --------+--------+--------+------------+--------+--------+--------+------------
+                        4 | Vipul  | Kumar  |            |        |        |        |           
+                    (1 row)
