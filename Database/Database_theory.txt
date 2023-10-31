@@ -68,3 +68,39 @@
 
         
         - Generalization: It is reverse of Specialisation. bottom up approach.
+
+
+    NORMALIZATION
+        - Normalisation is used to minimise the redundancy from a relations. It is also used to eliminate undesirable
+        characteristics like Insertion, Update, and Deletion Anomalies. Normalisation divides the composite attributes 
+        into individual attributes OR larger table into smaller and links them using relationships.
+        - To avoid redundancy in the DB, not to store redundant data.
+
+        What happen if we have redundant data?
+        - Insertion, deletion and updation anomalies arises.
+
+        Types of Normal forms
+            1. 1NF
+                1. Every relation cell must have atomic value.
+                2. Relation must not have multi-valued attributes.
+
+            2. 2NF
+                1. Relation must be in 1NF.
+                2. There should not be any partial dependency.
+                    1. All non-prime attributes must be fully dependent on PK.
+                    2. Non prime attribute can not depend on the part of the PK.
+
+            3. 3NF
+                1. Relation must be in 2NF.
+                2. No transitivity dependency exists.
+                    1. Non-prime attribute should not find a non-prime attribute.
+
+            4. BCNF (Boyce-Codd normal form)
+                1. Relation must be in 3NF.
+                2. FD: A -> B, A must be a super key.
+                    1. We must not derive prime attribute from any prime or non-prime attribute.
+
+        Advantages of Normalisation
+            1. Normalisation helps to minimise data redundancy.
+            2. Greater overall database organisation.
+            3. Data consistency is maintained in DB.
