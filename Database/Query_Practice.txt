@@ -159,11 +159,39 @@ Q3. find nth highest salary
                   Avneet |  50000
                   (1 row)
 
+Q4. people working hours 
+    
+    - people working less than 9 hours 
+        Command:  select * from attendance_rec where Extract(hour from (check_out-check_in))<9;
+        Result:att_id | emp_id |    day     | check_in | check_out 
+                --------+--------+------------+----------+-----------
+                    8 |      5 | 2023-10-30 | 10:00:00 | 18:00:00
+                (1 row)
 
+    - people working more than or equal to 9 hrs 
+        Command: select * from attendance_rec where Extract(hour from (check_out-check_in))>=9;
+        Result:att_id | emp_id |    day     | check_in | check_out 
+                --------+--------+------------+----------+-----------
+                    1 |      1 | 2023-10-28 | 10:00:00 | 19:00:00
+                    2 |      2 | 2023-10-28 | 10:02:00 | 20:00:00
+                    3 |      3 | 2023-10-28 | 09:35:00 | 19:00:00
+                    4 |      4 | 2023-10-28 | 10:15:00 | 19:20:00
+                    5 |      5 | 2023-10-28 | 08:00:00 | 17:00:00
+                    6 |      1 | 2023-10-30 | 10:02:00 | 19:22:00
+                    7 |      2 | 2023-10-30 | 10:00:00 | 19:00:00
+                (7 rows)
 
+    - people working more than 9 hours 
+        Command: select * from attendance_rec where (check_out-check_in)>'09:00:00';
+        Result:att_id | emp_id |    day     | check_in | check_out 
+                --------+--------+------------+----------+-----------
+                    2 |      2 | 2023-10-28 | 10:02:00 | 20:00:00
+                    3 |      3 | 2023-10-28 | 09:35:00 | 19:00:00
+                    4 |      4 | 2023-10-28 | 10:15:00 | 19:20:00
+                    6 |      1 | 2023-10-30 | 10:02:00 | 19:22:00
+                (4 rows)
 
-
-Q4. 
+Q5. 
 
 New Table 
 
