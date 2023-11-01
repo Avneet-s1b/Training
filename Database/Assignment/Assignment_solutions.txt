@@ -77,3 +77,32 @@ ALL TABLES
     1007 | Ohio        | Scranton     |      500 | 09:00:00 | 11:00:00 |   500
     (7 rows)
 
+
+QUERIES 
+
+A. Find the names of aircraft such that all pilots certified to operate them earn 
+more than $80,000.
+
+    - select a.aname from aircraft as a join certified as c on a.aid = c.aid join employees as e on c.eid = e.eid where e.salary>80000;
+    
+    Table:        aname         
+            -----------------------
+            Boeing 787 Dreamliner
+            Boeing 700-8
+            Airbus A330
+            Airbus A450
+            (4 rows)
+
+
+B. For each pilot who is certified for more than three aircraft, find the eid and the 
+maximum cruisingrange of the aircraft for which she or he is certified.
+
+    - select c.eid,Max(a.cruisingrange) from certified as c join aircraft as a on c.aid = a.aid Group by c.eid having Count(*)>3;
+    
+    Table:eid | max  
+            -----+------
+            9 | 4000
+            1 | 4200
+            (2 rows)
+
+
