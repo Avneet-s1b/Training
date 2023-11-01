@@ -9,17 +9,17 @@ ALL TABLES
     
   eid |   ename   | salary 
     -----+-----------+--------
-    1 | Avneet    |  85000
-    2 | Kunal     |  90000
+    1 | Avneet    |  80000
+    2 | Kunal     |  95000
     3 | Deepak    | 100000
     4 | Chandan   |  60000
     5 | Vipul     |  70000
     6 | Deepanshu |  80000
     7 | Rahul     | 120000
     8 | Suraj     |  90000
-    9 | Vishakha  |  98000
-   10 | Rishab    |  95000
-   11 | Lovansh   |  79000
+    9 | Vishakha  |  80000
+    10 | Rishab    |  95000
+    11 | Lovansh   |  79000
     (11 rows)
 
 
@@ -31,7 +31,7 @@ ALL TABLES
     -----+-----------------------+---------------
     1 | Airbus A380           |          1500
     2 | Boeing 767            |          4000
-    3 | Boeing 787 Dreamliner |          5000
+    3 | Boeing 787 Dreamliner |          1000
     4 | Airbus A220           |           850
     5 | Airbus A330           |           600
     6 | Boeing 777X           |          2100
@@ -46,20 +46,22 @@ ALL TABLES
 
     - select * from certified order by eid;
 
-    eid | aid 
-    -----+-----
-       1 |   1
-       1 |   2
-       1 |   8
-       3 |   7
-       7 |   3
-       9 |   2
-       9 |   6
-       9 |  10
-      10 |   5
-      10 |   9
-      11 |   4
-    (11 rows)
+  eid | aid 
+ -----+-----
+    1 |   1
+    1 |   2
+    1 |   8
+    1 |   9
+    3 |   7
+    7 |   3
+    9 |   2
+    9 |   4
+    9 |   6
+    9 |  10
+   10 |   5
+   10 |   9
+   11 |   4
+    (13 rows)
 
 
 4. Flights Table 
@@ -106,3 +108,152 @@ maximum cruisingrange of the aircraft for which she or he is certified.
             (2 rows)
 
 
+C. Find the names of pilots whose salary is less than the price of the cheapest 
+route from Los Angeles to Honolulu.
+
+    - select ename from employees where eid in (select distinct(eid) from certified) AND salary < (select Min(price) from flights where "from" = 'Los Angeles' And "to" = 'Honululu');
+    
+    Table:   ename   
+            ----------
+            Lovansh
+            Avneet
+            Vishakha
+            (3 rows)
+
+
+D. For all aircraft with cruisingrange over 1000 miles, find the name of the 
+aircraft and the average salary of all pilots certified for this aircraft.
+
+    - select a.aname,Avg(e.salary) from aircraft as a join certified as c on a.aid = c.aid join employees as e on c.eid = e.eid where a.cruisingrange>1000 group by a.aid,a.aname ;
+
+    Result:          aname         |         avg         
+            -----------------------+---------------------
+             Airbus A450           |  87500.000000000000
+             Boeing 787 Dreamliner | 120000.000000000000
+             Airbus A500           |  80000.000000000000
+             Boeing 777X           |  80000.000000000000
+             Boeing 767            |  80000.000000000000
+             Boeing 700-8          | 100000.000000000000
+             Airbus A380           |  80000.000000000000
+            (7 rows)
+
+
+E. Find the names of pilots certified for some Boeing aircraft.
+
+    - select * from employees as e join certified as c on e.eid = c.eid join aircraft as a on a.aid = c.aid where a.aname like 'Boeing%';
+
+    Result:  eid |  ename   | salary | eid | aid | aid |         aname         | cruisingrange 
+            -----+----------+--------+-----+-----+-----+-----------------------+---------------
+               9 | Vishakha |  80000 |   9 |   2 |   2 | Boeing 767            |          4000
+               9 | Vishakha |  80000 |   9 |   6 |   6 | Boeing 777X           |          2100
+               1 | Avneet   |  80000 |   1 |   2 |   2 | Boeing 767            |          4000
+               7 | Rahul    | 120000 |   7 |   3 |   3 | Boeing 787 Dreamliner |          5000
+               3 | Deepak   | 100000 |   3 |   7 |   7 | Boeing 700-8          |          6600
+            (5 rows)
+
+
+F. Find the aids of all aircraft that can be used on routes from Los Angeles to 
+Chicago.
+
+    - select aid from aircraft where cruisingrange >= (select distance from flights where "from" = 'Los Angeles' And "to" = 'Chicago');
+    
+    Result: aid 
+            -----
+            2
+            3
+            6
+            7
+            9
+            10
+            (6 rows)
+
+
+G. Identify the routes that can be piloted by every pilot who makes more than 
+$100,000.
+
+    - select * from flights where distance<=(select a.cruisingrange from aircraft as a join certified as c on a.aid = c.aid join employees as e on c.eid = e.eid where e.salary>100000);
+   
+    Result: flno |    from    |    to    | distance | departs  | arrives  | price 
+            ------+------------+----------+----------+----------+----------+-------
+            1005 | California | Texas    |     1000 | 06:00:00 | 12:00:00 |  5000
+            1007 | Ohio       | Scranton |      500 | 09:00:00 | 11:00:00 |   500
+            (2 rows)
+
+
+H. Print the enames of pilots who can operate planes with cruisingrange greater 
+than 3000 miles but are not certified on any Boeing aircraft.
+
+    - select * from employees as e join certified as c on e.eid = c.eid join aircraft as a on a.aid = c.aid where a.cruisingrange>3000 And a.aname not like 'Boeing%';
+ 
+    Result:eid | ename  | salary | eid | aid | aid |    aname    | cruisingrange 
+            -----+--------+--------+-----+-----+-----+-------------+---------------
+            10 | Rishab |  95000 |  10 |   9 |   9 | Airbus A450 |          4200
+            1 | Avneet |  80000 |   1 |   9 |   9 | Airbus A450 |          4200
+            (2 rows)
+
+
+I. A customer wants to travel from Madison to New York with no more than two 
+changes of flight. List the choice of departure times from Madison if the 
+customer wants to arrive in New York by 6 p.m.
+
+
+J. Compute the difference between the average salary of a pilot and the average 
+salary of all employees (including pilots). 
+
+    - select (select Avg(salary) from employees where eid in (select distinct(eid) from certified))-Avg(salary) as diff from employees;
+
+    Result:      diff        
+            -------------------
+             6515.151515151515
+            (1 row)
+
+
+K. Print the name and salary of every nonpilot whose salary is more than the 
+average salary for pilots.
+
+    - select e.ename,e.salary from employees as e left join certified as c on e.eid = c.eid where c.eid is null AND e.salary > (select Avg(salary) from employees where eid in (select distinct(eid) from certified));
+
+    Result:  ename | salary 
+            -------+--------
+             Kunal |  95000
+            (1 row)
+
+
+L. Print the names of employees who are certified only on aircrafts with cruising 
+range longer than 1000 miles.
+
+    - select Distinct(e.ename) from employees as e join certified as c on e.eid = c.eid join aircraft as a on c.aid = a.aid where a.cruisingrange>1000;
+    
+    Result: ename   
+            ----------
+            Avneet
+            Vishakha
+            Deepak
+            Rishab
+            (4 rows)
+
+
+M. Print the names of employees who are certified only on aircrafts with cruising 
+range longer than 1000 miles, but on at least two such aircrafts.
+
+    - select Distinct(e.ename) from employees as e join certified as c on e.eid = c.eid join aircraft as a on c.aid = a.aid where a.cruisingrange>1000 
+    And e.eid in (select e.eid from employees as e join certified as c on e.eid = c.eid join aircraft as a on c.aid = a.aid where a.cruisingrange>1000 group by e.eid having count(*)>=2);
+    
+    Result: ename   
+            ----------
+            Avneet
+            Vishakha
+            (2 rows)
+
+
+N. Print the names of employees who are certified only on aircrafts with cruising 
+range longer than 1000 miles and who are certified on some Boeing aircraft.
+
+    -select Distinct(e.ename) from employees as e join certified as c on e.eid = c.eid join aircraft as a on c.aid = a.aid where a.cruisingrange>1000 And a.aname like 'Boeing%';
+    
+    Result: ename   
+            ----------
+            Avneet
+            Deepak
+            Vishakha
+            (3 rows)
