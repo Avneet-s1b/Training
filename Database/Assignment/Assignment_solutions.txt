@@ -77,7 +77,10 @@ ALL TABLES
     1005 | California  | Texas        |     1000 | 06:00:00 | 12:00:00 |  5000
     1006 | Miami       | Philadelphia |     1600 | 11:30:00 | 14:15:00 | 88000
     1007 | Ohio        | Scranton     |      500 | 09:00:00 | 11:00:00 |   500
-    (7 rows)
+    1008 | Madison     | New York     |     1500 | 10:00:00 | 18:00:00 | 20000
+    1009 | Madison     | Miami        |     1800 | 11:00:00 | 12:00:00 | 20000
+    1010 | Miami       | New York     |     1800 | 13:00:00 | 18:10:00 | 20000
+    (10 rows)
 
 
 QUERIES 
@@ -126,16 +129,15 @@ aircraft and the average salary of all pilots certified for this aircraft.
 
     - select a.aname,Avg(e.salary) from aircraft as a join certified as c on a.aid = c.aid join employees as e on c.eid = e.eid where a.cruisingrange>1000 group by a.aid,a.aname ;
 
-    Result:          aname         |         avg         
-            -----------------------+---------------------
-             Airbus A450           |  87500.000000000000
-             Boeing 787 Dreamliner | 120000.000000000000
-             Airbus A500           |  80000.000000000000
-             Boeing 777X           |  80000.000000000000
-             Boeing 767            |  80000.000000000000
-             Boeing 700-8          | 100000.000000000000
-             Airbus A380           |  80000.000000000000
-            (7 rows)
+    Result:        aname     |         avg         
+               --------------+---------------------
+                Airbus A450  |  87500.000000000000
+                Airbus A500  |  80000.000000000000
+                Boeing 777X  |  80000.000000000000
+                Boeing 767   |  80000.000000000000
+                Boeing 700-8 | 100000.000000000000
+                Airbus A380  |  80000.000000000000
+                (6 rows)
 
 
 E. Find the names of pilots certified for some Boeing aircraft.
@@ -160,12 +162,11 @@ Chicago.
     Result: aid 
             -----
             2
-            3
             6
             7
             9
             10
-            (6 rows)
+            (5 rows)
 
 
 G. Identify the routes that can be piloted by every pilot who makes more than 
@@ -228,7 +229,7 @@ salary of all employees (including pilots).
 
     Result:      diff        
             -------------------
-             6515.151515151515
+            6060.606060606060
             (1 row)
 
 
