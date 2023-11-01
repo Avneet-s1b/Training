@@ -196,6 +196,30 @@ I. A customer wants to travel from Madison to New York with no more than two
 changes of flight. List the choice of departure times from Madison if the 
 customer wants to arrive in New York by 6 p.m.
 
+    Table for this query:
+    
+    flno |    from     |      to      | distance | departs  | arrives  | price 
+    ------+-------------+--------------+----------+----------+----------+-------
+    1001 | Los Angeles | Honululu     |     3800 | 09:00:00 | 21:00:00 | 90000
+    1002 | Los Angeles | Chicago      |     2000 | 12:00:00 | 18:00:00 | 10000
+    1003 | Madison     | Las Vegas    |     1300 | 09:00:00 | 12:00:00 |  9000
+    1004 | Las Vegas   | New York     |     2000 | 13:00:00 | 16:00:00 | 14000
+    1005 | California  | Texas        |     1000 | 06:00:00 | 12:00:00 |  5000
+    1006 | Miami       | Philadelphia |     1600 | 11:30:00 | 14:15:00 | 88000
+    1007 | Ohio        | Scranton     |      500 | 09:00:00 | 11:00:00 |   500
+    1008 | Madison     | New York     |     1500 | 10:00:00 | 18:00:00 | 20000
+    1009 | Madison     | Miami        |     1800 | 11:00:00 | 12:00:00 | 20000
+    1010 | Miami       | New York     |     1800 | 13:00:00 | 18:10:00 | 20000
+    (10 rows)
+
+Answwer: select "from","to",departs from flights where "from" = 'Madison' And "to" = 'New York' And arrives<='18:00:00'
+Or "from" = 'Madison' And "to" in (select "from" from flights where "to" = 'New York' And arrives<='18:00:00');
+
+    Result:  from   |    to     | departs  
+           ---------+-----------+----------
+            Madison | Las Vegas | 09:00:00
+            Madison | New York  | 10:00:00
+            (2 rows)
 
 J. Compute the difference between the average salary of a pilot and the average 
 salary of all employees (including pilots). 
