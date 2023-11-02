@@ -1197,3 +1197,34 @@
             9
             10
             (10 rows)
+
+
+        - Printing employee hierarchy 
+
+        Table:
+        select * from employee;
+        emp_id |  f_name   | l_name  | manager_id 
+        --------+-----------+---------+------------
+            4 | Vipul     | Kumar   |           
+            1 | Avneet    | Singh   |          5
+            2 | Rahul     | Tiwari  |          7
+            3 | Deepanshu | Grover  |          6
+            5 | Ram       | Charan  |          6
+            7 | Harshit   | Godara  |          6
+            6 | Karan     | Jaiswal |          4
+        (7 rows)
+
+        Command:    with recursive emp_hierarchy as (
+                    select emp_id,f_name,manager_id from employee where f_name = 'Karan'
+                    union
+                    select e.emp_id,e.f_name,e.manager_id from emp_hierarchy as h join employee as e on h.emp_id = e.manager_id)
+                    select * from emp_hierarchy;
+        Result:    emp_id |  f_name   | manager_id 
+                  --------+-----------+------------
+                        6 | Karan     |          4
+                        3 | Deepanshu |          6
+                        5 | Ram       |          6
+                        7 | Harshit   |          6
+                        1 | Avneet    |          5
+                        2 | Rahul     |          7
+                    (6 rows)
