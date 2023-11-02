@@ -1228,3 +1228,34 @@
                         1 | Avneet    |          5
                         2 | Rahul     |          7
                     (6 rows)
+
+        With manager name
+
+        Command:with recursive emp_hierarchy as (
+                select e1.emp_id as eid,e1.f_name as ename,e1.manager_id as mid,e2.f_name as mname from employee as e1 join employee as e2 on e2.emp_id = e1.manager_id where e1.f_name = 'Karan'
+                union
+                select e.emp_id,e.f_name,e.manager_id,h.ename from emp_hierarchy as h join employee as e on h.eid = e.manager_id)
+                select * from emp_hierarchy;
+        Result:eid |   ename   | mid |  mname  
+                -----+-----------+-----+---------
+                6 | Karan     |   4 | Vipul
+                3 | Deepanshu |   6 | Karan
+                5 | Ram       |   6 | Karan
+                7 | Harshit   |   6 | Karan
+                1 | Avneet    |   5 | Ram
+                2 | Rahul     |   7 | Harshit
+                (6 rows)
+
+        
+        Also can be done using self join 
+
+        Command: select * from employee as e1 join employee as e2 on e1.manager_id = e2.emp_id;
+        Result:emp_id |  f_name   | l_name  | manager_id | emp_id | f_name  | l_name  | manager_id 
+                --------+-----------+---------+------------+--------+---------+---------+------------
+                    1 | Avneet    | Singh   |          5 |      5 | Ram     | Charan  |          6
+                    2 | Rahul     | Tiwari  |          7 |      7 | Harshit | Godara  |          6
+                    3 | Deepanshu | Grover  |          6 |      6 | Karan   | Jaiswal |          4
+                    5 | Ram       | Charan  |          6 |      6 | Karan   | Jaiswal |          4
+                    7 | Harshit   | Godara  |          6 |      6 | Karan   | Jaiswal |          4
+                    6 | Karan     | Jaiswal |          4 |      4 | Vipul   | Kumar   |           
+                (6 rows)
