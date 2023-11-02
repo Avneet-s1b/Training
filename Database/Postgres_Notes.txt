@@ -1173,3 +1173,27 @@
             -----------------------
             1 year 2 mons 24 days
             (1 row)
+
+    
+    RECURSION IN SQL 
+        - PRINT 1 TO 10 IN SQL USING RECURSION 
+
+        Command: with recursive cte as
+            (
+            select 1 as n
+            union
+            select n+1 from cte where n<10)
+            select * from cte;
+        Op: n  
+            ----
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+            10
+            (10 rows)
