@@ -255,3 +255,53 @@ Q6. People with no mobile phone but with a car
             4 | Vipul      | Kumar     | Male   |  15 |        |      3 |    |        |         |       |  3 | Scorpio | 2000000
             3 | Deepak     | Chaudhary | Male   |  30 |      9 |      4 |  9 | Note10 | Redmi   | 40000 |  4 | Creta   | 1500000
             (4 rows)
+
+
+Q7. Table 
+
+ eid |   ename   | salary 
+-----+-----------+--------
+   7 | Rahul     | 120000
+   3 | Deepak    | 100000
+   2 | Kunal     |  95000
+  10 | Rishab    |  95000
+   8 | Suraj     |  90000
+   1 | Avneet    |  80000
+   9 | Vishakha  |  80000
+   6 | Deepanshu |  80000
+  11 | Lovansh   |  79000
+   5 | Vipul     |  70000
+   4 | Chandan   |  60000
+(11 rows)
+
+Nth highest salary 
+
+- select distinct(salary) from employees order by salary desc limit 1 offset 1;
+ salary 
+--------
+ 100000
+(1 row)
+
+- select distinct(salary) from employees order by salary desc limit 1 offset 2;
+ salary 
+--------
+  95000
+(1 row)
+
+- select distinct(salary) from employees order by salary desc limit 1 offset 3;
+ salary 
+--------
+  90000
+(1 row)
+
+- select distinct(e1.salary) from employees as e1 where 1 = (select Count(*) from employees as e2 where e2.salary>e1.salary );
+ salary 
+--------
+ 100000
+(1 row)
+
+- select distinct(e1.salary) from employees as e1 where 2 = (select Count(*) from employees as e2 where e2.salary>e1.salary );
+ salary 
+--------
+  95000
+(1 row)
