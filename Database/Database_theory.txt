@@ -139,3 +139,38 @@
             1. Data redundancy. if one server down then other stays up keeping the site from crashing.
             2. Load balancing. Distributes client requests effectively.
             3. High availability of data.
+
+    PARTITIONING AND SHARDING
+        - Partitioning is the technique used to divide stored database objects into separate servers.
+        - Types : Horizontal and vertical partitioning 
+
+        Vertical Partitioning
+            1. Slicing relation vertically / column-wise.
+            2. Need to access different servers to get complete tuples.
+        Horizontal Partitioning
+            1. Slicing relation horizontally / row-wise.
+            2. Independent chunks of data tuples are stored in different servers.
+
+        When Partitioning is Applied?
+            1. Dataset become much huge that managing and dealing with it become a tedious task.
+            2. The number of requests are enough larger that the single DB server access is taking huge time and hence the system’s response time become
+            high.
+       
+        Advantages of Partitioning
+            1. Parallelism
+            2. Availability
+            3. Performance
+            4. Manageability
+            5. Reduce Cost, as scaling-up or vertical scaling might be costly.
+
+        Sharding
+            1. Technique to implement Horizontal Partitioning.
+            2. The fundamental idea of Sharding is the idea that instead of having all the data sit on one DB instance, we split it up and introduce a
+            Routing layer so that we can forward the request to the right instances that actually contain the data.
+        Pros
+            1. Scalability
+            2. Availability
+        
+        Cons
+            1. Complexity, making partition mapping, Routing layer to be implemented in the system, Non-uniformity that creates the necessity of Re-
+            Sharding
