@@ -353,3 +353,51 @@ attend_mgmt=# select e.emp_id , a.day , (a.check_out - a.check_in) as total_time
 --------+------------+------------
       5 | 2023-10-30 | 08:00:00
 (1 row)
+
+
+
+Q9. Find and delete duplicate rows 
+
+Table before:
+market=# select * from car;
+ id |  name   |  price  
+----+---------+---------
+ 10 | Thar    | 1500000
+ 21 | City    | 1500000
+ 22 | Scorpio | 2000000
+ 23 | Creta   | 1200000
+ 24 | Thar    | 1500000
+ 25 | Thar    | 1500000
+ 26 | Thar    | 1500000
+ 27 | Thar    | 1500000
+ 28 | City    | 1500000
+ 29 | Scorpio | 2000000
+ 30 | Creta   | 1200000
+(11 rows)
+
+To find duplicate rows:
+
+select Max(id),name,price from car group by name,price having count(*)>1;
+
+ max |  name   |  price  
+-----+---------+---------
+  28 | City    | 1500000
+  29 | Scorpio | 2000000
+  30 | Creta   | 1200000
+  27 | Thar    | 1500000
+(4 rows)
+
+
+To delete duplicate rows:
+
+delete from car where id not in (select Min(id) from car group by name,price);
+
+Table after:
+market=# select * from car;
+ id |  name   |  price  
+----+---------+---------
+ 10 | Thar    | 1500000
+ 21 | City    | 1500000
+ 22 | Scorpio | 2000000
+ 23 | Creta   | 1200000
+(4 rows)
