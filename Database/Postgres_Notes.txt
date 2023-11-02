@@ -1259,3 +1259,45 @@
                     7 | Harshit   | Godara  |          6 |      6 | Karan   | Jaiswal |          4
                     6 | Karan     | Jaiswal |          4 |      4 | Vipul   | Kumar   |           
                 (6 rows)
+
+    
+    TRANSACTIONS
+        - Commands: begin;
+                    sql query
+                    Commit; (to commit the sql operation to db)
+                    Rollback; (to rollback to last commited state)
+
+        Example:
+        Begin;
+        delete from car where id = 5;
+        Rollback;
+        select * from car;
+        
+        Table still unimpacted
+        id |  name   |  price  
+        ----+---------+---------
+        1 | Thar    | 1500000
+        2 | City    | 1500000
+        3 | Scorpio | 2000000
+        4 | Creta   | 1500000
+        5 | Punch   | 1000000
+        (5 rows)
+
+        Example 2:
+        market=# Begin;
+        BEGIN
+        market=*# delete from car where id = 5;
+        DELETE 1
+        market=*# Commit;
+        COMMIT
+
+        Table impacted since changes commited
+        
+        market=# select * from car;
+        id |  name   |  price  
+        ----+---------+---------
+        1 | Thar    | 1500000
+        2 | City    | 1500000
+        3 | Scorpio | 2000000
+        4 | Creta   | 1500000
+        (4 rows)
