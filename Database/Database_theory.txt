@@ -129,3 +129,13 @@
             5. Durability
                 1. After transaction completes successfully, the changes it has made to the database persist, even if there are
                 system failures.
+
+    
+    CLUSTERING/REPLICA SETS 
+        - Database Clustering (making Replica-sets) is the process of combining more than one servers or instances connecting a single database.
+        - Sometimes one server may not be adequate to manage the amount of data or the number of requests, that is when a Data Cluster is needed.
+
+        Advantages
+            1. Data redundancy. if one server down then other stays up keeping the site from crashing.
+            2. Load balancing. Distributes client requests effectively.
+            3. High availability of data.
