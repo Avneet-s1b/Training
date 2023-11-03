@@ -454,3 +454,165 @@
                 Result: toddler
 
     
+    LOOPS
+
+        - While 
+            Example:
+            i = 1
+            num = 5
+
+            while (i<=num) do
+                puts("num : #{i}")
+                i += 1
+            end
+
+            Result:
+            num : 1
+            num : 2
+            num : 3
+            num : 4
+            num : 5
+
+        - While modifier (do-while loop)
+            Example:
+            i = 1
+            num = 5
+
+            begin 
+                puts("num: #{i}")
+                i += 1
+            end while (i<num)
+
+            Result:
+            num: 1
+            num: 2
+            num: 3
+            num: 4
+
+        - until (false jb tk hai tb tk loop will run)
+            Example:
+            i = 1
+            num = 5
+
+            until i>num do
+                puts("num: #{i}")
+                i += 1
+            end
+
+            Result:
+            num: 1
+            num: 2
+            num: 3
+            num: 4
+            num: 5
+
+        - until modifier
+            Example:
+            i = 5
+            num = 10
+
+            begin
+                puts("num: #{i}" )
+                i+=1
+            end until i>num
+
+            Result:
+            num: 5
+            num: 6
+            num: 7
+            num: 8
+            num: 9
+            num: 10
+
+        - for
+            Example:
+            for i in 0..5
+                puts "value : #{i}"
+            end
+
+            Result:
+            value : 0
+            value : 1
+            value : 2
+            value : 3
+            value : 4
+            value : 5
+
+        - for each
+            Example:
+            (10..15).each do |i|
+                puts("value in for each: #{i}")
+            end
+
+            Result:
+            value in for each: 10
+            value in for each: 11
+            value in for each: 12
+            value in for each: 13
+            value in for each: 14
+            value in for each: 15
+
+        - next and break clause
+            Example:
+            for i in 0..10
+                if i<2
+                    next
+                end
+                puts("values: #{i}")
+
+                if i>7
+                    break
+                end
+            end
+
+            Result:
+            values: 2
+            values: 3
+            values: 4
+            values: 5
+            values: 6
+            values: 7
+            values: 8
+
+        - redo : restarts thwe iteration of most internal loop without checking the Condition
+            Example:
+            for i in 0..10
+                if i<5
+                    i+=1
+                    puts("redo running")
+                    redo
+                else
+                    puts("values: #{i}")
+                end
+            end
+            
+            Result:
+            redo running
+            redo running
+            redo running
+            redo running
+            redo running
+            values: 5
+            redo running
+            redo running
+            redo running
+            redo running
+            values: 5
+            redo running
+            redo running
+            redo running
+            values: 5
+            redo running
+            redo running
+            values: 5
+            redo running
+            values: 5
+            values: 5
+            values: 6
+            values: 7
+            values: 8
+            values: 9
+            values: 10
+
+        - retry: If retry appears in rescue clause of begin expression, restart from the 
+                beginning of the begin body.
