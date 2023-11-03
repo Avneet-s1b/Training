@@ -80,4 +80,97 @@
             cust1 = Customer.new("1","Avneet")
 
             cust1.printinfo()
+
+            Result: name :Avneet
+
+    
+    VARIABLES
+
+        Code:
+
+            name = "Avneet" #this is our variable of type string
+            puts("this is our name: "+name) #just like java this is how we use variables in a string
+            name = "Tom"
+            puts("this is our name: "+name)
+
+            Result: this is our name: Avneet
+                    this is our name: Tom
+
         
+        - Global Var: Global variables begin with $. Have scope of global.
+
+                Example: 
+                    $global_var = 10
+
+                    class Practice
+                        def print_global
+                            puts("this is our global var: #$global_var") # we use # before variables in order to use var of different data type than string with string
+                        end
+                    end
+
+                    prac1 = Practice.new
+
+                    prac1.print_global()
+
+                Result: this is our global var: 10
+
+        
+        - Instance Var: Instance variables begin with @.
+
+                Example: 
+
+                class Customer
+
+                    def initialize(id,name) 
+                        @cust_id = id
+                        @cust_name = name #these are our instance variable
+                    end
+
+                    def printinfo
+                        puts("name :" + @cust_name)
+                    end
+                end
+
+                cust1 = Customer.new("1","Avneet")
+
+                cust1.printinfo()
+
+                Result:  name :Avneet
+
+
+        - Class Var : Class variables begin with @@ and must be initialized before they can be used in method definitions.
+                        Referencing an uninitialized class variable produces an error.
+                        Class variables are shared among descendants of the class or module in which the class variables are defined.
+
+            Example: 
+
+                class Practice
+                    @@no_of_instance = 0
+
+                    def find_inst
+                        @@no_of_instance += 1
+                        puts("these are our no of instances: #@@no_of_instance" )
+                    end
+                end
+
+                prac1 = Practice.new
+
+                prac1.find_inst()
+
+                prac2 = Practice.new
+
+                prac2.find_inst()
+
+                Result: these are our no of instances: 1
+                        these are our no of instances: 2
+
+                #if we call find_inst again it will increase the instances by 3 and this 3 will be shared by both the Objects
+
+        
+        - Local Var: Local variables begin with a lowercase letter or _. The scope of a local variable ranges from class, module, def, 
+                     or do to the corresponding end or from a block's opening brace to its close brace {}
+        
+
+        - What is the difference between class variables and class instance variables?
+        The main difference is the behavior concerning inheritance: class variables are shared between a class and all its subclasses, 
+        while class instance variables only belong to one specific class.
