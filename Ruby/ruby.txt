@@ -46,3 +46,38 @@
             - ruby -v (to show current ruby version)
 
             - irb (to open interactive ruby)
+
+
+    FIRST PROGRAM
+
+        - puts "Hello World!"
+        Result: Hello World!
+                => nil 
+
+        - Difference between puts vs print 
+            puts add new line after printing where as print doesnt 
+
+
+    Classes and Objects 
+
+        Example:
+
+            #this is our comment and beneath is our class 
+            class Customer
+                @@no_of_cust = 0 #this is our variable
+
+                def initialize(id,name) #this is our member function
+                    @cust_id = id
+                    @cust_name = name 
+                end
+
+                def printinfo
+                    puts("name :" + @cust_name)
+                end
+            end
+            #we have to end every class and function
+
+            cust1 = Customer.new("1","Avneet")
+
+            cust1.printinfo()
+        
