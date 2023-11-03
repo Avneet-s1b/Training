@@ -389,3 +389,68 @@
                 puts(a>b ? "a is greater than b" : "a is lesser than b")
 
                 Result: a is greater than b
+
+
+    COMMENTS
+        - single line comment: use #
+        - multi line comment: =begin this our comment 
+                                this is our somnet
+                              =end
+
+
+    IF ELSE
+        - Example
+            a = 4
+            b = 2
+
+            if (a<b)
+                puts("a is less than b")
+            elsif (a>b)
+                puts("a is great than b")
+            else
+                puts("a and b are equal")
+            end
+
+            Result: a is great than b
+
+
+        - if modifier
+            Example:
+                a = true
+
+                puts("a is true") if a
+
+                Result: a is true
+
+        - unless conditon and modifier
+            Example:
+                a = 4
+                b = 2
+
+                unless a<b
+                    puts("a is great than b")
+                else 
+                    puts("a is less than b")
+                end
+
+                var = 1
+                puts("var must be false to print this") unless var!=1
+
+                Result: a is great than b
+                        var must be false to print this
+
+        
+        - case
+            Example:
+                age = 5
+
+                case age
+                when 0..2
+                    puts("baby")
+                when 2..6
+                    puts("toddler")
+                end
+
+                Result: toddler
+
+    
