@@ -174,3 +174,26 @@
         - What is the difference between class variables and class instance variables?
         The main difference is the behavior concerning inheritance: class variables are shared between a class and all its subclasses, 
         while class instance variables only belong to one specific class.
+
+
+        - Constants: Constants begin with an uppercase letter. Constants defined within a class or module can be accessed from within that class or module, 
+                     and those defined outside a class or module can be accessed globally.
+
+            Example:
+            VAR1 = "Avneet"
+
+            puts(VAR1)
+
+            VAR1 = "Tom"
+
+            puts(VAR1)
+
+            Result: Avneet
+                    practice.rb:25: warning: already initialized constant VAR1
+                    practice.rb:21: warning: previous definition of VAR1 was here
+                    Tom
+
+            # Making an assignment to a constant that is already initialized produces a warning.
+
+        
+        - Basic Literals: includes int, float, string, array, ranges
