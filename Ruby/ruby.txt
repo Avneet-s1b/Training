@@ -1,0 +1,48 @@
+
+                            ***RUBY***
+
+
+    INSTALLATION
+        1. Open cmd.
+        2. Run following commands:
+            - $ gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+            - $ \curl -sSL https://get.rvm.io | bash -s stable --rails
+        3. Then To start using RVM you need to run `source /home/beryl/.rvm/scripts/rvm` .
+        4. Rvm is installed.
+        5. Some important commands in rvm: 
+            - rvm list (shows total versions of ruby on current system)
+                =* ruby-3.0.0 [ x86_64 ]
+
+                # => - current
+                # =* - current && default
+                #  * - default
+            
+            - rvm list known (shows available versions of ruby)
+                # MRI Rubies
+                [ruby-]1.8.6[-p420]
+                [ruby-]1.8.7[-head] # security released on head
+                [ruby-]1.9.1[-p431]
+                [ruby-]1.9.2[-p330]
+                [ruby-]1.9.3[-p551]
+                [ruby-]2.0.0[-p648]
+                [ruby-]2.1[.10]
+                [ruby-]2.2[.10]
+                [ruby-]2.3[.8]
+                [ruby-]2.4[.10]
+                [ruby-]2.5[.8]
+                [ruby-]2.6[.6]
+                [ruby-]2.7[.2]
+                [ruby-]3[.0.0]
+                ruby-head
+
+            - rvm install [version]  (to install specific version of ruby)
+
+            - rvm use 3.0.0 (to switch to specific ruby version)
+
+            - rvm use 2.7.2 --default (to set default version of ruby)
+
+            - rvm -v (to show rvm version)
+
+            - ruby -v (to show current ruby version)
+
+            - irb (to open interactive ruby)
