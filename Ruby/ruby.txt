@@ -197,3 +197,195 @@
 
         
         - Basic Literals: includes int, float, string, array, ranges
+
+
+
+    OPERATORS
+
+        - Arithmetic Operators 
+            includes Operators: + , - , * , / , % , **(exponent)
+
+            Example: 
+                a = 4
+                b = 3
+
+                puts(a+b)
+
+                puts(a%b)
+
+                puts(a**b)
+
+            Result: 7
+                    1
+                    64
+
+        - Comparison Operators
+            includes : < , > , == , != , <= , >= , <=> , === , .eql? , equal?
+
+                - <=> : Combined comparison operator. Returns 0 if first operand equals second, 
+                        1 if first operand is greater than the second and -1 if first operand is less
+                        than the second.
+                    Example:
+                    a = 4
+                    b = 4
+
+                    puts(a<=>b)
+
+                    Result: 0
+
+                - === : Used to test equality within a when clause of a case statement.
+                    Example:
+                    a = 4
+                    b = 4
+
+                    puts(a===b)
+                
+                    Result: true
+
+                - .eql? : True if the receiver and argument have both the same type and equal values.
+                    Example:
+                    a = 4
+                    b = 4.0
+
+                    puts(a.eql?(b))
+
+                    Result: False
+
+                - equal? : True if the receiver and argument have the same object id.
+
+
+        - Assignment Operators 
+            includes: += , -= , /= , *= , %= , **=
+
+            Example:
+
+                a = 2
+                b = 2
+                c = a+b
+
+                puts(c)
+
+                c **= a 
+
+                puts(c)
+
+                Result:
+                4
+                16
+
+        - Parallel Assignment
+            We can assign parallely in ruby like: a,b = 10,20 . It is beneficial for swapping between values
+
+            Example:
+                a = 2
+                b = 4
+                c = 3
+                puts("#{a},#{b},#{c}")
+                b,c = a,b
+                puts("#{a},#{b},#{c}")
+
+            Result: 2,4,3
+                    2,2,4
+
+        - Bitwise operators 
+            includes: & (and), | (or), ^ (xor), ~ (negation), << (left shift), >>(right shift)
+
+            - & 
+            Example:
+                a = 60 
+                b = 13
+
+                # a    =  0011 1100
+                # b    =  0000 1101 in bits
+
+                puts (a & b)
+
+                # a & b = 0000 1100
+
+                Result: 12
+
+            - |
+            Example:
+                a = 60 
+                b = 13
+
+                # a    =  0011 1100
+                # b    =  0000 1101 in bits
+
+                puts (a | b)
+
+
+                Result: 61    
+
+            - ^
+            Example:
+                a = 60 
+                b = 13
+
+                # a    =  0011 1100
+                # b    =  0000 1101 in bits
+
+                puts (a ^ b)
+
+
+                Result: 49    
+
+            - ~
+                Example:
+                a = 60 
+                b = 13
+
+                # a    =  0011 1100
+                # b    =  0000 1101 in bits
+
+                puts (~a)
+
+                Result: -61
+
+            - <<
+                Example:
+                a = 60 
+                b = 13
+
+                # a    =  0011 1100
+                # b    =  0000 1101 in bits
+
+                puts (a<<2) # shift left operand by 2
+
+                Result: 240
+
+            - >>
+                Example:
+                a = 60 
+                b = 13
+
+                # a    =  0011 1100
+                # b    =  0000 1101 in bits
+
+                puts (a>>2) # shift left operand by 2
+
+                Result: 15
+
+
+        - Logical Operator 
+            includes: and , or , && , || , ! , not (similarly used as in other prog languages)
+
+                Example:
+                a = 60 
+                b = 13
+
+                puts(a==40 || b==13)
+
+                Result: true
+
+        
+        - Ternary operator
+            includes: If Condition is true ? Then value X : Otherwise value Y
+
+            Example:
+                a = 60 
+                b = 13
+
+                puts(a>b ? "a is greater than b" : "a is lesser than b")
+
+                Result: a is greater than b
