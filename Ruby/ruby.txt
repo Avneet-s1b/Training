@@ -616,3 +616,63 @@
 
         - retry: If retry appears in rescue clause of begin expression, restart from the 
                 beginning of the begin body.
+
+    
+    METHODS
+
+        - No parameters
+
+            Example:
+            def fun1
+                puts "This is function without parameters"
+            end
+
+            fun1
+
+            Result: This is function without parameters
+
+        - With paramters and default values too
+            Example:
+            def fun2(para1 = "ruby" , para2 = "java")
+                puts "This is function with parqamters : #{para1} , #{para2}"
+            end
+
+            fun2 "c++" , "kotlin"
+
+            fun2
+
+            Result: This is function with parqamters : c++ , kotlin
+                    This is function with parqamters : ruby , java
+
+        - With variable parameters
+            Example:
+            def fun3(*test)
+                for i in 0..test.length-1
+                    puts("this is a variable parameter function : #{i} - #{test[i]}")
+                end
+            end
+
+            fun3 "eee" , 1 , "3"
+
+            Result: this is a variable parameter function : 0 - eee
+                    this is a variable parameter function : 1 - 1
+                    this is a variable parameter function : 2 - 3
+
+        - With return value
+            Example:
+            def fun4
+                i = 0;
+                j = 10;
+                return i,j 
+            end
+
+            var = fun4
+
+            puts var
+
+            Result: 0
+                    10
+
+
+
+Result: 
