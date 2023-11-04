@@ -674,5 +674,48 @@
                     10
 
 
+    BLOCKS
 
-Result: 
+        - Without parameters
+
+        First way
+
+        Example:
+        def fun
+            puts "this is call from method"
+            yield
+        end
+
+        fun { puts"this is call from block"}
+
+        Result: this is call from method
+        this is call from block
+
+        Secind way:
+
+        Example:
+        def fun3(&block)
+            puts "this is call from method"
+            block.call
+        end
+
+        fun3 {puts "this is call from block"}
+
+
+        Result: this is call from method
+        this is call from block
+
+        - With parameters
+        Example:
+        def fun2
+            puts "this is call from method"
+
+            yield 1
+        end
+
+        fun2 {|i| puts "this is call from block with parameter : #{i}"}
+
+        Result: this is call from method
+        this is call from block with parameter : 1
+
+
