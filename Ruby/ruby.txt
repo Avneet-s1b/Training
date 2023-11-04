@@ -718,4 +718,21 @@
         Result: this is call from method
         this is call from block with parameter : 1
 
+        - Begin and End blocks
+
+        Example:
+        BEGIN{
+            puts "the code begins"
+        }
+
+        END{
+            puts "the code ends"
+        }
+
+        puts "this is not a block"
+
+        Result: the code begins
+                this is not a block
+                the code ends
+
 
