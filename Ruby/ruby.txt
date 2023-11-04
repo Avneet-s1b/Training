@@ -786,5 +786,33 @@
 
             Result: this is our module Avneet
 
-            
+
+    STRINGS
+        - A String object in Ruby holds and manipulates an arbitrary sequence of one or more bytes, 
+          typically representing characters that represent human language.
+
+        - "this is a string"
+
+        Example:
+        3.0.0 :001 > a = "this is Avneet's string literal"
+        => "this is Avneet's string literal" 
+        3.0.0 :002 > puts a
+        Result: this is Avneet's string literal
+
+        - Accessing: With the help of [] brackets. -1 index is for last character.
+        Example:
+        3.0.0 :005 > puts a
+        this is Avneet's string literal
+        => nil 
+        3.0.0 :006 > puts a[1]
+        h
+
+        - Variable interpolation: we can add variables in string using '#{}'
+        Example: num = 1
+                    a = "tis is our string #{num}"
+
+        - Freezing : In Ruby, by default strings are not immutable. To make them immutable, freeze method can be used. Immutable is defined as an existing string can't be modified, only a new string can be created out of them.
+        Syntax : string-name.freeze
+
+
 
