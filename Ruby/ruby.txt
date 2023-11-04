@@ -837,7 +837,10 @@
         => "this string is created using new"
 
 
-        3. 
+        3. %: basically creates a string and then substitute value specified
+        Example:
+        3.0.0 :003 > "%06d" %12345
+        => "012345" 
 
 
         4. *: used to multiply the string this number of times.
@@ -849,3 +852,12 @@
         => "this string is created using newthis string is created using newthis string is created using newthis string is created using new"
 
 
+        5. +: used to concatanate strings.
+        Example: 
+        3.0.0 :004"> str = "My name is "
+        => "My name is " 
+        3.0.0 :005 > str + "Avneet"
+        => "My name is Avneet" 
+
+
+    
