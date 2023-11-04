@@ -675,6 +675,8 @@
 
 
     BLOCKS
+        - A block consists of chunks of code. The code in the block is always enclosed within braces ({}).
+          A block is always invoked from a function with the same name as that of the block.
 
         - Without parameters
 
@@ -735,4 +737,54 @@
                 this is not a block
                 the code ends
 
+
+    MODULES
+        - Modules are a way of grouping together methods, classes, and constants. 
+
+        Example:
+        module Mod 
+            CON = "Avneet"
+            var1 = 1
+            def print
+                puts "this is our module : #{CON} #{var1}"
+            end
+        end
+
+        To import this module in any file we use "require" keyword
+
+        require './mod.rb'
+
+        - We can also use modules in other modules using "include" keyword
+
+    
+    MIXINS
+        - Ruby does not support multiple inheritance directly but Ruby Modules have another wonderful use.
+        - Mixins give you a wonderfully controlled way of adding functionality to classes.
+
+            Example:
+            mod.rb file
+
+            module Mod 
+                CON = "Avneet"
+                def print
+                    puts "this is our module #{CON}"
+                end
+            end
+
+            main file
+
+            require './mod.rb'
+
+
+            class Demo
+            include Mod
+            end
+
+            obj1 = Demo.new
+
+            obj1.print
+
+            Result: this is our module Avneet
+
+            
 
