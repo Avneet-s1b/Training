@@ -1899,3 +1899,30 @@
         => "Hello" 
         3.2.0 :024 > arr
         => ["hi", "Hello", 4]
+
+        12. all? → true or false
+            all? {|element| ... } → true or false
+            all?(obj) → true or false: Returns true if all elements of self meet a given criterion.
+        Example :
+        3.2.2 :051 > arr.all?
+        => true 
+        3.2.2 :052 > arr=[0,nil,2.0]
+        => [0, nil, 2.0] 
+        3.2.2 :053 > arr.all?
+        => false
+
+        13. any? → true or false
+            any? {|element| ... } → true or false
+            any?(obj) → true or false: Returns true if any element of self meets a given criterion.
+        Example :
+        3.2.2 :054 > [nil,0,false].any?
+        => true 
+        3.2.2 :055 > [nil,false].any?
+        => false
+
+        14. append(*args) or push : Appends the elements in the end of an array.
+        Example : 
+        3.2.2 :056 > arr
+        => [0, nil, 2.0] 
+        3.2.2 :057 > arr.append(5)
+        => [0, nil, 2.0, 5]
