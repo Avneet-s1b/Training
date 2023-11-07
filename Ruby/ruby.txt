@@ -860,4 +860,391 @@
         => "My name is Avneet" 
 
 
+        6. << : used to concatanate strings. if its a num value then it is converted to char this val is corresponding to then concatenated.
+        Example:
+        3.0.0 :001 > a = "hello"
+        => "hello" 
+        3.0.0 :002 > a << "avneet"
+        => "helloavneet" 
+        3.0.0 :003 > a
+        => "helloavneet" 
+
+
+        7. <=> : used to compare strings.
+                -1 if other_string is larger.
+                0 if the two are equal.
+                1 if other_string is smaller.
+                nil if the two are incomparable.
+
+        Example:
+        3.0.0 :004 > "foo" <=> "eoo"
+        => 1 
+        3.0.0 :005 > "eoo" <=> "foo"
+        => -1 
+        3.0.0 :006 > "foo" <=> "foo"
+        => 0
+
+
+        8. == : Returns true if object has the same length and content; as self; false otherwise:
+
+        Example:
+        3.0.0 :007 > "foo" == "foo"
+        => true 
+        3.0.0 :008 > "foo" == "eoo"
+        => false      
+
+
+        9. ===: Alias for == 
+
+        Example:
+        3.0.0 :009 > v = 22
+        => 22 
+        3.0.0 :010"> v == "22"
+        => false 
+        3.0.0 :011 > v === "22"
+        => false 
+
+
+        10. =~ [regexp] : used to find the starting index of the seq specified.
+
+        Example:
+        3.0.0 :003 > a
+        => "helloAvneet" 
+        3.0.0 :004 > a =~ /o/
+        => 4 
+        3.0.0 :005 > a =~ /q/
+        => nil
+        
+
+        11. [] : used to return a substring.
+
+                string[index] → new_string or nil
+                string[start, length] → new_string or nil
+                string[range] → new_string or nil
+                string[regexp, capture = 0] → new_string or nil
+                string[substring] → new_string or nil
+
+        Example:
+        3.0.0 :009 > a
+        => "helloAvneet" 
+        3.0.0 :010 > a[2]
+        => "l" 
+        3.0.0 :011 > a[1,4]
+        => "ello" 
+        3.0.0 :012 > a[1..4]
+        => "ello"
+
+
+        12. ascii_only? : returns true is string has ascii char only else false.
+
+        Example:
+        3.0.0 :016 > a
+        => "helloAvneet" 
+        3.0.0 :017 > a.ascii_only?
+        => true
+
+        13. b : Returns a copy of self that has ASCII-8BIT encoding; the underlying bytes are not modified:
+        
+        Example :
+        3.0.0 :090"> str="Hello"
+        => "Hello" 
+        3.0.0 :091 > t=str.b
+        => "Hello" 
+        3.0.0 :092 > t
+        => "Hello"
+
+
+        14. byteindex : Returns the Integer byte-based index of the first occurrence of the given substring, or nil if none found.
+        
+        Example :
+        3.2.2 :001 > str="Hello"
+        => "Hello" 
+        3.2.2 :002 > str.byteindex('e')
+        => 1 
+        
+        With offset; example :
+        3.2.2 :003 > str.byteindex('l',3)
+        => 3
+
+
+        15. byterindex : Returns the Integer byte-based index of the last occurrence of the given substring, or nil if none found:
+        
+        Example :
+        3.2.2 :006 > str = "Hello"
+        => "Hello" 
+        3.2.2 :007 > str.byterindex('l')
+        => 3 
+        
+        With offset example :
+        3.2.2 :010 > str.byterindex('l',2)
+         => 2
+
+
+        16. bytes:  Returns an array of the bytes in self.
+
+        Example:
+        3.0.0 :018 > a = "Avneet"
+        => "Avneet" 
+        3.0.0 :019 > a.bytes
+        => [65, 118, 110, 101, 101, 116] 
+
+
+        17. bytesize : Returns the count of bytes (not characters) in self.
+        Example :
+        3.0.0 :020 > a.bytesize
+        => 6 
+
+
+        18. byteslice (index,length=1) : Returns the substring.
+        Example :
+        3.2.2 :006 > str = "Hello"
+        => "Hello" 
+        3.2.2 :019 > str.byteslice(2)
+        => "l" 
+        3.2.2 :020 > str.byteslice(2,3)
+        => "llo" 
+
+
+        19. bytesplice: Replaces some of the content and gives a new string. if len of new string mismatches then it adjusts acc to the new string given
+
+        Example:
+        3.2.0 :001 > str = "Hello"
+        => "Hello" 
+        3.2.0 :002 > str.bytesplice(2,3,"llll")
+        => "llll" 
+        3.2.0 :003 > str
+        => "Hellll"
+
+
+        20. Capitalize : Returns a string containing the characters in self; the first character is upcased; the remaining characters are downcased.
+        Example :
+        3.2.2 :030 > str="hELLO"
+        => "hELLO" 
+        3.2.2 :031 > str.capitalize
+        => "Hello"  
+
+
+        21. Capitalize! : Upcases the first character in self; downcases the remaining characters; returns self if any changes were made, nil otherwise.
+
+        Example:
+        3.2.0 :006 > str.capitalize!
+        => "Hello world" 
+        3.2.0 :007 > str.capitalize!
+        => nil 
+
+
+        22. casecmp : Compares self.downcase and other_string.downcase
+                    -1 if other_string.downcase is larger.
+                    0 if the two are equal.
+                    1 if other_string.downcase is smaller.
+                    nil if the two are incomparable.
+        
+        Example : 
+        3.0.0 :001 > str="Hello"
+        => "Hello" 
+        3.0.0 :002 > str.casecmp("hello")
+        => 0 
+
+
+        23. casecmp? : Returns true if self and other_string are equal after Unicode case folding, otherwise false
+        
+        Example :
+        3.2.0 :008 > str
+        => "Hello world" 
+        3.2.0 :009 > str.casecmp?("heello")
+        => false 
+
+
+        24. center(size, pad_string = ' ') : Returns a centered copy of self.
+
+        Example: 
+        3.2.0 :012 > str
+        => "Hello" 
+        3.2.0 :013 > str.center(6,"&")
+        => "Hello&" 
+        3.2.0 :014 > str.center(11,"&")
+        => "&&&Hello&&&" 
+        3.2.0 :015 > str.center(4,"&")
+        => "Hello"
+
+
+        25. chars : Returns an array of the characters in self.
+        Example :
+        3.0.0 :006 > str.chars
+        => ["H", "e", "l", "l", "o"] 
+
+
+        26. chomp : Returns a new string copied from self, with trailing characters possibly removed. When line_sep is "\n", 
+                    removes the last one or two characters if they are "\r", "\n", or "\r\n" (but not "\n\r"):
+
+        Example:
+        3.2.0 :025 > str = "Hello\n"
+        => "Hello\n" 
+        3.2.0 :026 > str.chomp
+        => "Hello"
+
+
+        27. chomp!(line_sep = $/) : Like String#chomp, but modifies self in place; returns nil if no modification made, self otherwise.
+
+        Example:
+        3.2.0 :032 > str
+        => "hello" 
+        3.2.0 :033 > str.chomp!('o')
+        => "hell" 
+
+
+        28. chop : Returns a new string copied from self, with trailing characters possibly removed.Removes "\r\n" if those are the last two characters.
+        
+        Example :
+        3.0.0 :018 > str="hello\r\n"
+        => "hello\r\n" 
+        3.0.0 :019 > str.chop
+        => "hello" 
+        Otherwise removes the last character if it exists.
+        3.0.0 :022 > str
+        => "hello" 
+        3.0.0 :023 > str.chop
+        => "hell"
+
+
+        29. chop! : It modifies self in place; returns nil if self is empty, self otherwise.
+        
+        Example :
+        3.0.0 :024 > str
+        => "hello" 
+        3.0.0 :025 > str.chop!
+        => "hell" 
+
+
+        30. chr : Returns a string containing the first character of self
+        
+        Example :
+        3.0.0 :026 > str.chr
+        => "h" 
+
+        
+        31. clear : Removes the contents of self.
+        
+        Example : 
+        3.0.0 :027 > str.clear
+        => "" 
+
+
+        32. codepoints : Returns an array of the codepoints in self; each codepoint is the integer value for a character.
+        
+        Example :
+        3.0.0 :029 > str="hello"
+        => "hello" 
+        3.0.0 :030 > str.codepoints
+        => [104, 101, 108, 108, 111]
+
+
+        33. concat : Concatenates each object in objects to self and returns self.
+
+        Example:
+        3.0.0 :001 > str = "hello"
+        => "hello" 
+        3.0.0 :002 > str.concat(" Avneet")
+        => "hello Avneet" 
+        3.0.0 :003 > str
+        => "hello Avneet"
+
+
+        34. count(*selectors) : Returns the total number of characters in self that are specified by the given selectors
     
+        Example :
+        3.0.0 :033 > str="hello"
+        => "hello" 
+        3.0.0 :034 > str.count('lo')
+        => 3
+
+
+        35. delete(*selectors) : Returns a copy of self with characters specified by selectors removed.
+
+        Example:
+        3.0.0 :006 > str.delete("l")
+        => "heo" 
+        3.0.0 :007 > str
+        => "hello" 
+
+
+        36. delete!(*selectors) : It modifies self in place. Returns self if any changes were made, nil otherwise.
+        
+        Example :
+        3.0.0 :008 > str.delete!("l")
+        => "heo" 
+        3.0.0 :009 > str
+        => "heo" 
+
+
+        37. delete_prefix (prefix) : Returns a copy of self with leading substring prefix removed
+        
+        Example :
+        3.0.0 :048 > str.delete_prefix('he')
+        => "llo"
+
+
+        38. delete_prefix!(prefix) : Returns self if the prefix is removed, nil otherwise.
+
+        Example:
+        3.2.0 :005 > str.delete_prefix!('he')
+        => "llo" 
+        3.2.0 :006 > str
+        => "llo"
+
+        39. delete_suffix (suffix) : Returns a copy of self with trailing substring suffix removed
+        
+        Example :
+        3.0.0 :049 > str
+        => "hello" 
+        3.0.0 :050 > str.delete_suffix('llo')
+        => "he"
+
+
+        40. delete_suffix!(suffix) : Returns self if the suffix is removed, nil otherwise.
+        
+        Example :
+        3.0.0 :051 > str.delete_suffix!('llo')
+        => "he"
+
+
+        41. downcase(*options) : Returns a string containing the downcased characters in self.
+        
+        Example :
+        3.2.0 :009 > str.downcase
+        => "hello" 
+        3.2.0 :010 > str
+        => "Hello" 
+
+
+        42. downcase! : Modify original string.
+        
+        Example :
+        3.2.0 :011 > str.downcase!
+        => "hello" 
+        3.2.0 :012 > str
+        => "hello" 
+
+
+        43. dump : Returns a printable version of self, enclosed in double-quotes, with special characters escaped, 
+                    and with non-printing characters replaced by hexadecimal notation.
+
+        Example:
+        3.2.0 :013 > str
+        => "hello" 
+        3.2.0 :014 > str.dump
+        => "\"hello\""
+
+
+        44. each_byte {|byte| ...} : Calls the given block with each successive byte from self; returns self.
+        
+        Example :
+        3.0.0 :061 > str.each_byte {|byte| print byte , ' '}
+        104 101 108 108 111  => "hello" 
+
+
+        45. each_char : Calls the given block with each successive character from self; returns self.
+        
+        Example :
+        3.0.0 :062 > str.each_char {|c| print c,' '}
+        h e l l o  => "hello"
