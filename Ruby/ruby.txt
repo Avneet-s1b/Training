@@ -1939,4 +1939,35 @@
         3.2.0 :029 > arr.at(1)
         => "Hello"
 
-        17. 
+        17. bsearch {|element|...} : Returns an element from self selected by a binary search.
+        Example :
+        3.2.0 :045 > bsearch_arr
+        => [1, 2, 5, 10] 
+        3.2.0 :046 > bsearch_arr.bsearch{|x| x>=6}
+        => 10 
+
+        18. bsearch_index {|element| ... } : Searches self as described at method bsearch, but returns the index of the found element instead of the element itself.
+        Example :
+        3.2.0 :056 > bsearch_arr.bsearch_index{|x| x>=4}
+        => 2 
+
+        19. clear : Removes all elements from self.
+        Example :
+        3.2.2 :076 > bsearch_arr.clear
+        => []
+
+        20. collect or map : Calls the block, if given, with each element of self; returns a new Array whose elements are the return values from the block.
+        Example :
+        3.2.0 :058 > arr
+        => ["hi", "Hello", 4] 
+        3.2.0 :059 > arr.map{|x| x.class}
+        => [String, String, Integer] 
+
+        21. collect! or map! : Return self with modified values.
+        Example :
+        3.2.0 :060 > arr
+        => ["hi", "Hello", 4] 
+        3.2.0 :061 > arr.map!{|x| x.class}
+        => [String, String, Integer] 
+        3.2.0 :062 > arr
+        => [String, String, Integer]
