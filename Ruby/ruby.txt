@@ -1926,3 +1926,17 @@
         => [0, nil, 2.0] 
         3.2.2 :057 > arr.append(5)
         => [0, nil, 2.0, 5]
+
+        15. assoc(object) : Returns the first element in self that is an Array whose first element == obj.
+        Example :
+        3.2.0 :025 > arr
+        => ["hi", "Hello", 4] 
+        3.2.0 :026 > arr.assoc(4)
+        => nil
+
+        16. at(index) : Return the object at that index.
+        Example :
+        3.2.0 :029 > arr.at(1)
+        => "Hello"
+
+        17. 
