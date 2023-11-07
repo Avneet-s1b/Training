@@ -1778,7 +1778,8 @@
             - push or <<  -> at the end of an array
             - unshift  -> front of array
             - insert -> at particular index (it adds the element and shift elements rather than replacing the element)
-        
+            - we can add multiple elements at a time too.
+
             Example:
             3.0.0 :016 > arr
             => [1, 2, 3, 4, 5, 7] 
@@ -1842,5 +1843,59 @@
         3.2.2 :023 > arr * 3
         => [1, 2, 3, 1, 2, 3, 1, 2, 3] 
 
+        6. array + other_array : Returns a new Array containing all elements of array followed by all elements of other_array
+        Example :
+        3.2.2 :028 > arr
+        => [1, 2, 3] 
+        3.2.2 :029 > other_arr
+        => [3, 4, 5] 
+        3.2.2 :030 > arr + other_arr
+        => [1, 2, 3, 3, 4, 5]
 
+        7. array - other_array : Returns a new Array containing only those elements from array that are not found in Array other_array.
+        Example:
+        3.2.0 :006 > arr
+        => [1, 2, 3, 4] 
+        3.2.0 :007 > arr2
+        => [3, 4, 5, 6] 
+        3.2.0 :008 > arr-arr2
+        => [1, 2] 
+        3.2.0 :009 > arr2-arr
+        => [5, 6]
 
+        8. <=>: array <=> other_array : Returns -1, 0, or 1 as self is less than, equal to, or greater than other_array. For each index i in self, evaluates result = self[i] <=> other_array[i].
+        Example:
+        3.2.0 :012 > arr
+        => [1, 2, 3, 4] 
+        3.2.0 :013 > arr2
+        => [3, 4, 5, 6, 7, 8] 
+        3.2.0 :014 > arr2<=>arr
+        => 1
+
+        9. array == other_array : Returns true if both array.size == other_array.size and for each index i in array, array[i] == other_array[i]
+        Example :
+        3.2.0 :015 > arr == arr2
+        => false
+
+        10. array[index] → object or nil
+            array[start, length] → object or nil
+            array[range] → object or nil 
+        Example:
+        3.2.0 :017 > arr2[1..5]
+        => [4, 5, 6, 7, 8]
+
+        11. array[index]=object : Assigns elements in self; returns the given object.
+            array[index] = object → object
+            array[start, length] = object → object
+            array[range] = object → object
+        Example:
+        3.2.0 :020 > arr
+        => [1, 2, 3, 4] 
+        3.2.0 :021 > arr[0] = "hi"
+        => "hi" 
+        3.2.0 :022 > arr
+        => ["hi", 2, 3, 4] 
+        3.2.0 :023 > arr[1..2] = 'Hello'
+        => "Hello" 
+        3.2.0 :024 > arr
+        => ["hi", "Hello", 4]
