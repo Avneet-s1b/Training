@@ -1355,4 +1355,291 @@
         => 2
 
 
-        58. 
+        58. initialize_copy(other_string) : Replaces the contents of self with the contents of other_string. aliased as replace
+        
+        Example :
+        3.0.0 :004 > str.replace('Hii')
+        => "Hii"
+
+
+        59. insert (index,other_string) : Inserts the given other_string into self; returns self.
+        
+        Example :
+        3.0.0 :005 > str
+        => "Hii" 
+        3.0.0 :006 > str.insert(2," Hello")
+        => "Hi Helloi"
+
+
+        60. inspect : Returns a printable version of self, enclosed in double-quotes, and with special characters escaped.
+ 
+        Example :
+        3.0.0 :007 > str.inspect
+        => "\"Hi Helloi\""
+
+
+        61. intern : Returns the Symbol corresponding to str, creating the symbol if it did not previously exist.
+        
+        Example :
+        3.0.0 :008 > str.intern
+        => :"Hi Helloi" 
+        3.0.0 :009 > "Welcome".intern   # Welcome symbol not exist previously
+        => :Welcome 
+
+
+        62. length : Returns the count of characters (not bytes) in self.
+
+        Example:
+        3.0.0 :009 > str = 'hello'
+        => "hello" 
+        3.0.0 :010 > str.length
+        => 5
+
+
+        63. ljust(size,pad_string=' ') : Returns a left-justified copy of self.
+
+        Example:
+        3.0.0 :012 > str.ljust(10)
+        => "hello     " 
+        3.0.0 :013 > str
+        => "hello" 
+
+
+        64. lstrip : Returns a copy of self with leading whitespace removed.
+        
+        Example :
+        3.0.0 :015 > a
+        => "     hello" 
+        3.0.0 :016 > a.lstrip
+        => "hello"
+
+
+        65. lstrip! : Any modifications are made in self; returns self if any modification are made, nil otherwise.
+        
+        Example :
+        3.0.0 :017 > str.lstrip!
+        => "hello"
+
+
+        66. next : Returns the successor to self. The successor is calculated by incrementing characters.
+        
+        Example :
+        3.0.0 :019 > str
+        => "hello" 
+        3.0.0 :020 > str.succ
+        => "hellp" 
+
+
+        67. next! : It modifies self in place; returns self.
+        
+        Example :
+        3.0.0 :021 > str.succ!
+        => "hellp" 
+        3.0.0 :022 > str
+        => "hellp" 
+
+
+        68. oct : Interprets the leading substring of self as a string of octal digits (with an optional sign) and returns the corresponding number; returns zero if there is no such leading substring.
+        
+        Example : 
+        3.0.0 :024 > '123'.oct
+        => 83
+
+
+        69. ord : Returns the integer ordinal of the first character of self.
+
+        Example:
+        3.0.0 :023 > str = '123'
+        => "123" 
+        3.0.0 :024 > str.ord
+        => 49 
+        3.0.0 :025 > str.bytes
+        => [49, 50, 51] 
+
+
+        70. partition(string_or_regexp) → [head, match, tail]: Returns a 3-element array of substrings of self
+
+        Example:
+        3.0.0 :030 > str = "hellollo"
+        => "hellollo" 
+        3.0.0 :031 > str.partition('l')
+        => ["he", "l", "lollo"] 
+
+
+        71. prepend (*other_string) : Prepends each string in other_strings to self and returns self.
+        
+        Example :
+        3.0.0 :028 > str="hello"
+        => "hello" 
+        3.0.0 :029 > str.prepend("Welcome ","John ")
+        => "Welcome John hello"
+
+        
+        72. reverse : Returns a new string with the characters from self in reverse order.
+        
+        Example :
+        3.0.0 :032 > str
+        => "hello" 
+        3.0.0 :033 > str.reverse
+        => "olleh" 
+
+
+        73. reverse! : Returns self with its characters reversed.
+        
+        Example :
+        3.0.0 :034 > str
+        => "hello" 
+        3.0.0 :035 > str.reverse!
+        => "olleh"
+
+
+        74. rjust (size,pad_string=' ') : Returns a right-justified copy of self.
+        
+        Example :
+        3.0.0 :036 > str
+        => "olleh" 
+        3.0.0 :037 > str.rjust(10)
+        => "     olleh" 
+
+
+        75.  rpartition(sep) → [head, match, tail] 
+        
+        Example :
+        3.0.0 :039 > str="hello"
+        => "hello" 
+        3.0.0 :040 > str.rpartition('l')
+        => ["hel", "l", "o"]
+
+
+        76. rstrip : Returns a copy of the receiver with trailing whitespace removed.
+        
+        Example :
+        3.0.0 :043 > str="hello\n\v\r"
+        => "hello\n\v\r" 
+        3.0.0 :044 > str.rstrip
+        => "hello"
+
+
+        77. rstrip! : Returs self and same functionality as rstrip.
+
+
+        78. scan (string or regex) : Matches a pattern against self.
+
+        Example:
+        3.0.0 :036 > str = "hello world hello world"
+        => "hello world hello world" 
+        3.0.0 :037 > str.scan('hello')
+        => ["hello", "hello"]
+
+
+        79. setbyte(index,integer) : Sets the byte at zero-based index to integer; returns integer.
+
+        Example:
+        3.0.0 :038 > str.setbyte(0,96)
+        => 96 
+        3.0.0 :039 > str
+        => "`ello world hello world" 
+
+
+        80. size : Returns the count of characters (not bytes) in self.
+        
+        Example :
+        3.0.0 :007 > str.size
+        => 10
+
+
+        81. slice (*args) : Returns the substring of self specified by the arguments. 
+        
+        Example :
+        3.0.0 :008 > str.slice(1..5)
+        => "un is" 
+
+
+        82. slice!(*args) : Removes and returns the substring of self specified by the arguments.
+                            slice!(index) → new_string or nil
+                            slice!(start, length) → new_string or nil
+                            slice!(range) → new_string or nil
+                            slice!(regexp, capture = 0) → new_string or nil
+                            slice!(substring) → new_string or nil 
+        
+        Example :
+        3.0.0 :039 > str
+        => "`ello world hello world" 
+        3.0.0 :040 > str.slice!(2)
+        => "l" 
+        3.0.0 :041 > str
+        => "`elo world hello world"
+
+
+        83. squeeze(*selectors) : “Squeezed” means that each multiple-character run of a selected character is squeezed down to a single character.
+        
+        Example :
+        3.0.0 :011 > str="hello john"
+        => "hello john" 
+        3.0.0 :012 > str.squeeze()
+        => "helo john"
+
+
+        84. squeeze!(*selectors) : Returns self if any changes were made, nil otherwise.
+
+
+        85. start_with?(*string or regexp) : Returns whether self starts with any of the given string_or_regexp.
+        
+        Example :
+        3.0.0 :013 > str.start_with?("he")
+        => false
+
+
+        86. strip : Returns a copy of the receiver with leading and trailing whitespace removed
+        
+        Example : 
+        3.0.0 :016 > str="\n\rhello\n\r"
+        => "\n\rhello\n\r" 
+        3.0.0 :017 > str.strip
+        => "hello" 
+
+
+        87. strip! : Modify original string.
+
+
+        88. sub(pattern | replacement) : Returns a copy of self with only the first occurrence (not all occurrences) of the given pattern replaced.
+
+        Example:
+        3.0.0 :045 > str = "hello world"
+        => "hello world" 
+        3.0.0 :046 > str.sub("hello" , "hi")
+        => "hi world" 
+
+
+        89. sub!(pattern|replacement) : Modify the actual string.
+
+        Example:
+        3.0.0 :048 > str.sub!("hello" , "hi")
+        => "hi world" 
+        3.0.0 :049 > str
+        => "hi world" 
+
+
+        90. sum(n=16) : Returns a basic n-bit checksum of the characters in self; the checksum is the sum of the binary value of each byte in self, modulo 2**n - 1.
+        
+        Example :
+        3.0.0 :049 > str
+        => "hi world" 
+        3.0.0 :050 > str.sum
+        => 793
+
+
+        91. swapcase(*options) : Returns a string containing the characters in self, with cases reversed; each uppercase character is downcased; each lowercase character is upcased.
+        
+        Example : 
+        3.0.0 :046 > str="HellO"
+        => "HellO" 
+        3.0.0 :047 > str.swapcase
+        => "hELLo"
+
+
+        92. swapcase!(*options) : Upcases each lowercase character in self; downcases uppercase character; returns self if any changes were made, nil otherwise.
+
+
+        93. 
+
