@@ -1741,3 +1741,67 @@
         108. gsub! : Performs the specified substring replacement(s) on self; returns self if any replacement occurred, nil otherwise.
 
 
+
+    ARRAY 
+        - An Array is an ordered, integer-indexed collection of objects, called elements. Any object (even another array) may be an array element, 
+          and an array can contain objects of different types.
+        
+        - Creation:
+        First way:
+        3.0.0 :007 > arr2 = Array.new(3)
+        => [nil, nil, nil] 
+        3.0.0 :008 > arr2
+        => [nil, nil, nil]
+
+        Second way:
+        3.0.0 :013 > array = [1,2,3,4,5]
+
+        - length : To find the length of array.
+        Example:
+        3.0.0 :013 > arr2.length
+         => 6
+
+        - Accessing array elements : using [] method
+        Example:
+        3.0.0 :014 > arr
+        => [1, 2, 3, 4, 5, 7] 
+        3.0.0 :015 > arr[3]
+        => 4 
+
+        - at method : To access a particular element, at method can also be used.
+        Syntax : <arr-name>.at(index)
+
+        - fetch method : The fetch method is used to provide a default value error for out of array range indices.
+        Syntax : <arr-name>.fetch(numbers,"default value")
+
+        - Adding items in array : 
+            - push or <<  -> at the end of an array
+            - unshift  -> front of array
+            - insert -> at particular index (it adds the element and shift elements rather than replacing the element)
+        
+            Example:
+            3.0.0 :016 > arr
+            => [1, 2, 3, 4, 5, 7] 
+            3.0.0 :017 > arr.push(10)
+            => [1, 2, 3, 4, 5, 7, 10] 
+            3.0.0 :018 > arr.insert(1,11)
+            => [1, 11, 2, 3, 4, 5, 7, 10] 
+            3.0.0 :019 > arr.unshift(2)
+            => [2, 1, 11, 2, 3, 4, 5, 7, 10] 
+
+        - Remove items from array : To remove elements from an array.
+            - pop -> from end of an array
+            - shift   -> From start of an array
+            - delete  -> Delete from anywhere in an array.
+
+            Example: 
+            => [2, 1, 11, 2, 3, 4, 5, 7, 10] 
+            3.0.0 :020 > arr.delete(11)
+            => 11 
+            3.0.0 :021 > arr
+            => [2, 1, 2, 3, 4, 5, 7, 10]
+
+        
+
+
+
