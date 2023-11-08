@@ -2044,3 +2044,177 @@
         => [1, 2, 4, 5] 
         3.2.2 :110 > arr.delete_if{|x| x>2}
         => [1, 2] 
+
+        31. difference(*other_arrays) : Returns a new Array containing only those elements from self that are not found in any of the Arrays other_arrays.
+        Example :
+        3.2.2 :115 > arr
+        => [1, 2, 2, 3, 3] 
+        3.2.2 :116 > arr.difference([1,2],[2,3])
+        => [] 
+
+        32. drop(n) : Drop the first n elements and return the new array.
+        Example :
+        3.2.2 :036 > arr
+        => [1, 2, 3, 4, 6, 7, 8, 9] 
+        3.2.2 :037 > arr.drop(3)
+        => [4, 6, 7, 8, 9] 
+
+        33. dig(index, *identifiers) : Finds and returns the object in nested objects that is specified by index and identifiers.
+        Example:
+        3.2.2 :040 > nested_arr = [1,2,[3,4,[4,5,6]], [1,2]]
+        => [1, 2, [3, 4, [4, 5, 6]], [1, 2]] 
+        3.2.2 :041 > nested_arr.dig(1)
+        => 2 
+        3.2.2 :042 > nested_arr.dig(2)
+        => [3, 4, [4, 5, 6]] 
+        3.2.2 :043 > nested_arr.dig(3)
+        => [1, 2] 
+
+        34.  drop_while{|element|...} : Drops the leading elements on the basis of conditions.
+        Example :
+        3.2.2 :127 > arr
+        => [1, 2, 2, 3, 3] 
+        3.2.2 :128 > arr.drop_while{|x| x<=2}
+        => [3, 3] 
+
+        35. each {|element|...} : Iterates over array elements.
+        Example :3.2.2 :130 > arr.each{|x| p x}
+        1
+        2
+        2
+        3
+        3
+        => [1, 2, 2, 3, 3]
+
+        36.  each_index {|index|...} : Iterates over array indexes.
+        Example :
+        3.2.2 :132 > arr.each_index{|x| puts "#{x} #{arr[x]}"}
+        0 1
+        1 2
+        2 2
+        3 3
+        4 3
+        => [1, 2, 2, 3, 3] 
+
+        37. empty? : Returns true if the count of elements in self is zero, false otherwise.
+        Example :
+        3.2.2 :134 > arr.empty?
+        => false
+
+        38. eql?other_array : Returns true if self and other_array are the same size, and if, for each index i in self, self[i].eql? other_array[i].
+        Example :
+        3.2.2 :135 > arr
+        => [1, 2, 2, 3, 3] 
+        3.2.2 :136 > other_arr
+        => [1, 2.0, "hi"] 
+        3.2.2 :137 > arr.eql?other_arr
+        => false
+
+        39. fetch(index) → element
+            fetch(index, default_value) → element
+            fetch(index) {|index| ... } → element: Returns the element at particular index.
+        Example :
+        3.2.2 :140 > arr
+        => [1, 2, 2, 3, 3] 
+        3.2.2 :141 > arr.fetch(3)
+        => 3
+
+        40. fill(obj) → self
+        fill(obj, start) → self
+        fill(obj, start, length) → self
+        fill(obj, range) → self
+        fill {|index| ... } → self
+        fill(start) {|index| ... } → self
+        fill(start, length) {|index| ... } → self
+        fill(range) {|index| ... } → self: Replaces specified elements in self with specified objects; returns self.
+        Example:
+        3.2.2 :048 > arr
+        => [1, 2, 3, 4, 6, 7, 8, 9] 
+        3.2.2 :049 > arr.fill("fill",2..4)
+        => [1, 2, "fill", "fill", "fill", 7, 8, 9] 
+        3.2.2 :050 > arr
+        => [1, 2, "fill", "fill", "fill", 7, 8, 9] 
+
+        41. filter {|element|...} or select {|element|...} : It filter out the objects on the given condition or if no condition given then it returns a new enumerator.
+        Example :
+        3.2.2 :050 > arr
+        => [1, 2, "fill", "fill", "fill", 7, 8, 9] 
+        3.2.2 :051 > arr.filter{|x| print x,',' if x.class==Integer}
+        1,2,7,8,9, => [] 
+        3.2.2 :052 > arr
+        => [1, 2, "fill", "fill", "fill", 7, 8, 9]
+
+        42. filter! {|element|...} or select! {|element|...} : It filter the objects and modify it into original array.
+
+        43. find_index or index : Returns the first index of a specified element.
+        Example :
+        3.2.2 :148 > arr=[1,2,3,4,5]
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :149 > arr.find_index(3)
+        => 2 
+
+        44. first or first(n) : Return first element or first n elements in new array.
+        Example : 
+        3.2.2 :151 > arr
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :152 > arr.first(2)
+        => [1, 2]
+
+        45. flatten or flatten(level) : Returns a new Array that is a recursive flattening of self
+        Example :
+        3.2.2 :153 > multi_arr
+        => [[1, 2], [3, 4]] 
+        3.2.2 :154 > multi_arr.flatten
+        => [1, 2, 3, 4]
+
+        46. flatten! or flatten(level) : Same as flatten but it modifies array.
+
+        47. hash : Returns the integer hash value for self.
+        Example :
+        3.2.2 :155 > arr.hash
+        => -41166320240308276 
+
+        48. include?(object) : Returns true if for some index i in self, obj == self[i]; otherwise false.
+        Example :
+        3.2.2 :156 > arr
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :157 > arr.include?(3)
+        => true
+
+        49. initialize_copy(other_array) or replace(other_array) : Replaces the content of self with the content of other_array; returns self.
+        Example :
+        3.2.2 :159 > arr.replace([1,2,3,'Hi',5])
+        => [1, 2, 3, "Hi", 5]
+
+        50. insert(index,*objects) : Inserts given objects before or after the element at Integer index offset; returns self.
+        Example :  
+        3.2.2 :160 > arr
+        => [1, 2, 3, "Hi", 5] 
+        3.2.2 :161 > arr.insert(2,"hello")
+        => [1, 2, "hello", 3, "Hi", 5]
+
+        51. inspect : Returns the new String formed by calling method #inspect on each array element.
+        Example :
+        3.2.2 :162 > arr.inspect
+        => "[1, 2, \"hello\", 3, \"Hi\", 5]" 
+
+        52. intersect?(other_array) : Returns true if the array and other_ary have at least one element in common, otherwise returns false.
+        Example :
+        3.2.2 :062 > arr.intersect?nested_arr
+        => true 
+        3.2.2 :063 > arr.intersect?(nested_arr)
+        => true 
+
+        53. intersection(*other_array) : Returns a new Array containing each element found both in self and in all of the given Arrays other_arrays.
+        Example :
+        3.2.2 :166 > arr.intersection(other_arr)
+        => [1] 
+
+        54. join , join (separator=$) : Returns the new String formed by joining the array elements after conversion. 
+        Example :
+        3.2.2 :167 > arr
+        => [1, 2, "hello", 3, "Hi", 5] 
+        3.2.2 :168 > arr.join
+        => "12hello3Hi5"
+
+        55. 
