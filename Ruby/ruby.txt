@@ -2748,3 +2748,111 @@
         => {:A=>0, :B=>1, :C=>2} 
         3.0.0 :216 > h2.except(:C)
         => {:A=>0, :B=>1} 
+
+        27. fetch(key) → object
+        fetch(key, default_value) → object
+        fetch(key) {|key| ... } → object : Returns the value for the given key, if found.
+        Example :
+        3.0.0 :217 > h2
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :218 > h2.fetch(:B)
+        => 1 
+
+        28. fetch_value(*keys) or fetch_values(*keys) {|key|...} : Returns a new Array containing the values associated with the given keys *keys.
+        Example :   
+        3.0.0 :222 > h2.fetch_values(:A,:B)
+        => [0, 1]
+
+        29. filter or select : Returns a new Hash object whose entries are those for which the block returns a truthy value.
+        Example:
+        3.2.2 :202 > hash = {A:1,B:2,C:3,D:4}
+        => {:A=>1, :B=>2, :C=>3, :D=>4} 
+        3.2.2 :203 > hash.filter{|key,value| puts "#{key} : #{value}"}
+        A : 1
+        B : 2                                                                                 
+        C : 3                                                                                 
+        D : 4                                                                                 
+        => {}                                                                                
+        3.2.2 :204 > hash.filter{|key,value| puts "#{key} : #{value}" if value>=3}
+        C : 3
+        D : 4                                                                                 
+        => {}     
+
+        30. filter! or select! : Returns self, whose entries are those for which the block returns a truthy value.
+
+        31. flatten / flatten(level) : Returns a new Array object that is a 1-dimensional flattening of self.
+        Example :
+        3.0.0 :234 > nested_hash = {A: 0, B: [:C, [:D, [:E, ]]]}
+        => {:A=>0, :B=>[:C, [:D, [:E]]]} 
+        3.0.0 :236 > nested_hash.flatten(4)
+        => [:A, 0, :B, :C, :D, :E]
+
+        32. has_key?(key) or key?(key) or member?(key) or include?(key) : Returns true if key is a key in self, otherwise false.
+        Example :
+        3.0.0 :238 > h2
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :239 > h2.has_key?(:A)
+        => true
+
+        33. has_value?(value) or value?(value) : Returns true if value is a value in self, otherwise false.
+        Example :
+        3.0.0 :001 > h1={A:1,B:2,C:3}
+        => {:A=>1, :B=>2, :C=>3} 
+        3.0.0 :002 > h1.has_value?(2)
+        => true
+
+        34. hash : Returns the Integer hash-code for the hash.
+        Example :
+        3.0.0 :004 > h1.hash
+         => -407416527887234020
+
+        35. initialize_copy(other_hash) or replace(other_hash) : Replaces the entire contents of self with the contents of other_hash; returns self.
+        Example :
+        3.0.0 :004 > hash
+        => {:a=>1, :b=>2, :c=>3} 
+        3.0.0 :005 > hash.replace(a)
+        => {:name=>"Avneet"} 
+        3.0.0 :006 > hash
+        => {:name=>"Avneet"} 
+
+        36. inspect or to_s : Returns a new String containing the hash entries.
+        Example :
+        3.0.0 :009 > h1.inspect
+        => "{:D=>1, :E=>2, :F=>3}"
+
+        37. invert : Returns a new Hash object with the each key-value pair inverted.
+        Example:
+        3.0.0 :011 > h = hash.invert
+        => {"Avneet"=>:name} 
+        3.0.0 :012 > h
+        => {"Avneet"=>:name} 
+        3.0.0 :013 > hash
+        => {:name=>"Avneet"} 
+        3.0.0 :014 > h["Avneet"]
+        => :name 
+
+        38. keep_if {|key,value|...} / keep_if->new_enumerator : Calls the block for each key-value pair; retains the entry if the block returns a truthy value; otherwise deletes the entry; returns self.
+        Example :   
+        3.0.0 :012 > h1
+        => {:D=>1, :E=>2, :F=>3} 
+        3.0.0 :013 > h1.keep_if{|key,value| value>1}
+        => {:E=>2, :F=>3}
+
+        39. key(value) : Returns the key for the first-found entry with the given value.
+        Example :
+        3.0.0 :014 > h1
+        => {:E=>2, :F=>3} 
+        3.0.0 :015 > h1.key(3)
+        => :F
+
+        40.  keys : Returns a new Array containing all keys in self.
+        Example :
+        3.0.0 :016 > h1.keys
+        => [:E, :F] 
+
+        41. length or size : Returns the count of entries in self.
+        Example :
+        3.0.0 :017 > h1
+        => {:E=>2, :F=>3} 
+        3.0.0 :018 > h1.length
+        => 2 
