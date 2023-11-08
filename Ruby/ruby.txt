@@ -2530,3 +2530,45 @@
         => [1, 2.0, "hi"] 
         3.2.2 :316 > arr | other_arr
         => [1, 2, 3, 2.0, "hi"] 
+
+
+    HASH 
+        - A Hash maps each of its unique keys to a specific value.
+        - A Hash has certain similarities to an Array, but:
+            -An Array index is always an Integer.
+            -A Hash key can be (almost) any object.
+
+        - Creation: 
+
+            First Way: using new
+            3.2.2 :137 > h = Hash.new
+            => {} 
+            3.2.2 :138 > h.class
+            => Hash
+
+            Second way: 
+            3.2.2 :145 > h = Hash[id:1,name:'Avneet']
+            => {:id=>1, :name=>"Avneet"}  
+
+            Empty hash can also be created.
+
+        Public Class Methods
+
+        1. new(default_value = nil) → new_hash
+        new {|hash, key| ... } → new_hash : Returns a new empty Hash object.
+        Example :
+        3.0.0 :005 > h=Hash.new
+        => {}
+
+        2.  Hash[] → new_empty_hash
+            Hash[hash] → new_hash
+            Hash[ [*2_element_arrays] ] → new_hash
+            Hash[*objects] → new_hash: Returns a new Hash object populated with the given objects.
+        Example :
+        3.2.2 :145 > h = Hash[id:1,name:'Avneet']
+        => {:id=>1, :name=>"Avneet"} 
+
+        3. try_convert(object) : If obj is a Hash object, returns obj.
+        Example :
+        3.0.0 :033 > Hash.try_convert(h)
+        => {:k=>1} 
