@@ -2856,3 +2856,38 @@
         => {:E=>2, :F=>3} 
         3.0.0 :018 > h1.length
         => 2 
+
+        42. merge → copy_of_self
+        merge(*other_hashes) → new_hash
+        merge(*other_hashes) { |key, old_value, new_value| ... } → new_hash: Returns the new Hash formed by merging each of other_hashes into a copy of self.
+        ALias: update
+        Example :
+        3.0.0 :020 > h1
+        => {:E=>2, :F=>3} 
+        3.0.0 :021 > h2={A:1,B:2,C:3}
+        => {:A=>1, :B=>2, :C=>3} 
+        3.0.0 :022 > h1.merge(h2)
+        => {:E=>2, :F=>3, :A=>1, :B=>2, :C=>3}
+
+        43. merge! → self
+        merge!(*other_hashes) → self
+        merge!(*other_hashes) { |key, old_value, new_value| ... } → self: Merges each of other_hashes into self; returns self.
+
+        44. rassoc(value) : Returns a new 2-element Array consisting of the key and value of the first-found entry whose value is == to value 
+        Example : 
+        3.0.0 :023 > h1.rassoc(2)
+        => [:E, 2] 
+
+        45. rehash : Rebuilds the hash table by recomputing the hash index for each key; returns self.
+        Example :
+        3.0.0 :027 > h1
+        => {:E=>4, :F=>3} 
+        3.0.0 :028 > h1.rehash
+        => {:E=>4, :F=>3}
+
+        46. reject {|key,value|...} : Returns a new Hash object whose entries are all those from self for which the block returns false or nil.
+        Example :
+        3.0.0 :029 > h2
+        => {:A=>1, :B=>2, :C=>3} 
+        3.0.0 :030 > h2.reject{|key,value| value>=2}
+        => {:A=>1}
