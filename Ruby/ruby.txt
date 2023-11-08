@@ -2217,4 +2217,155 @@
         3.2.2 :168 > arr.join
         => "12hello3Hi5"
 
-        55. 
+        55. keep if {|element|...} : Retains those elements for which the block returns a truthy value; deletes all other elements; returns self.
+        Example:
+        3.2.2 :064 > arr.keep_if{|x| x.class == Integer}
+        => [1, 2, 7, 8, 9, 9] 
+        3.2.2 :065 > arr
+        => [1, 2, 7, 8, 9, 9] 
+
+        56. last or last(n) : Returns elements from self; self is not modified.
+        Example :
+        3.2.2 :190 > arr=[1,2,3,4,5]
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :191 > arr.last(3)
+        => [3, 4, 5]
+
+        57. length or size : Returns the count of elements in self.
+        Example :
+        3.2.2 :192 > arr.length
+        => 5
+
+        58. max → element
+            max {|a, b| ... } → element
+            max(n) → new_array
+            max(n) {|a, b| ... } → new_array: Returns the maximum element or returns the maximum element on the basis of condition.
+        Example :
+        3.2.2 :067 > arr.max
+        => 9 
+
+        59.  min → element
+        min { |a, b| ... } → element
+        min(n) → new_array
+        min(n) { |a, b| ... } → new_array 
+        Return the minimum element from array or minimum element on the basis of condition.
+        Example :
+        3.2.2 :069 > arr
+        => [1, 2, 7, 8, 9, 9] 
+        3.2.2 :070 > arr.min
+        => 1 
+
+        60. minmax → [min_val, max_val]
+            minmax {|a, b| ... } → [min_val, max_val] : It returns the minimum and maximum value.
+        Example :
+        3.2.2 :071 > arr.minmax
+        => [1, 9] 
+
+        61. none? → true or false
+            none? {|element| ... } → true or false
+            none?(obj) → true or false 
+        Example :
+        3.2.2 :072 > arr.none?
+        => false 
+    
+        61. one? → true or false
+        one? {|element| ... } → true or false
+        one?(obj) → true or false
+        Returns true if exactly one element of self meets a given criterion.
+        Example :
+        3.2.2 :073 > arr.one?
+        => false 
+
+        62. permutation {|element| ... } → self
+            permutation(n) {|element| ... } → self
+            permutation → new_enumerator
+            permutation(n) → new_enumerator
+        Example :
+        perm.permutation(2){|x| p x}
+        [1, 2]
+        [1, 3]                                                               
+        [2, 1]                                                               
+        [2, 3]                                                               
+        [3, 1]                                                               
+        [3, 2]                                                               
+        => [1, 2, 3]
+
+        63. pop or pop(n) : Removes elements from the array.
+        Example :
+        3.2.2 :082 > arr
+        => [1, 2, 7, 8, 9, 9] 
+        3.2.2 :083 > arr.pop(2)
+        => [9, 9] 
+        3.2.2 :084 > arr
+        => [1, 2, 7, 8] 
+
+        64. prepend(*args) : Prepends the given objects to self.
+        ample :
+        3.2.2 :211 > arr.prepend(3,4,5)
+        => [3, 4, 5, 1, 2] 
+
+        65.  product(*other_arrays) → new_array
+        product(*other_arrays) {|combination| ... } → self: Computes and returns or yields all combinations of elements from all the Arrays, including both self and other_arrays.
+        Example :
+        3.2.2 :085 > arr
+        => [1, 2, 7, 8] 
+        3.2.2 :086 > arr2
+        => [6, 7, 8, 9] 
+        3.2.2 :087 > arr.product(arr2)
+        => 
+        [[1, 6],                                         
+        [1, 7],                                         
+        [1, 8],                                         
+        [1, 9],                                         
+        [2, 6],                                         
+        [2, 7],                                         
+        [2, 8],                                         
+        [2, 9],                                         
+        [7, 6],                                         
+        [7, 7],                                         
+        [7, 8],                                         
+        [7, 9],                                         
+        [8, 6],                                         
+        [8, 7],                                         
+        [8, 8],
+        [8, 9]]
+
+        66. rassoc(obj) : Returns the first element in self that is an Array whose second element == obj
+        Example :
+        3.2.2 :217 > multi_arr
+        => [[1, 2], [3, 4]] 
+        3.2.2 :218 > multi_arr.rassoc(2)
+        => [1, 2]
+
+        67. reject{|element|...} : Returns a new Array whose elements are all those from self for which the block returns false or nil.
+        Example :
+        3.2.2 :089 > arr.reject{|x| x<2}
+        => [2, 7, 8] 
+
+        68. reject! {|element|...} : Removes each element for which the block returns a truthy value.
+
+        69. repeated_combination(n) {|element|...} : Calls the block with each repeated combination of length n of the elements of self; each combination is an Array; returns self. The order of the combinations is indeterminate.
+        Example :
+        3.2.2 :094 > arr.repeated_combination(2){|x| p x}
+        [2, 2]
+        [2, 7]                                                                    
+        [2, 8]                                                                    
+        [7, 7]                                                                    
+        [7, 8]                                                                    
+        [8, 8]                                                                    
+        => [2, 7, 8]
+
+        70. repeated_permutation(n) {|element|...} : Calls the block with each repeated permutation of length n of the elements of self; each permutation is an Array; returns self. The order of the permutations is indeterminate.
+        Example : 
+        3.2.2 :095 > arr.repeated_permutation(2){|x| p x}
+        [2, 2]
+        [2, 7]                               
+        [2, 8]
+        [7, 2]
+        [7, 7]
+        [7, 8]
+        [8, 2]
+        [8, 7]
+        [8, 8]
+        => [2, 7, 8] 
+
