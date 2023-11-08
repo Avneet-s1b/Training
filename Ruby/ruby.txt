@@ -2369,3 +2369,164 @@
         [8, 8]
         => [2, 7, 8] 
 
+        71. reverse : Returns a new Array with the elements of self in reverse order.
+        Example :
+        3.2.2 :227 > arr=[1,2,3,4,5]
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :228 > arr.reverse
+        => [5, 4, 3, 2, 1] 
+
+        72. reverse! : Reverses self in place.
+
+        73. reverse_each {|element|...} : Iterates backwards over array elements.
+        Example :   
+        3.2.2 :229 > arr.reverse_each{ |x| print x,","}
+        5,4,3,2,1, => [1, 2, 3, 4, 5]
+
+        74. rindex(object) or rindex {|element|...} : Returns the index of the last element for which object == element.
+        Example :
+        3.2.2 :230 > arr=[1,2,3,2,4]
+        => [1, 2, 3, 2, 4] 
+        3.2.2 :231 > arr.rindex(2)
+        => 3
+
+        75. rotate or rotate(count) : Returns a new Array formed from self with elements rotated from one end to the other.
+    Example :
+        3.2.2 :233 > arr=[1,2,3,4,5]
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :234 > arr.rotate
+        => [2, 3, 4, 5, 1] 
+        3.2.2 :235 > arr.rotate(2)
+        => [3, 4, 5, 1, 2] 
+
+        76. rotate! or rotate!(count) : Rotates self in place by moving elements from one end to the other; returns self.
+
+        77. sample or sample(n) : Returns random elements from self. 
+        Example:
+        3.2.2 :096 > arr.sample
+        => 7 
+        3.2.2 :097 > arr.sample
+        => 7 
+        3.2.2 :098 > arr.sample
+        => 8 
+
+        78. shift or shift(n) : It removes the elements from the front and return the leading elements.
+        Example :
+        3.2.2 :240 > arr.shift
+        => 1 
+        3.2.2 :241 > arr
+        => [2, 3, 4, 5
+
+        79. shuffle : Returns a new array with elements of self shuffled.
+        Example :
+        3.2.2 :244 > arr
+        => [2, 3, 4, 5] 
+        3.2.2 :245 > arr.shuffle
+        => [5, 4, 2, 3] 
+
+        80. shuffle! : Returns self with elements of self shuffled
+
+        81. slice: Alias for []
+
+        82. slice!(n) → object or nil
+            slice!(start, length) → new_array or nil
+            slice!(range) → new_array or nil: Modify in original array.
+
+        83. sort or sort {|a,b|...} : To sort an array.
+        Example : 
+        3.2.2 :103 > arr.sort{|a,b| b<=>a}
+        => [8, 7, 3, 2, 1] 
+
+        84. sort! or sort!{|a,b|...} : To sort an array and return self.
+
+        85. sort_by!{|element|...} : Sorts the elements of self in place, using an ordering determined by the block; returns self.
+        Example :
+        3.2.2 :262 > arr.sort_by!{ |x,y| x<=>y}
+        => [1, 2, 3, 4, 5] 
+
+        86. sum(init=0) or sum(init=0) {|element|...} : It gives the sum of elements from an array.
+        Example :
+        3.2.2 :109 > arr
+         => [1, 2, 3, 7, 8] 
+        3.2.2 :110 > arr.sum
+         => 21 
+
+        87. take(n) : Returns a new Array containing the first n element of self, where n is a non-negative Integer; does not modify self.
+        Example :
+        3.2.2 :267 > arr
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :268 > arr.take(3)
+        => [1, 2, 3]
+
+        88. take_while {|element|...} : Returns a new Array containing zero or more leading elements of self; does not modify self.
+        Example:
+        3.2.2 :116 > arr
+        => [1, 2, 3, 7, 8] 
+        3.2.2 :117 > arr.take_while{|x| p x<=3}
+        true
+        true                                                            
+        true                                                            
+        false                                                           
+        => [1, 2, 3] 
+
+        89. to_h or to_h{|element|...} : Returns a new Hash formed from self.
+        Example :
+        3.2.2 :284 > multi_arr
+        => [[1, 2], [3, 4]] 
+        3.2.2 :285 > multi_arr.to_h
+        => {1=>2, 3=>4} 
+
+        90. to_s : Returns the new String formed by calling method.
+        Example :
+        3.2.2 :293 > arr
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :294 > arr.to_s
+        => "[1, 2, 3, 4, 5]"
+
+        91. transpose : Transposes the rows and columns in an Array of Arrays; the nested Arrays must all be the same size.
+        Example :
+        3.2.2 :298 > multi_arr
+        => [[1, 2], [3, 4]] 
+        3.2.2 :299 > multi_arr.transpose
+        => [[1, 3], [2, 4]] 
+
+        92.  union(*other_arrays) : Returns a new Array that is the union of self and all given Arrays other_arrays; duplicates are removed; order is preserved; items are compared using eql?
+        Example :
+        3.2.2 :300 > arr
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :301 > arr.union([4,5,6],[5,6,7])
+        => [1, 2, 3, 4, 5, 6, 7] 
+
+        93. uniq or uniq {|element|...} : Returns a new Array containing those elements from self that are not duplicates, the first occurrence always being retained.
+        Example :
+        3.2.2 :302 > arr=[1,2,2,1,3,3]
+        => [1, 2, 2, 1, 3, 3] 
+        3.2.2 :303 > arr.uniq
+        => [1, 2, 3]
+
+        94. values_at(*indexes) : Returns a new Array whose elements are the elements of self at the given Integer or Range indexes.
+        Example :
+        3.2.2 :304 > arr
+        => [1, 2, 2, 1, 3, 3] 
+        3.2.2 :305 > arr.values_at(0,2,4)
+        => [1, 2, 3]
+
+        95. zip(*other_arrays) or zip(*other_arrays) {|other_array|...} : When no block given, returns a new Array new_array of size self.size whose elements are Arrays.
+        Example :
+        3.2.2 :307 > arr1=[1,2,3]
+        => [1, 2, 3] 
+        3.2.2 :308 > arr2=[4,5,6]
+        => [4, 5, 6] 
+        3.2.2 :309 > arr3=[7,8,9]
+        => [7, 8, 9] 
+        3.2.2 :310 > arr1.zip(arr2,arr3)
+        => [[1, 4, 7], [2, 5, 8], [3, 6, 9]] 
+
+        96. array | other_array : Returns the union of array and Array other_array; duplicates are removed; order is preserved; items are compared using eql?
+        Example :
+        3.2.2 :314 > arr
+        => [1, 2, 2, 1, 3, 3] 
+        3.2.2 :315 > other_arr
+        => [1, 2.0, "hi"] 
+        3.2.2 :316 > arr | other_arr
+        => [1, 2, 3, 2.0, "hi"] 
