@@ -4,4 +4,4 @@ str = gets.chomp
 
 arr = str.chars
 
-arr.permutation(arr.length){|x| p x}
+arr.permutation(arr.length) { |x| p x }
