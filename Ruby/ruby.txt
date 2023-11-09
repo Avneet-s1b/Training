@@ -2930,3 +2930,34 @@
         => {:F=>4, :A=>1, :B=>2} 
         3.0.0 :048 > h
         => {:F=>4, :A=>1, :B=>2}
+
+        53. transform_keys {|key| ... } → new_hash
+            transform_keys(hash2) → new_hash
+            transform_keys(hash2) {|other_key| ...} → new_hash
+            transform_keys → new_enumerator: An optional hash argument can be provided to map keys to new keys. Any key not given will be mapped using the provided block, or remain the same if no block is given.
+        Example :
+        3.0.0 :061 > h1
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :062 > h1.transform_keys{|key| key.to_s}
+        => {"F"=>4, "A"=>1, "B"=>2} 
+
+        54. transform_values {|value|...} : Returns a new Hash object.
+        Example :
+        3.0.0 :064 > h1
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :065 > h1.transform_values{|value| value*2}
+        => {:F=>8, :A=>2, :B=>4}
+
+        55. values : Returns a new Array containing all values in self.
+        Example :
+        3.0.0 :066 > h1
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :067 > h1.values
+        => [4, 1, 2] 
+    
+        56. values_at(*keys) : Returns a new Array containing values for the given keys.
+        Example :
+         3.0.0 :068 > h1
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :069 > h1.values_at(:F,:B)
+        => [4, 2]
