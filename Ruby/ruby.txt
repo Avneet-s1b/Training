@@ -3050,3 +3050,99 @@
         => 2023-10-28 16:52:42.123230322 +0530 
         3.2.2 :035 > t.getutc
         => 2023-10-28 11:22:42.123230322 UTC 
+
+    
+        Public Class Methods For Date Class
+
+        1. new: Gives new Date object. arguments of date must be passed.
+        Example:
+        3.2.2 :005 > require 'date'
+        => true 
+        3.2.2 :006 > d = Date.new(2001,07,19)
+        => #<Date: 2001-07-19 ((2452110j,0s,0n),+0s,2299161j)>
+
+        2. _httpdate (string ,limit:128) : Returns a hash of values parsed from string, which should be a valid HTTP date format.
+        Example:
+        3.2.2 :020 > d
+        => #<Date: 2001-07-20 ((2452111j,0s,0n),+0s,2299161j)> 
+        3.2.2 :021 > s = d.httpdate
+        => "Fri, 20 Jul 2001 00:00:00 GMT" 
+        3.2.2 :022 > Date._httpdate(s)
+        => {:wday=>5, :mday=>20, :mon=>7, :year=>2001, :hour=>0, :min=>0, :sec=>0, :zone=>"GMT", :offset=>0} 
+
+        3.  _iso8601(string, limit: 128) : Returns a hash of values parsed from string, which should contain an ISO 8601 formatted date.
+        Example :
+        3.2.2 :011 > d
+        => #<Date: 2001-02-03 ((2451944j,0s,0n),+0s,2299161j)> 
+        3.2.2 :012 > s=d.iso8601
+        => "2001-02-03" 
+        3.2.2 :013 > Date._iso8601(s)
+        => {:mday=>3, :year=>2001, :mon=>2}
+
+        4. _jisx0301(string, limit: 128) : Returns a hash of values parsed from string, which should be a valid JIS X 0301 date format.
+        Example :
+        3.2.2 :014 > d
+        => #<Date: 2001-02-03 ((2451944j,0s,0n),+0s,2299161j)> 
+        3.2.2 :015 > s=d.jisx0301
+        => "H13.02.03" 
+        3.2.2 :016 > Date._jisx0301(s)
+        => {:year=>2001, :mon=>2, :mday=>3} 
+
+        5.  _parse(string, comp = true, limit: 128) : Returns a hash of values parsed from string
+        Example :
+        3.2.2 :019 > Date._parse('2023-10-28')
+        => {:year=>2023, :mon=>10, :mday=>28} 
+
+        6. _rfc2822(string, limit: 128) or _rfc822 : Returns a hash of values parsed from string, which should be a valid RFC 2822 date format.
+        Example :
+        3.2.2 :020 > d
+        => #<Date: 2001-02-03 ((2451944j,0s,0n),+0s,2299161j)> 
+        3.2.2 :021 > s=d.rfc2822
+        => "Sat, 3 Feb 2001 00:00:00 +0000" 
+        3.2.2 :023 > Date._rfc2822(s)
+        => 
+        {:wday=>6,
+        :mday=>3,
+        :mon=>2,
+        :year=>2001,
+        :hour=>0,
+        :min=>0,
+        :sec=>0,
+        :zone=>"+0000",
+        :offset=>0}
+
+        7. _rfc3339(string, limit: 128) : Returns a hash of values parsed from string, which should be a valid RFC 3339 format.
+        Example : 
+        3.2.2 :027 > d=Date.new(2023,10,28)
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,229916... 
+        3.2.2 :028 > s=d.rfc3339
+        => "2023-10-28T00:00:00+00:00" 
+        3.2.2 :029 > Date._rfc3339(s)
+        => 
+        {:year=>2023,
+        :mon=>10,
+        :mday=>28,
+        :hour=>0,
+        :min=>0,
+        :sec=>0,
+        :zone=>"+00:00",
+        :offset=>0}
+
+        8. _strptime(string, format = '%F') : Returns a hash of values parsed from string according to the given format.
+        Example :
+        3.2.2 :031 > Date._strptime('2023-10-28','%Y-%m-%d')
+        => {:year=>2023, :mon=>10, :mday=>28}
+
+        9. _xmlschema(string, limit: 128) : Returns a hash of values parsed from string, which should be a valid XML date format.
+        Example :
+        3.2.2 :032 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :033 > s=d.xmlschema
+        => "2023-10-28" 
+        3.2.2 :034 > Date._xmlschema(s)
+        => {:year=>2023, :mon=>10, :mday=>28} 
+
+        10. commercial(cwyear = -4712, cweek = 1, cwday = 1, start = Date::ITALY) : Returns a new Date object constructed from the arguments.
+        Example :
+        3.2.2 :040 > Date.commercial(2023,10,1).to_s
+        => "2023-03-06"
