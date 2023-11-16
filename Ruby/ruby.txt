@@ -3146,3 +3146,82 @@
         Example :
         3.2.2 :040 > Date.commercial(2023,10,1).to_s
         => "2023-03-06"
+
+        11. gregorian_leap?(year) or Date.leap?(year) : Returns true if the given year is a leap year in the proleptic Gregorian calendar, false otherwise.
+        Example :
+        3.2.2 :030 > d.year
+        => 2002 
+        3.2.2 :031 > Date.leap?(d.year)
+        => false 
+
+        12. httpdate(string = 'Mon, 01 Jan -4712 00:00:00 GMT', start = Date::ITALY, limit: 128) : Returns a new Date object with values parsed from string, which should be a valid HTTP date format.
+        Example :
+        3.2.2 :054 > d=Date.new(2023,10,28)
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,229916... 
+        3.2.2 :055 > s=d.httpdate
+        => "Sat, 28 Oct 2023 00:00:00 GMT" 
+        3.2.2 :056 > Date.httpdate(s)
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+
+        13. jd(jd = 0, start = Date::ITALY) : Returns a new Date object formed from the arguments.
+        Example :
+        3.2.2 :081 > Date.jd(2458222).to_s
+        => "2018-04-13"
+
+        14.  jisx0301(string = '-4712-01-01', start = Date::ITALY, limit: 128) : Returns a new Date object with values parsed from string, which should be a valid JIS X 0301 format.
+        Example :
+        3.2.2 :082 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :083 > s=d.jisx0301
+        => "R05.10.28" 
+
+        15. julian_leap?(year) : Returns true if the given year is a leap year in the proleptic Julian calendar, false otherwise.
+        Example :
+        3.2.2 :086 > Date.julian_leap?(2000)
+        => true
+
+        16. new(year = -4712, month = 1, mday = 1, start = Date::ITALY) or civil(*args) : Returns a new Date object constructed from the given arguments.
+        Example :
+        3.2.2 :089 > Date.new(2023,10,28).to_s
+        => "2023-10-28"
+
+        17. ordinal(year = -4712, yday = 1, start = Date::ITALY) : Returns a new Date object formed fom the arguments.
+        Example :   
+        3.2.2 :092 > Date.ordinal.to_s
+        => "-4712-01-01" 
+
+        18. parse(string = '-4712-01-01', comp = true, start = Date::ITALY, limit: 128) :
+        Returns a new Date object with values parsed from string
+        Example :   
+        3.2.2 :093 > Date.parse('2023-10-28')
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+
+        19. strptime(string = '-4712-01-01', format = '%F', start = Date::ITALY) : Returns a new Date object with values parsed from string.
+        Example :
+        Date.strptime('2008-08-09')
+        => #<Date: 2008-08-09 ((2454688j,0s,0n),+0s,2299161j)> 
+
+        20. today (start=Date::ITALY) : Returns a new Date object constructed from the present date.
+        Example :   
+        3.2.2 :098 > Date.today.to_s
+        => "2023-10-28"
+
+        21. valid_civil?(year, month, mday, start = Date::ITALY) or valid_date? (year, month, mday, start = Date::ITALY) : Returns true if the arguments define a valid ordinal date, false otherwise.
+        Example :   
+        3.2.2 :100 > Date.valid_civil?(2023,10,28)
+        => true 
+
+        22. valid_commercial?(cwyear, cweek, cwday, start = Date::ITALY) : Returns true if the arguments define a valid commercial date, false otherwise.
+        Example :
+        3.2.2 :103 > Date.valid_commercial?(2023,4,28)
+        => false 
+
+        23. valid_jd?(jd, start = Date::ITALY) : Implemented for compatibility; returns true unless jd is invalid (i.e., not a Numeric).
+        Example :   
+        3.2.2 :104 > Date.valid_jd?(12371)
+        => true 
+
+        24. valid_ordinal?(year, yday, start = Date::ITALY) : Returns true if the arguments define a valid ordinal date, false otherwise.
+        Example :   
+        3.2.2 :105 > Date.valid_ordinal?(2023,256)
+        => true 
