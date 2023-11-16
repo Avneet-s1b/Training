@@ -3418,4 +3418,164 @@
         3.2.2 :076 > d.year
         => 2023 
 
-        
+
+        Public Class Methods DateTime Class
+
+        1. new: returns new date time object
+        Example:
+        3.2.2 :076 > DateTime.new(2001,07,19,7,15,10)
+        => #<DateTime: 2001-07-19T07:15:10+00:00 ((2452110j,26110s,0n),+0s,2299161j)> 
+
+        2. _strptime(string[, format='%FT%T%z']) : Parses the given representation of date and time with the given template, and returns a hash of parsed elements.
+        Example :
+        3.2.2 :005 > d=DateTime.new(2023,10,28,1,2,3).to_s
+        => "2023-10-28T01:02:03+00:00" 
+        3.2.2 :006 > Date._strptime(d,"%Y-%m-%d")
+        => {:year=>2023, :mon=>10, :mday=>28, :leftover=>"T01:02:03+00:00"} 
+
+        3. commercial([cwyear=-4712[, cweek=1[, cwday=1[, hour=0[, minute=0[, second=0[, offset=0[, start=Date::ITALY]]]]]]]]) : Creates a DateTime object denoting the given week date.
+        Example :
+        3.2.2 :007 > DateTime.commercial(2023)
+         => #<DateTime: 2023-01-02T00:00:00+00:00 ((2459947j,0s,0n),+0s,2299161j)>
+
+        4. httpdate(string='Mon, 01 Jan -4712 00:00:00 GMT'[, start=Date::ITALY]) : Creates a new DateTime object by parsing from a string according to some RFC 2616 format.
+        Example :
+        3.2.2 :010 > DateTime.httpdate('Sat, 28 Oct 2023 03:30:04 GMT')
+        => #<DateTime: 2023-10-28T03:30:04+00:00 ((2460246j,12604s,0n),+0s,2299161j)>
+    
+        5. iso8601(string='-4712-01-01T00:00:00+00:00'[, start=Date::ITALY], limit: 128) : Creates a new DateTime object by parsing from a string according to some typical ISO 8601 formats.
+        Example :
+        3.2.2 :011 > d
+        => "2023-10-28T01:02:03+00:00" 
+        3.2.2 :012 > DateTime.iso8601(d)
+        => #<DateTime: 2023-10-28T01:02:03+00:00 ((2460246j,3723s,0n),+0s,2299161j)>
+
+        6. jd([jd=0[, hour=0[, minute=0[, second=0[, offset=0[, start=Date::ITALY]]]]]]) :
+        Creates a DateTime object denoting the given chronological Julian day number.
+        Example :   
+        3.2.2 :013 > DateTime.jd(2437473)
+        => #<DateTime: 1961-06-22T00:00:00+00:00 ((2437473j,0s,0n),+0s,2299161j)> 
+
+        7. jisx0301(string='-4712-01-01T00:00:00+00:00'[, start=Date::ITALY], limit: 128) :
+        Creates a new DateTime object by parsing from a string according to some typical JIS X 0301 formats.
+        Example :
+        3.2.2 :014 > DateTime.jisx0301(d)
+        => #<DateTime: 2023-10-28T01:02:03+00:00 ((2460246j,3723s,0n),+0s,2299161j)>
+
+        8. now([start=Date::ITALY]) : Creates a DateTime object denoting the present time.
+        Example :
+        3.2.2 :017 > DateTime.now
+        => #<DateTime: 2023-10-28T15:53:27+05:30 ((2460246j,37407s,215559293n),+19800s,2299161j)>
+
+        9. ordinal([year=-4712[, yday=1[, hour=0[, minute=0[, second=0[, offset=0[, start=Date::ITALY]]]]]]]) : Creates a DateTime object denoting the given ordinal date.
+        Example :
+        3.2.2 :018 > DateTime.ordinal(2023,45)
+        => #<DateTime: 2023-02-14T00:00:00+00:00 ((2459990j,0s,0n),+0s,2299161j)>
+
+        10. parse(string='-4712-01-01T00:00:00+00:00'[, comp=true[, start=Date::ITALY]], limit: 128) : Parses the given representation of date and time, and creates a DateTime object.
+        Example :   
+        3.2.2 :022 > DateTime.parse(d)
+         => #<DateTime: 2023-10-28T01:02:03+00:00 ((2460246j,3723s,0n),+0s,2299161j)> 
+
+        11. rfc822(string='Mon, 1 Jan -4712 00:00:00 +0000'[, start=Date::ITALY], limit: 128) :
+        Creates a new DateTime object by parsing from a string according to some typical RFC 2822 formats. 
+        Example :
+        3.2.2 :024 > d1=DateTime.rfc2822('Sat, 28 Oct 2023 03:30:04 GMT')
+        => #<DateTime: 2023-10-28T03:30:04+00:00 ((2460246j,12604s,0n),+0s,2299161j)> 
+    
+        12. rfc3339(string='-4712-01-01T00:00:00+00:00'[, start=Date::ITALY], limit: 128) :
+        Example :   
+        3.2.2 :025 > DateTime.rfc3339(d)
+         => #<DateTime: 2023-10-28T01:02:03+00:00 ((2460246j,3723s,0n),+0s,2299161j)> 
+
+        13. strptime([string='-4712-01-01T00:00:00+00:00'[, format='%FT%T%z'[ ,start=Date::ITALY]]]) : Parses the given representation of date and time with the given template, and creates a DateTime object.
+        Example :   
+        3.2.2 :027 > DateTime.strptime(d,'%Y-%m-%dT%H:%M:%S%z')
+        => #<DateTime: 2023-10-28T01:02:03+00:00 ((2460246j,3723s,0n),+0s,2299161j)>
+
+
+        Public Instance Methods of DateTime Class
+
+        14. hour : Returns the hour in range (0..23).
+        Example :
+        3.2.2 :092 > dt
+        => #<DateTime: 2001-07-19T07:15:10+00:00 ((2452110j,26110s,0n),+0s,2299161j)> 
+        3.2.2 :093 > dt.hour
+        => 7 
+
+        15. iso8601([n=0]) or xmlschema : This method is equivalent to strftime(‘%FT%T%:z’). The optional argument n is the number of digits for fractional seconds.
+        Example :   
+        3.2.2 :034 > d1.iso8601(2)
+        => "2023-10-28T03:30:04.00+00:00" 
+    
+        16. jisx0301([n=0]) : Returns a string in a JIS X 0301 format. The optional argument n is the number of digits for fractional seconds.
+        Example :
+        3.2.2 :036 > d1.jisx0301(4)
+        => "R05.10.28T03:30:04.0000+00:00" 
+
+        17. min or minute : Returns the minute in range (0..59).
+        Example :
+        3.2.2 :037 > d1.min
+        => 30 
+
+        18. new_offset([offset=0]) : Duplicates self and resets its offset.
+        Example :
+        3.2.2 :040 > d1
+        => #<DateTime: 2023-10-28T03:30:04+00:00 ((2460246j,12604s,0n),+0s,2299161j)> 
+        3.2.2 :041 > d1.new_offset('+7:00')
+        => #<DateTime: 2023-10-28T10:30:04+07:00 ((2460246j,12604s,0n),+25200s,2299161j)> 
+
+        19. offset : Returns the offset.
+        Example :   
+        3.2.2 :042 > d1.offset
+        => (0/1)
+
+        20. rfc3339([n=0]) : This method is equivalent to strftime(‘%FT%T%:z’). The optional argument n is the number of digits for fractional seconds.
+        Example :
+        3.2.2 :043 > d1.rfc3339(4)
+        => "2023-10-28T03:30:04.0000+00:00" 
+
+        21. sec or second : Returns the second in range (0..59).
+        Example :   
+        3.2.2 :044 > d1
+        => #<DateTime: 2023-10-28T03:30:04+00:00 ((2460246j,12604s,0n),+0s,2299161j)> 
+        3.2.2 :045 > d1.sec
+        => 4 
+
+        22. sec_fraction or second_fraction : Returns the fractional part of the second in range (Rational(0, 1)…Rational(1, 1)).
+        Example :
+        3.2.2 :046 > d1
+        => #<DateTime: 2023-10-28T03:30:04+00:00 ((2460246j,12604s,0n),+0s,2299161j)> 
+        3.2.2 :047 > d1.second_fraction
+        => (0/1)
+    
+        23. strftime(format = '%FT%T%:z') : Returns a string representation of self, formatted according the given +format.
+        Example :
+        3.2.2 :048 > d1.strftime
+        => "2023-10-28T03:30:04+00:00" 
+        3.2.2 :049 > d1.strftime('%Y/%m/%d')
+        => "2023/10/28"
+
+        24. to_date : Returns a Date object which denotes self.
+        Example :
+        3.2.2 :050 > d1
+        => #<DateTime: 2023-10-28T03:30:04+00:00 ((2460246j,12604s,0n),+0s,2299161j)> 
+        3.2.2 :051 > d1.to_date
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+
+        25. to_s : Returns a string in an ISO 8601 format.
+        Example :
+        3.2.2 :054 > d1.to_s
+        => "2023-10-28T03:30:04+00:00" 
+
+        26. to_time : Returns a Time object which denotes self.
+        Example :
+        3.2.2 :055 > d1
+        => #<DateTime: 2023-10-28T03:30:04+00:00 ((2460246j,12604s,0n),+0s,2299161j)> 
+        3.2.2 :056 > d1.to_time
+        => 2023-10-28 03:30:04 +0000 
+
+        27. zone : Returns the timezone.
+        Example :
+        3.2.2 :057 > d1.zone
+        => "+00:00"
