@@ -2961,3 +2961,92 @@
         => {:F=>4, :A=>1, :B=>2} 
         3.0.0 :069 > h1.values_at(:F,:B)
         => [4, 2]
+
+
+    - DATE/TIME/DATE-TIME: Ruby has Mainly three classes related to date and time in its documentation.
+        - Date
+        - DateTime
+        - Time
+
+
+        Public Class Method For Time
+
+        1. ::new or ::now : Returns the current time.
+        Example :3.2.2 :011 > t = Time.new
+         => 2023-11-15 16:08:33.406946006 +0530
+
+        2. inspect : Returns the time in string representation.
+        Example : 
+        3.2.2 :014 > t.inspect
+         => "2023-11-15 16:08:33.406946006 +0530" 
+
+        3. Components of Date and Time :
+            a) year -> Year of the date
+            b) month -> Month of the date.
+            c) day -> Day of the date (1 to 31).
+            d) wday -> Day of week (Sunday - 0)
+            e) yday -> Day of Year (365)
+            f) hour -> 24 hour clock
+            g) min -> minutes 
+            h) sec -> seconds 
+            i) usec -> microseconds 
+            j) zone -> timezone name ("UTC")
+        Example:
+        3.2.2 :006 > time=Time.new
+        => 2023-10-28 16:52:42.123230322 +0530 
+        3.2.2 :007 > time.year
+        => 2023 
+        3.2.2 :008 > time.month
+        => 10 
+        3.2.2 :009 > time.day
+        => 28 
+        3.2.2 :010 > time.wday
+        => 6 
+        3.2.2 :011 > time.yday
+        => 301 
+        3.2.2 :012 > time.hour
+        => 16 
+        3.2.2 :013 > time.min
+        => 52 
+        3.2.2 :014 > time.sec
+        => 42 
+        3.2.2 :015 > time.usec
+        => 123230 
+        3.2.2 :016 > time.zone
+        => "IST"
+
+        4. strftime : To format date and time.
+        Example :
+        3.2.2 :018 > Time.now.strftime("%Y-%m-%d %H-%M-%S")
+        => "2023-11-15 17-07-28"
+
+        5. utc? : If time is in UTC time zone.
+        Example :   
+        3.2.2 :019 > time.utc?
+        => false
+
+        6. localtime : Convert to local time zone.
+        Example :
+        3.2.2 :022 > time.localtime
+         => 2023-10-28 16:52:42.123230322 +0530 
+
+        7. gmtime : Convert back to UTC.
+        Example :
+        3.2.2 :024 > time
+        => 2023-10-28 16:52:42.123230322 +0530 
+        3.2.2 :025 > time.gmtime
+        => 2023-10-28 11:22:42.123230322 UTC 
+
+        8. getlocal : Return a new time object in local zone.
+        Example: 
+        3.2.2 :029 > time
+        => 2023-10-28 11:22:42.123230322 UTC 
+        3.2.2 :030 > time.getlocal
+        => 2023-10-28 16:52:42.123230322 +0530 
+    
+        9. getutc : Return a new Time object in UTC.
+        Example :
+        3.2.2 :034 > t
+        => 2023-10-28 16:52:42.123230322 +0530 
+        3.2.2 :035 > t.getutc
+        => 2023-10-28 11:22:42.123230322 UTC 
