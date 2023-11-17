@@ -3658,4 +3658,77 @@
 
             puts b1.get_h
 
-            
+        - Access Control 
+
+            - public: Public methods can be called by anyone. Methods are public by default except for initialize, which is always private.
+            - private: Private methods cannot be accessed, or even viewed from outside the class. Only the class methods can access private members.
+            - protected: A protected method can be invoked only by objects of the defining class and its subclasses. Access is kept within the family.
+
+            Syntax:
+            def get_h
+                return @height
+            end
+
+            def get_w
+                return @width
+            end
+
+            private :get_h,:get_w
+
+        - Inheritance
+
+            - Inheritance allows us to define a class in terms of another class, which makes it easier to create and maintain an application.
+            - Inheritance also provides an opportunity to reuse the code functionality and fast implementation time but unfortunately Ruby 
+            does not support multiple levels of inheritances but Ruby supports mixins.
+
+        - Method Overriding
+
+            - overrides already exisitng method in the parent class with the new method created in the sub class.
+
+            Example:
+            class Box
+
+                #initialize method
+                def initialize(h,w)
+                    #instance var
+                    @height = h 
+                    @width = w 
+                end
+
+                #getter method
+                def get_h
+                    return @height
+                end
+
+                def get_w
+                    return @width
+                end
+
+                private :get_h,:get_w
+
+                def print_area
+                    return get_h*get_w
+                end
+
+                #setter method
+                def set_h(h)
+                    @height = h 
+                end
+
+                def set_w(w)
+                    @width = w 
+                end
+            end
+
+            class BigBox < Box 
+                
+                def print_area 
+                    puts "prints area"
+                end
+            end
+
+            bb = BigBox.new(10,10)
+
+            bb.print_area
+
+        
