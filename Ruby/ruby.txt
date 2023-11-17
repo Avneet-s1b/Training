@@ -3731,4 +3731,56 @@
 
             bb.print_area
 
+        - Operator Overloading: use to change the default behaviour of operators 
+
+            Example:
+            class Box
+            def initialize(w, h) # Initialize the width and height
+                @width, @height = w, h
+            end
+
+            def +(other) # Define + to do vector addition
+                Box.new(@width + other.width, @height + other.height)
+            end
+
+            def -@ # Define unary minus to negate width and height
+                Box.new(-@width, -@height)
+            end
+
+            def *(scalar) # To perform scalar multiplication
+                Box.new(@width * scalar, @height * scalar)
+            end
+
+            def print
+                puts "#{@height} - #{@width}"
+            end
+            end
+
+            b1 = Box.new(100, 50)
+
+            bm = b1.*(10)
+            bm.print
+
+        - Freeze: Sometimes, we want to prevent an object from being changed. The freeze method in Object allows us to do this, effectively turning an object into a constant.
+        Syntax: Object.freeze
+
+        - Constants: like static var in other languages. Once a constant is defined, you cannot change its value but you can access a constant directly inside a class much like a variable 
+        but if you want to access a constant outside of the class then you would have to use classname::constant
+
+            Example:
+            class Box
+            COMP_NAME = "Avneet"
+
+            def initialize(w, h) # Initialize the width and height
+                @width, @height = w, h
+            end
+
+            def print
+                puts "#{@height} - #{@width}"
+            end
+            end
+
+            b1 = Box.new(100, 50)
+            puts Box::COMP_NAME
+
         
