@@ -3784,3 +3784,34 @@
             puts Box::COMP_NAME
 
         
+    -REGULAR EXPRESSION 
+        - A regular expression is a special sequence of characters that helps you match or 
+        find other strings or sets of strings using a specialized syntax held in a pattern.
+
+        Example:
+        str = "This is our string cat bat rat faaat 4."
+
+        if str =~ /.at/ #regexps are enclosed in forw slashes and here . represent any char foll by at
+            puts str.gsub(/.at/,"_5_")
+        end
+
+        op: This is our string _5_ _5_ _5_ fa_5_ 4.
+
+        - /ruby/: Matches "ruby".
+        - /[Rr]uby/: Matches "Ruby" or "ruby".
+        - /rub[ye]/: Matches "ruby" or "rube".
+        - /[aeiou]/: Matches any one lowercase vowel.
+        - /[0-9]/: Matches any digit; same as /[0123456789]/.
+        - /[a-z]/: Matches any lowercase ASCII letter.
+        - /[A-Z]/: Matches any uppercase ASCII letter.
+        - /./: Matches any character except newline.
+        - /./m: In multi-line mode, matches newline, too.
+        - /\d/: Matches a digit: /[0-9]/.
+        - /\D/: Matches a non-digit: /[^0-9]/.
+        - /\s/: Matches a whitespace character: /[ \t\r\n\f]/.
+        - /\S/: Matches non-whitespace: /[^ \t\r\n\f]/.
+        - /\w/: Matches a single word character: /[A-Za-z0-9_]/.
+        - /\W/: Matches a non-word character: /[^A-Za-z0-9_]/.
+        - /\d{3}/: Matches exactly 3 digits.
+        - /\d{3,}/: Matches 3 or more digits.
+        - /\d{3,5}/: Matches 3, 4, or 5 digits.
