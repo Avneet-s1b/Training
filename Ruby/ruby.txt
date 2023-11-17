@@ -3579,3 +3579,21 @@
         Example :
         3.2.2 :057 > d1.zone
         => "+00:00"
+ 
+    - RANGES 
+        - The first and perhaps the most natural use of ranges is to express a sequence. Ruby creates these 
+        sequences using the ''..'' and ''...'' range operators. 
+        - The two-dot form creates an inclusive range, while the three-dot form creates a range that excludes
+        the specified high value.
+
+    - ITERATORS
+        - Iterators return all the elements of a collection, one after the other. 
+        
+        - each iterator:
+        Syntax:collection.each do |variable|
+                   code
+               end
+
+        - collect: returns items in a collection in sequential order
+        Syntax: collection = collection.collect
+
