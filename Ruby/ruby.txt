@@ -3606,7 +3606,7 @@
         - Class: define a blueprint for a data type.
             Syntax:
             class Box
-            code
+                code
             end
 
         - Object: An object is an instance of the class
