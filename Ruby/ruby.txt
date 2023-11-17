@@ -3578,7 +3578,10 @@
         27. zone : Returns the timezone.
         Example :
         3.2.2 :057 > d1.zone
-        => "+00:00"
+        => "+00:00"'
+
+        IMP NOTE: strftime in date and class method is used to convert time/date class to string where as 
+                strptime in date and parse in time class is used to convert string to respective class.
  
     - RANGES 
         - The first and perhaps the most natural use of ranges is to express a sequence. Ruby creates these 
