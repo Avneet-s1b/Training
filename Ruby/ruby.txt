@@ -3861,6 +3861,16 @@
             3.0.0 :043 > CSV.parse("\n2,banana\n3,cheery")
             => [[], ["2", "banana"], ["3", "cheery"]]
 
+        -Directories in Ruby: All files are contained within various directories, and Ruby has no problem handling these too. 
+        Whereas the File class handles files, directories are handled with the Dir class.
+
+            - Dir.chdir : To change directory within a Ruby program.
+            - Dir.pwd : To find out the current directory.
+            - Dir.entries : You can get a list of the files and directories within a specific directory using Dir.entries 
+            - Dir.foreach : Dir.entries returns an array with all the entries within the specified directory. Dir.foreach provides the same feature .
+            - Dir[<directory-path>/*] : An even more concise way of getting directory listings is by using Dir's class array method.
+            - Dir.mkdir : To create the directory.
+            - Dir.delete : The Dir.delete can be used to delete a directory. The Dir.unlink and Dir.rmdir performs exactly the same function and are provided for convenience.
 
 
         
