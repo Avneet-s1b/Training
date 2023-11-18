@@ -3786,6 +3786,73 @@
             b1 = Box.new(100, 50)
             puts Box::COMP_NAME
 
+
+    -FILE HANDLING
+        - It is a way of processing a file such as creating a new file, reading content in a file, writing content to a file, 
+        appending content to a file, renaming the file and deleting the file.
+        - Common modes for File Handling: 
+            “r” : Read-only mode for a file.
+            “r+” : Read-Write mode for a file.
+            “w” : Write-only mode for a file.
+            “w+” : Read-Write mode for a file.
+            “a” : Write-only mode, if file exists it will append the data otherwise a new file will be created.
+            “a+” : Read and Write mode, if file exists it will append the data otherwise a new file will be created.
+
+        - Creating a file and writing to it:
+            3.0.0 :025 > fileobject = File.new("myfile.txt","w+")
+            => #<File:myfile.txt> 
+            3.0.0 :026 > fileobject.syswrite("Hello /n Avneet")
+            => 15 
+            3.0.0 :027 > fileobject.close()
+            => nil 
+
+            file will be created inside the folder in which irb was opened
+        
+        - Reading a file 
+
+            #using sysread 
+            3.0.0 :028 > fileobject = File.new("myfile.txt","r")
+            => #<File:myfile.txt> 
+            3.0.0 :029 > fileobject.sysread(10)
+            => "Hello /n A" 
+            3.0.0 :030 > fileobject.close()
+            => nil 
+
+            #using read
+            3.0.0 :031 > fileobject = File.new("myfile.txt","r")
+            => #<File:myfile.txt> 
+            3.0.0 :032 > fileobject.read()
+            => "Hello /n Avneet" 
+            3.0.0 :033 > fileobject.close()
+            => nil 
+
+            #using readlines(shows diff lines in file in form of array)
+            3.0.0 :034 > fileobject = File.new("myfile.txt","r")
+            => #<File:myfile.txt> 
+            3.0.0 :035 > fileobject.readlines
+            => ["Hello /n Avneet"] 
+            3.0.0 :036 > fileobject.close()
+            => nil 
+
+        -Renaming a file 
+            puts File.rename("myfile.txt", "ourfile.txt") 
+            0
+            => nil   
+
+        -Deleting a file
+            3.0.0 :038 > puts File.delete("file1.txt")
+            1
+            => nil  
+
+        -checking if the file exists or not
+            3.0.0 :039 > puts File.file?("file1.txt")
+            false
+            => nil
+
+        -
+
+
+
         
     -REGULAR EXPRESSION 
         - A regular expression is a special sequence of characters that helps you match or 
