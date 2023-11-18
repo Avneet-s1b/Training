@@ -3849,7 +3849,17 @@
             false
             => nil
 
-        -
+        -handling a csv file
+            3.0.0 :040 > fileobject = File.new("this.csv","w+")
+            => #<File:this.csv> 
+            3.0.0 :041'> require 'csv'
+            => true 
+            3.0.0 :042 > CSV.read("this.csv")
+            => [["1", "apple"]] 
+
+        -print directly using parse
+            3.0.0 :043 > CSV.parse("\n2,banana\n3,cheery")
+            => [[], ["2", "banana"], ["3", "cheery"]]
 
 
 
