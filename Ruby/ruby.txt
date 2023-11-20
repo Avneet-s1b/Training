@@ -3873,6 +3873,22 @@
             - Dir.delete : The Dir.delete can be used to delete a directory. The Dir.unlink and Dir.rmdir performs exactly the same function and are provided for convenience.
 
 
+    -EXCEPTIONS
+        - exceptions are used to handle various type of errors, which may occur during a program execution and take appropriate action instead of halting program completely.
+        - Syntax:
+            begin
+            file = open("/unexistant_file")
+            if file
+                puts "File opened successfully"
+            end
+            rescue
+                file = STDIN
+            end
+            print file, "==", STDIN, "\n"
+
+            This will produce the following result. You can see that STDIN is substituted to file because open failed.
+
+            #<IO:0xb7d16f84>==#<IO:0xb7d16f84>
         
     -REGULAR EXPRESSION 
         - A regular expression is a special sequence of characters that helps you match or 
