@@ -1,0 +1,26 @@
+            **** Rails ****
+
+
+    1. Rails is an open source web framework that uses ruby programming language.
+
+    2. Framework vs Library:  libraries target a specific functionality, while a framework tries to provide everything required to develop a complete application.
+
+    3. Major principles of rails: - DRY (Don't Repeat Yourself) : Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.
+                                  - Rails has opinions about the best way to do many things in a web application, and defaults to this set of conventions, rather than require that you specify minutiae through endless configuration files.
+
+    4. MVC Architecture: MVC stands for Model View Controller Architecture. It helps in ensuring DRY principal is followed.
+
+        - Model: Contains all the data related objects
+        - View: Contains all the objects that will be shown to the user like html css js.
+        - Controller: Contains all the code that will help in decision making process for a given request
+
+        Working:
+        - Request from browser will be sent too Controller for decision making
+        - Controller will then ask the result of request from model which will be connected to the db 
+        - then after recieving the result controller will show results to user using the View object.
+
+    5. Create a new project: Command: rails new <application-name>
+
+    6. Most of the coding is done in the app folder(95%) followed by config dir, gem file and db dir.
+
+    7. 
