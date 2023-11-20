@@ -56,3 +56,20 @@
         root route: Syntax: root "demo#index"
                             or
                             match "/", :to => "demo#index", :via => :get
+
+    11. Rendering templates: the routes defined help in deciding the controller and action(method in controller).
+        and then the template is rendered using default behaviour as Controller name as folder and action name as filename to choose the template.
+
+        to render according to our own wish we may use render("path") inside the action
+        Example:
+            class DemoController < ApplicationController
+            layout false
+
+            def index
+                render('demo/hello')
+            end
+
+            def hello
+                render('demo/index')
+            end
+            end
