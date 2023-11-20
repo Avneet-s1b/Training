@@ -21,6 +21,6 @@
 
     5. Create a new project: Command: rails new <application-name>
 
-    6. Most of the coding is done in the app folder(95%) followed by config dir, gem file and db dir.
+    6. Most of the coding is done in the app folder(95%) followed by config dir, gem file(packages used by our project) and db dir(database related files like db migration).
 
     7. 
