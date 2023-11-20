@@ -35,3 +35,24 @@
         if it is present then the req is returned through public folder only and if it is not then the req is sent to the rails framework.
 
         Any file inside public folder is visible for users.
+
+    10. Routing: It helps in determining which controller to be called according to the request.
+        In short helps in determining the routes. routes.rb has all the routes which is present in the config folder
+
+        Types of routes:
+            -simple match route
+            -default route
+            -root route
+            -resourceful routes
+
+        Simple match route: Syntax: get "demo/index"
+                                    or
+                                    match "demo/index", :to => "demo#index", :via => :get (this is useful when we have to keep diff path name than controller name and view name)
+
+        Default route: Syntax: get ":controller(/:action(/:id))"
+                               or
+                               match ':controller(/:action(/:id))', :via => :get
+
+        root route: Syntax: root "demo#index"
+                            or
+                            match "/", :to => "demo#index", :via => :get
