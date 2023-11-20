@@ -23,4 +23,15 @@
 
     6. Most of the coding is done in the app folder(95%) followed by config dir, gem file(packages used by our project) and db dir(database related files like db migration).
 
-    7. 
+    7. We have different files for production,development,test environment inside the config dir.
+
+    8. Generate controller: Command : rails generate controller Demo[Controller-name] index[List of views]
+        
+        this command will generate a new controller in the controller folder of app and also a view inside view folder (demo/index)
+        also in the config file we will have a route created in routes.rb file showing that demo controller is associated with index view
+
+    9. Rails Architecture(MVC arch explained wrt reality): Browser sends request using a web server(eg: apache) to the application.
+        Now application before sending the req to rail framework checks that whether the asked path is present insdie the public folder or not.
+        if it is present then the req is returned through public folder only and if it is not then the req is sent to the rails framework.
+
+        Any file inside public folder is visible for users.
