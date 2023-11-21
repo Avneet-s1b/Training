@@ -87,3 +87,20 @@
                 render('demo/index')
             end
             end
+
+    12. Redirect: When we recieve a request and controller instead of sending view as a response sends request to another controller 
+        for eg: trying to access a page that rquires login without loggin in that will send user to login screen first
+
+        Redirect changes the url link.    
+
+        Example:
+        class DemoController < ApplicationController
+        def index
+        end
+
+        def hello
+            redirect_to(controller:"demo",action:"index")
+        end
+        end
+
+        hello action will redirect to index everytime
