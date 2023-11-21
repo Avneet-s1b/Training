@@ -138,3 +138,53 @@
         1
 
         2
+
+    14. instance variables: start with @ and can be shared by the class and belong to one instance of the class
+        Can be used in the templates(views)
+        Example:
+        <% @array.each do |n| %>
+            <p><%= n %></p>
+        <% end %>
+
+    15. Links: use to navigate to another webpage. similar to anchor tag in html
+        Syntax: <%= link_to("display name of link","path") %>
+                or
+                <%= link_to("display name of link",{:controller => name , :action => name}) %>
+
+        Example:
+        <h1>hello page</h1>
+
+        <a href = "/demo/index"> index page 1</a>
+
+        <br /> <br />
+
+        <%= link_to("Index page 2",{:action => "index"}) %>
+
+    16. URL Parameters: parameters are usually content that appears in the link after '?'
+        params are stored in rails frame work in 'params' variable.
+
+        Exmple:
+        hello.html.erb file
+
+        <%= link_to("Index page 2",{:action => "index" , :id => 30 , :page =>444}) %>
+
+        index.html.erb file
+
+        ID: <%= params['id'] %> 
+        Page: <%= @page %>
+
+        controller file
+
+        class DemoController < ApplicationController
+        def index
+            @array = [1,2,3,4,5]
+            @page = params['page']
+        end
+
+        def hello
+            
+            #redirect_to(controller:"demo",action:"index")
+        end
+        end
+
+        We can access parameters from params var both by 'str' and :str way. and these params are stored as strings in rails
