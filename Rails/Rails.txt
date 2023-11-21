@@ -104,3 +104,37 @@
         end
 
         hello action will redirect to index everytime
+
+        We can also write : redirect_to(action:"index")
+        if the controller is same
+
+    13. What is erb?: Embedded ruby(used to write ruby code in html file)
+
+        Syntax: <% code %> (it doesnot outputs the result on template)
+                or
+                <%= code %> (it outputs the result)
+
+        Example:
+        <h1>Index page</h1>
+
+        <%= "printss 1" %>
+
+        <br />
+
+        <% set = "Hello" %>
+
+        <%= "Hello #{set}" %>
+
+        <% 3.times do |n| %>
+            <p><%= n %></p>
+        <% end %>
+
+        Output:
+        Index page
+        printss 1
+        Hello Hello
+        0
+
+        1
+
+        2
