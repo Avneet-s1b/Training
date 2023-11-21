@@ -21,6 +21,20 @@
 
     5. Create a new project: Command: rails new <application-name>
 
+        To start the server : rails server
+
+        by default this project is using sqlite3 db
+
+        when we have to create a project using postgres as db command is:
+
+        rails new <application-name> -d postgresql
+
+        before starting the server we have to initialize the db which is done using the command:
+
+        rake db:create
+
+        then start the server using: rails server
+
     6. Most of the coding is done in the app folder(95%) followed by config dir, gem file(packages used by our project) and db dir(database related files like db migration).
 
     7. We have different files for production,development,test environment inside the config dir.
