@@ -292,3 +292,31 @@
         end
 
         If you do so, you will have to manually define the class name that is hosting the fixtures (my_products.yml) using the set_fixture_class method in your test definition:
+
+    22. CRUD: CREATE READ UPDATE DELETE
+
+        -Create: user = User.create(name: "David", occupation: "Code Artist")
+                 or
+                 user = User.new
+                 user.save
+
+        -Read:  users = User.all
+                or
+                user = User.first
+                or
+                david = User.find_by(name: 'David')
+                or
+                users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
+
+        -Update: user = User.find_by(name: 'David')
+                 user.update(name: 'Dave')
+                 or
+                 User.update_all attribute:val 
+
+        -Delete:user = User.find_by(name: 'David')
+                user.destroy
+                or
+                User.destroy_by(name: 'David')
+                User.destroy_all
+
+            
