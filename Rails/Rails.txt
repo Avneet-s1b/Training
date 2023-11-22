@@ -189,10 +189,10 @@
 
         We can access parameters from params var both by 'str' and :str way. and these params are stored as strings in rails
 
-        17. Autoloading: Application classes and modules are available everywhere, you do not need and should not load anything under app with require. 
+    17. Autoloading: Application classes and modules are available everywhere, you do not need and should not load anything under app with require. 
             require "application_controller" # DON'T DO THIS.
 
-        18. Model: A model is a Ruby class that is used to represent data. Additionally, models can interact with the application's database 
+    18. Model: A model is a Ruby class that is used to represent data. Additionally, models can interact with the application's database 
             through a feature of Rails called Active Record.
 
                 - Generating a model: Syntax: bin/rails generate model Article(model_name) title:string body:text(attributes)
@@ -220,3 +220,18 @@
 
                     5. all: List all records in the table
                         Eg: Article.all
+
+
+    19. Showing table in templates: We can do this by calling the model class in our controller as
+            
+            class DemoController < ApplicationController
+            def index
+                @arr = Demo.all
+            end
+            end
+
+        Then calling this instance var in view file using erb format as:
+            
+            <% @arr.each do |rec| %>
+                <p><%= rec[:name] %></p>
+            <% end %>
