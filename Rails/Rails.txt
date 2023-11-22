@@ -265,3 +265,30 @@
         edit_article GET    /articles/:id/edit(.:format) articles#edit
                     PATCH  /articles/:id(.:format)      articles#update
                     DELETE /articles/:id(.:format)      articles#destroy
+
+    21. Active Record: Active Record is the M in MVC - the model - which is the layer of the system responsible for representing business data and logic. 
+    Active Record facilitates the creation and use of business objects whose data requires persistent storage to a database. basically helps in db creation migration etc.
+
+        - ORM: Object Relational Mapping, commonly referred to as its abbreviation ORM.
+            Using ORM, the properties and relationships of the objects in an application can be easily stored and retrieved from a database without writing SQL statements 
+            directly and with less overall database access code.
+
+        - Convention over configuration:
+            1. naming convention: model name singular(Article,person) , table name plural(Articles,people)
+            2. schema conventions: Foreign keys - These fields should be named following the pattern singularized_table_name_id (e.g., item_id, order_id). 
+            These are the fields that Active Record will look for when you create associations between your models.
+            Primary keys - By default, Active Record will use an integer column named id as the table's primary key
+
+        - Application record: When generating an application, an abstract ApplicationRecord class will be created in app/models/application_record.rb. 
+        This is the base class for all models in an app, and it's what turns a regular ruby class into an Active Record model. When we create a model it automatically inherits from ApplicationRecord
+
+        Creating a model and creating an active record model is same.
+
+        - Overriding naming conventions: Since ApplicationRecord inherits from ActiveRecord::Base, your application's models will have a number of helpful methods available to them. 
+        For example, you can use the ActiveRecord::Base.table_name= method to customize the table name that should be used:
+        Example:
+        class Product < ApplicationRecord
+        self.table_name = "my_products"
+        end
+
+        If you do so, you will have to manually define the class name that is hosting the fixtures (my_products.yml) using the set_fixture_class method in your test definition:
