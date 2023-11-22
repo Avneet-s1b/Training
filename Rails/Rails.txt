@@ -10,7 +10,7 @@
 
     4. MVC Architecture: MVC stands for Model View Controller Architecture. It helps in ensuring DRY principal is followed.
 
-        - Model: Contains all the data related objects
+        - Model: Contains all the database related objects and business logic
         - View: Contains all the objects that will be shown to the user like html css js.
         - Controller: Contains all the code that will help in decision making process for a given request
 
@@ -192,9 +192,31 @@
         17. Autoloading: Application classes and modules are available everywhere, you do not need and should not load anything under app with require. 
             require "application_controller" # DON'T DO THIS.
 
-        18. Generating a model: A model is a Ruby class that is used to represent data. Additionally, models can interact with the application's database 
+        18. Model: A model is a Ruby class that is used to represent data. Additionally, models can interact with the application's database 
             through a feature of Rails called Active Record.
 
-            Syntax: bin/rails generate model Article(model_name) title:string body:text(attributes)
+                - Generating a model: Syntax: bin/rails generate model Article(model_name) title:string body:text(attributes)
 
-1. 
+                out of the created files we work in two files one is migrate file which contains the description of the table created
+                other one is inside the model which is used for validations 
+
+                - Migrating a model: Migrations are used to alter the structure of an application's database.
+                With migration we can interact with our database/table through our model in console no need to write sql.
+
+                Syntax: rails db:migrate
+
+                - interacting with db: We have to open console using command: bin/rails console
+
+                    1. new: To create new record  
+                        Eg: article = Article.new(title: "Hello Rails", body: "I am on Rails!")
+
+                    2. save: new will only create new record to save the record in table in db we have to use save method
+                        Eg: article.save
+
+                    3. create: it creates a new entry as well ass adds it to the table.
+
+                    4. find: finds specific id from table.
+                        Eg: Article.find(1)
+
+                    5. all: List all records in the table
+                        Eg: Article.all
