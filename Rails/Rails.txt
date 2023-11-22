@@ -235,3 +235,33 @@
             <% @arr.each do |rec| %>
                 <p><%= rec[:name] %></p>
             <% end %>
+
+    20. Resourceful Routing: Rails provides a routes method named resources that maps all of the conventional routes 
+    for a collection of resources, such as articles.
+
+        Syntax:
+        Rails.application.routes.draw do
+        # get 'demo/index'
+        resources :demo
+        # match 'demo/:id', :to => 'demo#show', :via => :get
+        # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+        # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
+        # Can be used by load balancers and uptime monitors to verify that the app is live.
+        get "up" => "rails/health#show", as: :rails_health_check
+
+        # Defines the root path route ("/")
+        # root "posts#index"
+        end
+
+    We can inspect what routes are mapped by running the bin/rails routes command:
+        bin/rails routes
+            Prefix Verb   URI Pattern                  Controller#Action
+                root GET    /                            articles#index
+            articles GET    /articles(.:format)          articles#index
+        new_article GET    /articles/new(.:format)      articles#new
+            article GET    /articles/:id(.:format)      articles#show
+                    POST   /articles(.:format)          articles#create
+        edit_article GET    /articles/:id/edit(.:format) articles#edit
+                    PATCH  /articles/:id(.:format)      articles#update
+                    DELETE /articles/:id(.:format)      articles#destroy
