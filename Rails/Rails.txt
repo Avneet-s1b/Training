@@ -389,3 +389,5 @@
             by default it runs in development environment
         
         - check status of migrations: bin/rails db:migrate:status
+
+    24. Validations: Validations are used to ensure that only valid data is saved into your database.
