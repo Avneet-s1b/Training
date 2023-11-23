@@ -340,4 +340,5 @@
 
         - db folder: Migrate folder is present here which is responsible for every change in db. Every altercation in db we have to create a new migration old ones cant be migrated again.
 
+        - Writing migrations: We can edit the migrations file before migrating it and reflecting it in our dbs.
         
