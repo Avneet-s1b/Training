@@ -320,3 +320,24 @@
                 User.destroy_all
 
             
+    23. Migration: Migrations are a convenient way to alter your database schema over time in a consistent way. 
+    They use a Ruby DSL so that you don't have to write SQL by hand, allowing your schema and changes to be database independent.
+
+        -Migrations are stored as files in the db/migrate directory, one for each migration class. 
+        The name of the file is of the form YYYYMMDDHHMMSS_create_products.rb
+
+        - Generating a migration: bin/rails generate migration AddDetailsToProducts name:string age:string
+
+        - Removing a column from table: bin/rails generate migration RemovePartNumberFromProducts part_number:string
+
+        - Create a table: bin/rails generate migration CreateProducts name:string part_number:string
+
+            Not recommend this instead use generate model to create a new table
+
+        - Add Foriegn Key to a table: bin/rails generate migration AddUserRefToProducts user:references
+
+            Adds user_id col to Products which is a Fk for this table and pk from user table.
+
+        - db folder: Migrate folder is present here which is responsible for every change in db. Every altercation in db we have to create a new migration old ones cant be migrated again.
+
+        
