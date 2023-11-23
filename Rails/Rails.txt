@@ -354,4 +354,9 @@
             end
             end
 
+        - Sometimes helpers are not enough that are provided bu active records to edit the database so we can 
+        execute sql queries to in the console using special method.([Class].connection.execute)
+
+            Example: Product.connection.execute("UPDATE products SET price = 'free' WHERE 1=1") 
+
         
