@@ -363,9 +363,29 @@
 
             Example:
             require_relative "20231123110831_add_product_ref_to_customers"
-            
+
             class RevertAddProductRef < ActiveRecord::Migration[7.1]
               def change
                 revert AddProductRefToCustomers
               end
             end
+
+        - run a specific migration : bin/rails db:migrate VERSION=20080906120000
+
+        - rollback: bin/rails db:rollback STEP=3
+
+            if needed to rollback to only 1 step then remove STEP=3
+
+        - redo: The db:migrate:redo command is a shortcut for doing a rollback and then migrating back up again
+
+        - setup db: The bin/rails db:setup command will create the database, load the schema, and initialize it with the seed data.
+
+        - prepare: The bin/rails db:prepare command is similar to bin/rails db:setup, but it operates idempotently.
+
+        - reset: The bin/rails db:reset command will drop the database and set it up again. This is functionally equivalent to bin/rails db:drop db:setup.
+
+        - run migration in different environments: bin/rails db:migrate RAILS_ENV=test
+
+            by default it runs in development environment
+        
+        - check status of migrations: bin/rails db:migrate:status
