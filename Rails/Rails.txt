@@ -579,7 +579,10 @@
                 3.0.0 :043 > c.errors.full_messages
                 => ["Name name cant be empty", "Name is not cool enough"] 
 
-        - size & clear: 
+        - size & clear: The clear method is used when you intentionally want to clear the errors collection. 
+        Of course, calling errors.clear upon an invalid object won't actually make it valid: the errors collection will now be empty, 
+        but the next time you call valid? or any method that tries to save this object to the database, the validations will run again. 
+        If any of the validations fail, the errors collection will be filled again.
 
                 3.0.0 :051 > c.errors.size
                 => 2 
