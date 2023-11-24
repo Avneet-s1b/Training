@@ -461,3 +461,34 @@
 
         irb> Person.new.valid?
         ActiveModel::StrictValidationFailed: Name can't be blank
+
+    26. Conditional Validation: Sometimes it will make sense to validate an object only when a given predicate is satisfied. 
+    You can do that by using the :if and :unless option.
+
+        - Using a Symbol with :if and :unless:
+
+            Example:
+            validates :adhar_number, presence: true, if: :mobile_pres
+
+            def mobile_pres
+                mobile.empty? == false
+            end
+            
+            op:
+            3.0.0 :074 > c.errors.objects.first.full_message
+            => "Adhar number can't be blank" 
+
+        - Using a Proc with :if and :unless
+
+            Example:
+            validates :adhar_number, presence: true, unless: Proc.new{|obj| obj.mobile.empty?}
+
+            op:
+            3.0.0 :088 > c = Customer.new(name:"Ishita",mobile:"9971")
+            => 
+            #<Customer:0x00007f2837561740
+            ... 
+            3.0.0 :089 > c.valid?
+            => false
+
+        - 
