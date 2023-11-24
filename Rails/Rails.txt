@@ -439,4 +439,25 @@
 
         - presence: value cannot be nil.
 
-        - 
+        - absence: presence!
+
+        - uniqueness
+
+    
+    25. Options in Validation: 
+        - :allow_nil: Skip validation if the attribute is nil.
+        
+        - :allow_blank: Skip validation if the attribute is blank.
+        
+        - :message: Specify a custom error message.
+        
+        - :on: Specify the contexts where this validation is active.
+
+        - :strict: Raise an exception when the validation fails.
+        Example:
+        class Person < ApplicationRecord
+        validates :name, presence: { strict: true }
+        end
+
+        irb> Person.new.valid?
+        ActiveModel::StrictValidationFailed: Name can't be blank
