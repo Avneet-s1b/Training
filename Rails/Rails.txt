@@ -391,3 +391,52 @@
         - check status of migrations: bin/rails db:migrate:status
 
     24. Validations: Validations are used to ensure that only valid data is saved into your database.
+
+        - The following methods trigger validations, and will save the object to the database only if the object is valid:
+            - create
+            - create!
+            - save
+            - save!
+            - update
+            - update!
+
+        - The following methods skip validations, and will save the object to the database regardless of its validity. They should be used with caution.
+            - decrement!
+            - decrement_counter
+            - increment!
+            - increment_counter
+            - insert
+            - insert!
+            - insert_all
+            - insert_all! 
+            - etc
+        
+        - valid? : to check the validity of the record to be entered
+            irb> Person.create(name: "John Doe").valid?
+            => true
+            irb> Person.create(name: nil).valid?
+            => false
+
+        - Note that an object instantiated with new will not report errors even if it's technically invalid, because validations are automatically run only when the object is saved,
+         such as with the create or save methods.
+
+        - acceptance: used in checkbox to check that value is checked or not.
+
+        - comparison: used to compare two attributes.
+            Example: validates :end, comparison: { greater_than: :start }
+
+        - confirmation: to check that two values entered are equal or not like re enter password situation.
+
+        - format:  validates the attributes' values by testing whether they match a given regular expression.
+
+        - inclusion: only allows value in the list.
+
+        - exclusion: inclusion!
+
+        - length: decide the length of the record to be entered.
+
+        - numericality: to ensure only valid numbers are entered.
+
+        - presence: value cannot be nil.
+
+        - 
