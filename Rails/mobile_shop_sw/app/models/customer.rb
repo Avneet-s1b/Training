@@ -7,7 +7,12 @@ class MyValidator < ActiveModel::Validator
 end
 
 class Customer < ApplicationRecord
-    # validates :name, presence: {strict:true} , length: { is: 6 }
+    validates :name, presence: {message:"name cant be empty"}
+
+    validate do |person|
+        errors.add :name, message: "is not cool enough"
+    end
+
     # validates :end, comparison: { greater_than: :start }
     # validates :name, inclusion: { in: ['Action', 'Science Fiction', 'Drama', 'Horror', 'Comedy', 'Musical'] }, allow_nil: true
     # validates :end, numericality: {only_integer:true, strict:true}
@@ -19,5 +24,5 @@ class Customer < ApplicationRecord
     #     mobile.empty? == false
     # end
 
-    validates_with MyValidator
+    # validates_with MyValidator
 end

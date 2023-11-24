@@ -548,4 +548,44 @@
             - Customer.validators
              => [#<MyValidator:0x00007f2492327b58 @options={}>] 
 
-    
+    29. Errors: 
+        - errors: 3.0.0 :028 > c.errors
+                 => #<ActiveModel::Errors [#<ActiveModel::Error attribute=name, type=blank, options={:message=>"name cant be empty"}>]> 
+
+                3.0.0 :029 > c.errors.full_messages
+                => ["Name name cant be empty"] 
+
+                3.0.0 :030 > c.errors.first.details
+                => {:error=>:blank}
+
+        - errors[]: 3.0.0 :031 > c.errors[:name]
+                     => ["name cant be empty"] 
+
+        - where: where returns an array of error objects filtered by various degrees of conditions
+                3.0.0 :032 > error = c.errors.where(:name).last
+                => #<ActiveModel::Error attribute=name, type=blank, options={:message=>"name cant be empty"}> 
+                3.0.0 :033 > error.message
+                => "name cant be empty" 
+                3.0.0 :034 > error.full_message
+                => "Name name cant be empty" 
+
+        - add: The add method creates the error object by taking the attribute, the error type and additional options hash. 
+                class Person < ApplicationRecord
+                validate do |person|
+                    errors.add :name, :too_plain, message: "is not cool enough"
+                end
+                end
+
+                3.0.0 :043 > c.errors.full_messages
+                => ["Name name cant be empty", "Name is not cool enough"] 
+
+        - size & clear: 
+
+                3.0.0 :051 > c.errors.size
+                => 2 
+                3.0.0 :052 > c.errors.clear
+                => [] 
+                3.0.0 :053 > c.errors.size
+                => 0 
+
+        
