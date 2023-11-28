@@ -603,4 +603,20 @@
         irb> @baby = Baby.create
         Congratulations!
 
-        - Callbacks Registration: 
+        - Callbacks Registration: In order to use the available callbacks, you need to register them. 
+        You can implement the callbacks as ordinary methods and use a macro-style class method to register them as callbacks
+        
+        Example:
+        class User < ApplicationRecord
+        validates :login, :email, presence: true
+
+        before_validation :ensure_login_has_a_value
+
+        private
+            def ensure_login_has_a_value
+            if login.blank?
+                self.login = email unless email.blank?
+            end
+            end
+        end
+
