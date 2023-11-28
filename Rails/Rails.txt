@@ -648,3 +648,38 @@
                 around_destroy
                 after_destroy
                 after_commit / after_rollback
+
+            4. after_initialize
+            
+            5. after_find
+
+            6. after_touch
+
+        - Methods that trigger callbacks: The following methods trigger callbacks:
+            create
+            create!
+            destroy
+            destroy!
+            destroy_all
+            destroy_by
+            save
+            save!
+            save(validate: false)
+            toggle!
+            touch
+            update_attribute
+            update
+            update!
+            valid?
+            
+            Additionally, the after_find callback is triggered by the following finder methods:
+            all
+            first
+            find
+            find_by
+            find_by_*
+            find_by_*!
+            find_by_sql
+            last
+            
+            The after_initialize callback is triggered every time a new object of the class is initialized.
