@@ -23,6 +23,11 @@ class Product < ApplicationRecord
 
     before_create OurCallbackClass.new
 
+    after_create_commit Proc.new{puts "after_create_commit callback working"}
+
+    after_commit { puts("this actually gets called second") }
+    after_commit { puts("this actually gets called first") }
+
     # after_initialize ->(user){puts "You have initialized a product object!"}
     # # after_initialize do |user|
     # #     puts "You have initialized a product object!"
