@@ -1,10 +1,10 @@
-class MyValidator < ActiveModel::Validator
-    def validate(record)
-        unless record.name.start_with? 'X'
-            record.errors.add :name, "Provide a name starting with X, please!"
-        end
-    end
-end
+# class MyValidator < ActiveModel::Validator
+#     def validate(record)
+#         unless record.name.start_with? 'X'
+#             record.errors.add :name, "Provide a name starting with X, please!"
+#         end
+#     end
+# end
 
 class Customer < ApplicationRecord
     # validates :name, presence: {message:"name cant be empty"}
@@ -13,7 +13,7 @@ class Customer < ApplicationRecord
     #     errors.add :name, message: "is not cool enough"
     # end
 
-    after_create -> { puts "Congratulations!" }
+    # after_create -> { puts "Congratulations!" }
 
     # validates :end, comparison: { greater_than: :start }
     # validates :name, inclusion: { in: ['Action', 'Science Fiction', 'Drama', 'Horror', 'Comedy', 'Musical'] }, allow_nil: true
