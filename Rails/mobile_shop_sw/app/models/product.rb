@@ -4,9 +4,15 @@ class Product < ApplicationRecord
 
     # after_validation :creation
 
-    before_create do
-        puts "Creating an object in Products table"
+    # before_create do
+    #     puts "Creating an object in Products table"
+    # end
+
+    before_create :fn , if: Proc.new { name.length==6 }
+    def fn 
+        puts "word is of length #{name}"
     end
+
     # after_initialize ->(user){puts "You have initialized a product object!"}
     # # after_initialize do |user|
     # #     puts "You have initialized a product object!"
@@ -25,11 +31,11 @@ class Product < ApplicationRecord
 
     # before_validation :remove_whitespaces
 
-    throw(:abort)
+    # throw(:abort)
 
-    before_validation do
-        puts "Checking validity"
-    end
+    # before_validation do
+    #     puts "Checking validity"
+    # end
 
     # private
     #     def remove_whitespaces
