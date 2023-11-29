@@ -19,6 +19,10 @@ class Product < ApplicationRecord
 
     attr_accessor :name
 
+    before_destroy do |product|
+        puts "destroyed #{name}"
+    end
+
     before_validation :remove_whitespaces
 
     private
