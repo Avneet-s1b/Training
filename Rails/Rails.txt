@@ -607,21 +607,15 @@
         You can implement the callbacks as ordinary methods and use a macro-style class method to register them as callbacks
         
         Example:
-        class User < ApplicationRecord
-        validates :login, :email, presence: true
+            after_create :creation
 
-        before_validation :ensure_login_has_a_value
-
-        private
-            def ensure_login_has_a_value
-            if login.blank?
-                self.login = email unless email.blank?
-            end
-            end
-        end
+            private
+                def creation
+                    puts "Product added successfully"            
+                end
 
         - available callbacks:
-            1 Creating an Object
+            1. Creating an Object
                 before_validation
                 after_validation
                 before_save
@@ -632,7 +626,7 @@
                 after_save
                 after_commit / after_rollback
 
-            2 Updating an Object
+            2. Updating an Object
                 before_validation
                 after_validation
                 before_save
@@ -643,7 +637,7 @@
                 after_save
                 after_commit / after_rollback
 
-            3 Destroying an Object
+            3. Destroying an Object
                 before_destroy
                 around_destroy
                 after_destroy
