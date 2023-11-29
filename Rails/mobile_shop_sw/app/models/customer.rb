@@ -28,3 +28,11 @@ class Customer < ApplicationRecord
 
     # validates_with MyValidator
 end
+
+# class OurCallbackClass
+#     def before_create(record)
+#         if record.name.length>2
+#             puts "length is greater than 2"
+#         end
+#     end
+# end

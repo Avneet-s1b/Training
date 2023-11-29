@@ -1,3 +1,11 @@
+class OurCallbackClass
+    def before_create(record)
+        if record.name.length>2
+            puts "length is greater than 2"
+        end
+    end
+end
+
 class Product < ApplicationRecord
 
     # after_create :creation
@@ -8,10 +16,12 @@ class Product < ApplicationRecord
     #     puts "Creating an object in Products table"
     # end
 
-    before_create :fn , if: Proc.new { name.length==6 }
-    def fn 
-        puts "word is of length #{name}"
-    end
+    # before_create :fn , if: Proc.new { name.length==6 }
+    # def fn 
+    #     puts "word is of length #{name}"
+    # end
+
+    before_create OurCallbackClass.new
 
     # after_initialize ->(user){puts "You have initialized a product object!"}
     # # after_initialize do |user|

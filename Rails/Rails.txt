@@ -719,4 +719,18 @@
         - if and unless can be used together too.
 
     
-    
+    33. Callback classes: Sometimes the callback methods that you'll write will be useful enough to be reused by other models. 
+    Active Record makes it possible to create classes that encapsulate the callback methods, so they can be reused.
+
+        Example:
+        class OurCallbackClass
+            def before_create(record)
+                if record.name.length>2
+                    puts "length is greater than 2"
+                end
+            end
+        end
+
+        class Product < ApplicationRecord
+            before_create OurCallbackClass.new
+        end
