@@ -7,11 +7,13 @@ class MyValidator < ActiveModel::Validator
 end
 
 class Customer < ApplicationRecord
-    validates :name, presence: {message:"name cant be empty"}
+    # validates :name, presence: {message:"name cant be empty"}
 
-    validate do |person|
-        errors.add :name, message: "is not cool enough"
-    end
+    # validate do |person|
+    #     errors.add :name, message: "is not cool enough"
+    # end
+
+    after_create -> { puts "Congratulations!" }
 
     # validates :end, comparison: { greater_than: :start }
     # validates :name, inclusion: { in: ['Action', 'Science Fiction', 'Drama', 'Horror', 'Comedy', 'Musical'] }, allow_nil: true
