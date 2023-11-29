@@ -4,9 +4,9 @@ class Product < ApplicationRecord
 
     # after_validation :creation
 
-    # # before_create do
-    # #     puts "Creating an object in Products table"
-    # # end
+    before_create do
+        puts "Creating an object in Products table"
+    end
     # after_initialize ->(user){puts "You have initialized a product object!"}
     # # after_initialize do |user|
     # #     puts "You have initialized a product object!"
@@ -17,16 +17,22 @@ class Product < ApplicationRecord
     #         puts "Product added successfully"            
     #     end
 
-    attr_accessor :name
+    # attr_accessor :name
 
-    before_destroy do |product|
-        puts "destroyed #{name}"
+    # before_destroy do |product|
+    #     puts "destroyed #{name}"
+    # end
+
+    # before_validation :remove_whitespaces
+
+    throw(:abort)
+
+    before_validation do
+        puts "Checking validity"
     end
 
-    before_validation :remove_whitespaces
-
-    private
-        def remove_whitespaces
-            name.strip!
-        end
+    # private
+    #     def remove_whitespaces
+    #         name.strip!
+    #     end
 end

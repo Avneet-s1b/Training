@@ -697,3 +697,5 @@
             update_counters
             upsert
             upsert_all
+
+    31. Throw errors: if error is thrown then the queue having validations and callbacks is rolled back.
