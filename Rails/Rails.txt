@@ -699,3 +699,24 @@
             upsert_all
 
     31. Throw errors: if error is thrown then the queue having validations and callbacks is rolled back.
+
+    32. Conditional callbacks: As with validations, we can also make the calling of a callback method conditional on the satisfaction of a given predicate. 
+    We can do this using the :if and :unless options, which can take a symbol, a Proc or an Array.
+
+        - if and unless with a proc:
+            Example:
+            before_create :fn , if: Proc.new { name.length==6 }
+            def fn 
+                puts "word is of length #{name}"
+            end
+
+        TO ACCESS ATTRIBUTE BEIGN GIVEN WE CAN SIMPLY DO IT USING ATTRIBUTE NAME LIKE ABOVE WE HAVE FOUND LENGTH OF NAME BEIGN ENTERED BY THE USER.
+
+        - if and unless with a :function in place of proc
+
+        - multiple conditions can be entered like if: [cond1,cond2]
+
+        - if and unless can be used together too.
+
+    
+    
