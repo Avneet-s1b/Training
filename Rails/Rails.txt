@@ -824,3 +824,38 @@
             The simplest rule of thumb is that you should set up a has_many :through relationship if you need to work with the relationship model as an independent entity. 
             If you don't need to do anything with the relationship model, it may be simpler to set up a has_and_belongs_to_many relationship (though you'll need to remember 
             to create the joining table in the database).
+
+        7. Polymorphic association: A slightly more advanced twist on associations is the polymorphic association. With polymorphic associations, 
+        a model can belong to more than one other model, on a single association.
+            Example:
+            class Picture < ApplicationRecord
+            belongs_to :imageable, polymorphic: true
+            end
+
+            class Employee < ApplicationRecord
+            has_many :pictures, as: :imageable
+            end
+
+            class Product < ApplicationRecord
+            has_many :pictures, as: :imageable
+            end
+
+        8. Association with composite primary keys: 
+            Example:
+            class Author < ApplicationRecord
+            self.primary_key = [:first_name, :last_name]
+            has_many :books, query_constraints: [:first_name, :last_name]
+            end
+
+            class Book < ApplicationRecord
+            belongs_to :author, query_constraints: [:author_first_name, :author_last_name]
+            end
+
+        9. self joins: 
+            Example:    
+            class Employee < ApplicationRecord
+                has_many :subordinates, class_name: "Employee",
+                                        foreign_key: "manager_id"
+
+                belongs_to :manager, class_name: "Employee", optional: true
+            end
