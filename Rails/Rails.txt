@@ -922,5 +922,30 @@
             created_at: Thu, 30 Nov 2023 05:14:35.440787000 UTC +00:00,
             updated_at: Thu, 30 Nov 2023 05:14:35.440787000 UTC +00:00> 
             3.0.0 :029 > 
+        
+        - options given by belongs_to: The has_one association supports these options:
+            - :autosave
+            - :class_name
+            - :counter_cache
+            - :default
+            - :dependent
+            - :ensuring_owner_was
+            - :foreign_key
+            - :foreign_type
+            - :primary_key
+            - :inverse_of
+            - :optional
+            - :polymorphic
+            - :required
+            - :strict_loading
+            - :touch
+            - :validate
 
+        - Scopes for belongs_to: 
+            - where: The where method lets you specify the conditions that the associated object must meet.
+            - includes: You can use the includes method to specify second-order associations that should be eager-loaded when this association is used.
+            - readonly: If you use the readonly method, then the associated object will be read-only when retrieved via the association.
+            - select: The select method lets you override the SQL SELECT clause that is used to retrieve data about the associated object. By default, Rails retrieves all columns.
+
+            
 
