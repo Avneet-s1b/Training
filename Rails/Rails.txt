@@ -1126,3 +1126,55 @@
             => 
             #<Book:0x00007f6e67dba4e8
             ... 
+
+        
+        - Single Table Inheritance: it creates a main parent table with many child tables inheriting from it but the data is stored only in the parent table with type(child name) also in that parent table in front of the record.
+            
+            Command: bin/rails generate model vehicle type:string color:string price:integer 
+            Above command creates the parent model
+
+                  bin/rails generate model car --parent=Vehicle
+            Above command creates the child table.
+
+            Models:
+            class Vehicle < ApplicationRecord
+            end
+
+            class Car < Vehicle
+            end
+
+            Console: 
+            3.0.0 :001 > Car.create(color:"Red",price:800000)
+            TRANSACTION (0.2ms)  BEGIN
+            Car Create (1.5ms)  INSERT INTO "vehicles" ("type", "color", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["type", "Car"], ["color", "Red"], ["price", 800000], ["created_at", "2023-11-30 12:02:40.747055"], ["updated_at", "2023-11-30 12:02:40.747055"]]
+            TRANSACTION (21.6ms)  COMMIT
+            => 
+            #<Car:0x00007f8ae471bd50
+            id: 1,
+            type: "Car",
+            color: "Red",
+            price: 800000,
+            created_at: Thu, 30 Nov 2023 12:02:40.747055000 UTC +00:00,
+            updated_at: Thu, 30 Nov 2023 12:02:40.747055000 UTC +00:00> 
+            3.0.0 :002 > Car.all
+            Car Load (0.4ms)  SELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."type" = $1 /* loading for pp */ LIMIT $2  [["type", "Car"], ["LIMIT", 11]]
+            => 
+            [#<Car:0x00007f8ae5bac300
+            id: 1,
+            type: "Car",
+            color: "Red",
+            price: 800000,
+            created_at: Thu, 30 Nov 2023 12:02:40.747055000 UTC +00:00,
+            updated_at: Thu, 30 Nov 2023 12:02:40.747055000 UTC +00:00>] 
+            3.0.0 :003 > Vehicle.all
+            Vehicle Load (0.2ms)  SELECT "vehicles".* FROM "vehicles" /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+            => 
+            [#<Car:0x00007f8add8da788
+            id: 1,
+            type: "Car",
+            color: "Red",
+            price: 800000,
+            created_at: Thu, 30 Nov 2023 12:02:40.747055000 UTC +00:00,
+            updated_at: Thu, 30 Nov 2023 12:02:40.747055000 UTC +00:00>] 
+            
+        
