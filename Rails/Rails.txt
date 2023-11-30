@@ -983,4 +983,119 @@
             - readonly
             - select
 
-        - 
+        - Methods Added by has_many: When you declare a has_many association, the declaring class automatically gains 17 methods related to the association:
+            - collection: 
+                3.0.0 :031 > @author.books
+                Book Load (0.4ms)  SELECT "books".* FROM "books" WHERE "books"."author_id" = $1 /* loading for pp */ LIMIT $2  [["author_id", 3], ["LIMIT", 11]]
+                => 
+                [#<Book:0x00007f0fe154a018
+                id: 3,
+                name: "Rich Dad Poor Dad",
+                genre: "Finance",
+                created_at: Thu, 30 Nov 2023 05:15:31.096338000 UTC +00:00,
+                updated_at: Thu, 30 Nov 2023 05:15:31.096338000 UTC +00:00,
+                author_id: 3>,
+                #<Book:0x00007f0fe1549ed8
+                id: 4,
+                name: "Harry Potter",
+                genre: nil,
+                created_at: Thu, 30 Nov 2023 06:31:21.943240000 UTC +00:00,
+                updated_at: Thu, 30 Nov 2023 07:38:08.814911000 UTC +00:00,
+                author_id: 3>]   
+
+            - collection<<(object, ...): The collection<< method adds one or more objects to the collection by setting their foreign keys to the primary key of the calling model
+
+            - collection.delete(object, ...):
+                3.0.0 :037 > @author.books.delete(@books)
+                TRANSACTION (0.4ms)  BEGIN
+                Book Destroy (1.1ms)  DELETE FROM "books" WHERE "books"."id" = $1  [["id", 4]]
+                TRANSACTION (13.0ms)  COMMIT
+                => 
+                [#<Book:0x00007f0fe2ca4308
+                id: 4,
+                name: "Harry Potter",
+                genre: nil,
+                created_at: Thu, 30 Nov 2023 06:31:21.943240000 UTC +00:00,
+                updated_at: Thu, 30 Nov 2023 07:38:08.814911000 UTC +00:00,
+                author_id: 3>]  
+
+            - collection.destroy(object, ...): similar to delete just calls the destroy method to delete
+            - collection=(objects): 
+                3.0.0 :055 > @author.books=(@books)
+                Book Load (0.5ms)  SELECT "books".* FROM "books" WHERE "books"."author_id" = $1  [["author_id", 3]]
+                => 
+                [#<Book:0x00007f0fe1540518
+                ... 
+            - collection_singular_ids
+            - collection_singular_ids=(ids) : The collection_singular_ids method returns an array of the ids of the objects in the collection.
+                3.0.0 :063 > @author.book_ids=3
+                Book Load (0.6ms)  SELECT "books".* FROM "books" WHERE "books"."id" = $1  [["id", 3]]
+                => 3 
+            - collection.clear: clears the collection
+            - collection.empty?: checks if the collection is empty
+            - collection.size: return size of the collection
+            - collection.find(...): search from cllection using id
+            - collection.where(...): search using specified field.
+            - collection.exists?(...): checks whether an object meeting the supplied conditions exists in the collection's table.
+            - collection.build(attributes = {}): only builds new object doesnt save.
+            - collection.create(attributes = {}): builds and save new object.
+            - collection.create!(attributes = {}): same as above.
+            - collection.reload: The collection.reload method returns a Relation of all of the associated objects, forcing a database read. If there are no associated objects, it returns an empty Relation.
+
+        - options for has_many: The has_many association supports these options:
+            - :as
+            - :autosave
+            - :class_name
+            - :counter_cache
+            - :dependent
+            - :disable_joins
+            - :ensuring_owner_was
+            - :extend
+            - :foreign_key
+            - :foreign_type
+            - :inverse_of
+            - :primary_key
+            - :query_constraints
+            - :source
+            - :source_type
+            - :strict_loading
+            - :through
+            - :validate
+            
+        - scope for has_many: There may be times when you wish to customize the query used by has_many. Such customizations can be achieved via a scope block.
+            - where
+            - extending
+            - group
+            - includes
+            - limit
+            - offset
+            - order
+            - readonly
+            - select
+            - distinct
+
+            Example:
+            class Author < ApplicationRecord
+                has_many :books, dependent: :destroy, -> { order "id DESC" }
+            end
+
+            Console:
+            3.0.0 :085 > @author.books.all
+            Book Load (0.5ms)  SELECT "books".* FROM "books" WHERE "books"."author_id" = $1 /* loading for pp */ LIMIT $2  [["author_id", 3], ["LIMIT", 11]]
+            => 
+            [#<Book:0x00007f0fe1587e40
+            id: 7,
+            name: "Lolita",
+            genre: nil,
+            created_at: Thu, 30 Nov 2023 10:31:05.724079000 UTC +00:00,
+            updated_at: Thu, 30 Nov 2023 10:31:05.724079000 UTC +00:00,
+            author_id: 3>,
+            #<Book:0x00007f0fe1587d00
+            id: 3,
+            name: "Rich Dad Poor Dad",
+            genre: "Finance",
+            created_at: Thu, 30 Nov 2023 05:15:31.096338000 UTC +00:00,
+            updated_at: Thu, 30 Nov 2023 05:15:31.096338000 UTC +00:00,
+            author_id: 3>]
+
+        -
