@@ -1098,4 +1098,31 @@
             updated_at: Thu, 30 Nov 2023 05:15:31.096338000 UTC +00:00,
             author_id: 3>]
 
-        -
+        - has_and_belongs_to_many has same methods, options and scope as has_many.
+
+        -Association Calbacks: Association callbacks are similar to normal callbacks, but they are triggered by events in the life cycle of a collection. There are four available association callbacks:
+            - before_add
+            - after_add
+            - before_remove
+            - after_remove
+
+            Example:
+            class Author < ApplicationRecord
+                has_many :books, before_add: :check_credit_limit
+
+                def check_credit_limit(book)
+                    puts "Adds a booooooooook!"
+                end
+
+
+            end
+
+            Console:
+            3.0.0 :024 > @b = @a.books.create(name:"Book D")
+            Adds a booooooooook!
+            TRANSACTION (0.2ms)  BEGIN
+            Book Create (2.0ms)  INSERT INTO "books" ("name", "genre", "created_at", "updated_at", "author_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "Book D"], ["genre", nil], ["created_at", "2023-11-30 11:52:53.266127"], ["updated_at", "2023-11-30 11:52:53.266127"], ["author_id", 3]]
+            TRANSACTION (13.2ms)  COMMIT
+            => 
+            #<Book:0x00007f6e67dba4e8
+            ... 
