@@ -859,3 +859,22 @@
 
                 belongs_to :manager, class_name: "Employee", optional: true
             end
+
+        - Tips and Tricks: Here are a few things you should know to make efficient use of Active Record associations in your Rails applications:
+
+            - Controlling caching:All of the association methods are built around caching, which keeps the result of the most recent query available for further operations. 
+                The cache is even shared across methods (@author.books.load/reload)
+                But what if you want to reload the cache, because data might have been changed by some other part of the application? Just call reload on the association.
+            
+            - Avoiding name collisions: You are not free to use just any name for your associations. Because creating an association adds a method with that name to the model, 
+                it is a bad idea to give an association a name that is already used for an instance method of ActiveRecord::Base. The association method would override the base method and 
+                break things. For instance, attributes or connection are bad names for associations.
+
+            - Updating the schema: You are responsible for maintaining your database schema to match your associations.eg:
+                For belongs_to associations you need to create foreign keys, and for has_and_belongs_to_many associations you need to create the appropriate join table.
+
+            - Controlling association scope
+            
+            - Bi-directional associations
+
+
