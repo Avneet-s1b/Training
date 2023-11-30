@@ -874,7 +874,53 @@
                 For belongs_to associations you need to create foreign keys, and for has_and_belongs_to_many associations you need to create the appropriate join table.
 
             - Controlling association scope
-            
+
             - Bi-directional associations
+
+        - Methods Added by belongs_to: When you declare a belongs_to association, the declaring class automatically gains 8 methods related to the association:
+            - association
+            - association=(associate)
+            - build_association(attributes = {})
+            - create_association(attributes = {})
+            - create_association!(attributes = {})
+            - reload_association
+            - reset_association
+            - association_changed?
+            - association_previously_changed?
+
+         In all of these methods, association is replaced with the symbol passed as the first argument to belongs_to
+         Example:
+            3.0.0 :022 > @books.author
+            => 
+            #<Author:0x00007f0fe15e6f58
+            id: 2,
+            name: "Avneet",
+            dob: nil,
+            created_at: Thu, 30 Nov 2023 05:12:24.784698000 UTC +00:00,
+            updated_at: Thu, 30 Nov 2023 05:12:24.784698000 UTC +00:00> 
+            3.0.0 :023 > @books.author_changed?
+            => false 
+            3.0.0 :024 > @books.author= @author
+            => 
+            #<Author:0x00007f0fe1588d40
+            ... 
+            3.0.0 :025 > @books.author_changed?
+            => true 
+            3.0.0 :026 > @books.save
+            TRANSACTION (0.3ms)  BEGIN
+            Book Update (1.2ms)  UPDATE "books" SET "updated_at" = $1, "author_id" = $2 WHERE "books"."id" = $3  [["updated_at", "2023-11-30 07:38:08.814911"], ["author_id", 3], ["id", 4]]
+            TRANSACTION (21.5ms)  COMMIT
+            => true 
+            3.0.0 :027 > @books.author_changed?
+            => false 
+            3.0.0 :028 > @books.author
+            => 
+            #<Author:0x00007f0fe1588d40
+            id: 3,
+            name: "Kunal",
+            dob: nil,
+            created_at: Thu, 30 Nov 2023 05:14:35.440787000 UTC +00:00,
+            updated_at: Thu, 30 Nov 2023 05:14:35.440787000 UTC +00:00> 
+            3.0.0 :029 > 
 
 
