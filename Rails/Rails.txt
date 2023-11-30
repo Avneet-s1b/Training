@@ -947,5 +947,40 @@
             - readonly: If you use the readonly method, then the associated object will be read-only when retrieved via the association.
             - select: The select method lets you override the SQL SELECT clause that is used to retrieve data about the associated object. By default, Rails retrieves all columns.
 
-            
+        - Methods Added by has_one: When you declare a has_one association, the declaring class automatically gains 6 methods related to the association:
+            - association
+            - association=(associate)
+            - build_association(attributes = {})
+            - create_association(attributes = {})
+            - create_association!(attributes = {})
+            - reload_association
+            - reset_association
+        
+         In all of these methods, association is replaced with the symbol passed as the first argument to has_one.
 
+        - Options for has_one: The has_one association supports these options:
+            - :as
+            - :autosave
+            - :class_name
+            - :dependent
+            - :disable_joins
+            - :ensuring_owner_was
+            - :foreign_key
+            - :inverse_of
+            - :primary_key
+            - :query_constraints
+            - :required
+            - :source
+            - :source_type
+            - :strict_loading
+            - :through
+            - :touch
+            - :validate
+            
+        - Scope for has_one:
+            - where
+            - includes
+            - readonly
+            - select
+
+        - 
