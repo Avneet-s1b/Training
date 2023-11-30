@@ -734,3 +734,27 @@
         class Product < ApplicationRecord
             before_create OurCallbackClass.new
         end
+
+    34. Associations: In Rails, an association is a connection between two Active Record models. 
+        
+        - They make common operations simpler and easier in your code.In Rails, an association is a connection between two Active Record models. Why do we need associations between models? Because they make common operations simpler and easier in your code.
+
+        Example:
+        Create two table author and books and add reference between them using migration
+        class AddAuthRefToBooks < ActiveRecord::Migration[7.1]
+        def change
+            add_reference :books, :author, null: false, foreign_key: true
+        end
+        end
+
+        in model folder specify the type of relation to perform operations on both models simultaeously and easily.
+
+        class Author < ApplicationRecord
+        has_many :books, dependent: :destroy
+        end
+
+        class Book < ApplicationRecord
+        belongs_to :author
+        end
+
+        
