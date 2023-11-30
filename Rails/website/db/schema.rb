@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_30_115921) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_30_122456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_115921) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "create_customers", force: :cascade do |t|
     t.string "orders"
     t.datetime "created_at", null: false
@@ -59,6 +65,20 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_115921) do
   create_table "departments_employees", id: false, force: :cascade do |t|
     t.bigint "employee_id", null: false
     t.bigint "department_id", null: false
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.string "entryable_type"
+    t.integer "entryable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "subject"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
