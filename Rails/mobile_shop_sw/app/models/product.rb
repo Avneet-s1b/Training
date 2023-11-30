@@ -1,12 +1,15 @@
-class OurCallbackClass
-    def before_create(record)
-        if record.name.length>2
-            puts "length is greater than 2"
-        end
-    end
-end
+# class OurCallbackClass
+#     def before_create(record)
+#         if record.name.length>2
+#             puts "length is greater than 2"
+#         end
+#     end
+# end
 
 class Product < ApplicationRecord
+
+    has_many :orders
+    has_many :customers, through: :orders
 
     # after_create :creation
 
@@ -21,12 +24,12 @@ class Product < ApplicationRecord
     #     puts "word is of length #{name}"
     # end
 
-    before_create OurCallbackClass.new
+    # before_create OurCallbackClass.new
 
-    after_create_commit Proc.new{puts "after_create_commit callback working"}
+    # after_create_commit Proc.new{puts "after_create_commit callback working"}
 
-    after_commit { puts("this actually gets called second") }
-    after_commit { puts("this actually gets called first") }
+    # after_commit { puts("this actually gets called second") }
+    # after_commit { puts("this actually gets called first") }
 
     # after_initialize ->(user){puts "You have initialized a product object!"}
     # # after_initialize do |user|

@@ -7,6 +7,10 @@
 # end
 
 class Customer < ApplicationRecord
+
+    has_many :orders
+    has_many :products, through: :orders
+
     # validates :name, presence: {message:"name cant be empty"}
 
     # validate do |person|
@@ -28,11 +32,3 @@ class Customer < ApplicationRecord
 
     # validates_with MyValidator
 end
-
-# class OurCallbackClass
-#     def before_create(record)
-#         if record.name.length>2
-#             puts "length is greater than 2"
-#         end
-#     end
-# end
