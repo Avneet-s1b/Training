@@ -1365,3 +1365,68 @@
 
                           Customer.where(id: [1, 2]).and(Customer.where(id: [2, 3]))
 
+        4. Ordering: 3.0.0 :047 > Book.order(author_id: :desc).order(id: :desc)
+                      OR
+                    Book.order(title: :asc, created_at: :desc)
+                    # OR
+                    Book.order(:title, created_at: :desc)
+                    # OR
+                    Book.order("title ASC, created_at DESC")
+                    # OR
+                    Book.order("title ASC", "created_at DESC")
+
+        5. Selecting Specific columns: 3.0.0 :049 > Book.select(:id,:name,:genre)
+                    op:
+                    => 
+                    [#<Book:0x00007fb62b573990 id: 3, name: "Rich Dad Poor Dad", genre: "Finance">,
+                    #<Book:0x00007fb62b573850 id: 5, name: "Song of ice and fire", genre: "History">,
+                    #<Book:0x00007fb62b573710 id: 6, name: "The Great Gatsby", genre: nil>,
+                    #<Book:0x00007fb62b5735d0 id: 7, name: "Lolita", genre: nil>,
+                    #<Book:0x00007fb62b573490 id: 8, name: "Story of my life", genre: nil>,
+                    #<Book:0x00007fb62b573350 id: 9, name: "Invisible Man", genre: nil>,
+                    #<Book:0x00007fb62b573210 id: 10, name: "Book A", genre: nil>,
+                    #<Book:0x00007fb62b5730d0 id: 11, name: "Book B", genre: nil>,
+                    #<Book:0x00007fb62b572f90 id: 12, name: "Book C", genre: nil>,
+                    #<Book:0x00007fb62b572e50 id: 13, name: "Book D", genre: nil>]
+
+        6. Limit and Offset: Customer.limit(5).offset(30)
+
+        7. Group by having: 3.0.0 :069 > Book.select(:genre).group(:genre)
+                    op:
+                      Book Load (0.7ms)  SELECT "books"."genre" FROM "books" GROUP BY "books"."genre" /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+                     => 
+                    [#<Book:0x00007fb62b56c820 id: nil, genre: nil>,
+                     #<Book:0x00007fb62b56c5a0 id: nil, genre: "Finance">,
+                     #<Book:0x00007fb62b56c460 id: nil, genre: "History">] 
+
+                     Having:
+                    3.0.0 :070 > Book.select(:genre).group(:genre).having("count(*) > 0")
+                    op:
+                    Book Load (0.6ms)  SELECT "books"."genre" FROM "books" GROUP BY "books"."genre" HAVING (count(*) > 0) /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+                    => 
+                    [#<Book:0x00007fb62b5a7308 id: nil, genre: nil>,
+                    #<Book:0x00007fb62b5a71c8 id: nil, genre: "Finance">,
+                    #<Book:0x00007fb62b5a7088 id: nil, genre: "History">] 
+
+        8. Overriding Conditions: 
+            8.1: unscope: remove that condition from query
+
+            Eg: 3.0.0 :074 > Book.where("id>5").order("id desc").unscope(:order)
+
+            8.2 only: considers the cond specified in only
+
+            Eg: 3.0.0 :079 > Book.where("id>5").order("id desc").only(:order)
+
+            8.3 reslect: reselects column by overriding prev select.
+
+            Eg: 3.0.0 :080 > Book.select(:id).reselect(:name)
+
+            8.4 reorder: reorders query result to specified order.
+
+            Eg: 3.0.0 :082 > Book.select(:id).order(:id).reorder("id desc")
+
+            8.5 reverse_order: reverses the order.
+
+            8.6 rewhere: resets where cond
+
+            Eg: 3.0.0 :084 > Book.where(author_id: 3).rewhere(author_id:2)
