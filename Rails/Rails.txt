@@ -1505,4 +1505,79 @@
 
                 Eg: 3.0.0 :014 > Author.where.associated(:books)
                 Author Load (0.6ms)  SELECT "authors".* FROM "authors" INNER JOIN "books" ON "books"."author_id" = "authors"."id" WHERE "books"."id" IS NOT NULL /* loading for pp */ LIMIT $1 
-                
+
+        13. Eager Loading: Eager loading is the mechanism for loading the associated records of the objects returned by Model.find using as few queries as possible.
+
+                N+1 query problem
+                books = Book.limit(10)
+
+                books.each do |book|
+                puts book.author.last_name
+                end
+
+                The above code executes 1 (to find 10 books) + 10 (one per each book to load the author) = 11 queries in total.
+
+                - Solution for n+1 problem: Active Record lets you specify in advance all the associations that are going to be loaded.
+
+                    The methods are:
+
+                    includes
+                    preload
+                    eager_load
+
+                1. includes: With includes, Active Record ensures that all of the specified associations are loaded using the minimum possible number of queries.
+
+
+        
+        14. Dynamic Finders: If you have a field called first_name on your Customer model for example, you get the instance method find_by_first_name for free from Active Record. 
+         If you also have a locked field on the Customer model, you also get find_by_locked method. Active record provide these dynamic finder methods.
+
+            Eg:
+            3.0.0 :022 > Book.find_by_name!("Rich Dad Poor Dad")
+            Book Load (0.4ms)  SELECT "books".* FROM "books" WHERE "books"."name" = $1 LIMIT $2  [["name", "Rich Dad Poor Dad"], ["LIMIT", 1]]
+
+        15. Enums: An enum lets you define an Array of values for an attribute and refer to them by name. The actual value stored in the database is an integer that has been mapped to one of the values.
+         
+            Eg:
+            class Book < ApplicationRecord
+                belongs_to :author
+                enum :name, [:rishab,:lovansh]
+            end
+
+            3.0.0 :011 > Book.lovansh.first
+            Book Load (0.4ms)  SELECT "books".* FROM "books" WHERE "books"."name" = $1 ORDER BY "books"."id" ASC LIMIT $2  [["name", "1"], ["LIMIT", 1]]
+            => 
+            #<Book:0x00007effefe2e258
+            id: 14,
+            name: nil,
+            genre: nil,
+            created_at: Fri, 01 Dec 2023 11:27:44.573701000 UTC +00:00,
+            updated_at: Fri, 01 Dec 2023 11:27:44.573701000 UTC +00:00,
+            author_id: 5,
+            lock_version: 0>
+
+            here name is showing null because it is mapped with integer value of index of enum
+
+        16. Method chaining: means we can chain various active record methods like where joins etc to query result.
+
+            Example:
+            3.0.0 :023 > Author.select('authors.name,books.name').joins(:books).where('authors.id = 3')
+            Author Load (0.9ms)  SELECT authors.name,books.name FROM "authors" INNER JOIN "books" ON "books"."author_id" = "authors"."id" WHERE (authors.id = 3) /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+            => 
+            [#<Author:0x00007effe8696420 id: nil, name: "Rich Dad Poor Dad">,
+            #<Author:0x00007effe86962e0 id: nil, name: "Lolita">,
+            #<Author:0x00007effe86961a0 id: nil, name: "Story of my life">,
+            #<Author:0x00007effe8696060 id: nil, name: "Invisible Man">,
+            #<Author:0x00007effe8695f20 id: nil, name: "Book D">] 
+
+        17. find or build a new object: 
+            17.1 find_or_create_by: 3.0.0 :017 > Customer.find_or_create_by!(name:"Sanya")
+  
+                Customer Load (0.4ms)  SELECT "customers".* FROM "customers" WHERE "customers"."name" = $1 LIMIT $2  [["name", "Sanya"], ["LIMIT", 1]]
+                TRANSACTION (0.2ms)  BEGIN
+                Customer Create (29.2ms)  INSERT INTO "customers" ("name", "mobile", "adhar_number", "created_at", "updated_at", "start", "end") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["name", "Sanya"], ["mobile", nil], ["adhar_number", nil], ["created_at", "2023-12-01 11:47:48.220084"], ["updated_at", "2023-12-01 11:47:48.220084"], ["start", nil], ["end", nil]]
+                TRANSACTION (16.4ms)  COMMIT
+
+            17.2 find_or_create_by!: return error if validation not passed while object creation.
+
+            17.3 find_or_initialize_by: The find_or_initialize_by method will work just like find_or_create_by but it will call new instead of create. This means that a new model instance will be created in memory but won't be saved to the database.
