@@ -1469,4 +1469,40 @@
                     book.title = 'Algorithms, second edition'
                     book.save!
                 end
+        
+        12. Joins: Active Record provides two finder methods for specifying JOIN clauses on the resulting SQL: joins and left_outer_joins.
+
+            1. Joins: 
+                1.1: Using string: 3.0.0 :017 > Book.joins("inner join authors on books.author_id = authors.id where books.genre is null")
+
+                1.2 Using hash: 3.0.0 :020 > Book.joins(:author)
+
+                1.3 joining multiple assoc: 3.0.0 :010 > Order.joins(:customer,:product)
+
+                1.4 joining nested assoc: 3.0.0 :014 > Customer.joins(orders: :product) (Keep notice of singular name or plural name like here customer has many orders so orders instead of order)
+
+                1.5 where condition: 3.0.0 :006 > Book.joins(:author).select(:name).where(genre:nil)
+                    Book Load (0.6ms)  SELECT "books"."name" FROM "books" INNER JOIN "authors" ON "authors"."id" = "books"."author_id" WHERE "books"."genre" IS NULL /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+                    => 
+                    [#<Book:0x00007f9c38fbe380 id: nil, name: "Book C">,
+                    #<Book:0x00007f9c38fbe240 id: nil, name: "Book B">,
+                    #<Book:0x00007f9c38fbe100 id: nil, name: "Book A">,
+                    #<Book:0x00007f9c38fbdfc0 id: nil, name: "Book D">,
+                    #<Book:0x00007f9c38fbde80 id: nil, name: "Invisible Man">,
+                    #<Book:0x00007f9c38fbdd40 id: nil, name: "Story of my life">,
+                    #<Book:0x00007f9c38fbdc00 id: nil, name: "Lolita">,
+                    #<Book:0x00007f9c38fbdac0 id: nil, name: "The Great Gatsby">]
+
+            2. left_outer_joins: If you want to select a set of records whether or not they have associated records you can use the left_outer_joins method.
+
+                Eg: 3.0.0 :012 > Author.left_outer_joins(:books).where('authors.id > 3')
+                Author Load (0.8ms)  SELECT "authors".* FROM "authors" LEFT OUTER JOIN "books" ON "books"."author_id" = "authors"."id" WHERE (authors.id > 3) /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+
+            3. where.associated & where.missing: The associated and missing query methods let you select a set of records based on the presence or absence of an association.
+
+                Eg: 3.0.0 :013 > Author.where.missing(:books)
+                Author Load (0.5ms)  SELECT "authors".* FROM "authors" LEFT OUTER JOIN "books" ON "books"."author_id" = "authors"."id" WHERE "books"."id" IS NULL /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+
+                Eg: 3.0.0 :014 > Author.where.associated(:books)
+                Author Load (0.6ms)  SELECT "authors".* FROM "authors" INNER JOIN "books" ON "books"."author_id" = "authors"."id" WHERE "books"."id" IS NOT NULL /* loading for pp */ LIMIT $1 
                 
