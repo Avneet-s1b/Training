@@ -1215,4 +1215,102 @@
             Creating an object:
                 Entry.create! entryable: Message.new(subject: "hello!")
 
+    
+    35. Active record Query interface: Active Record insulates you from the need to use SQL in most cases.
+        Active Record will perform queries on the database for you and is compatible with most database systems.
+
+        1. Retrieving a Single Object:
+            1.1- Find: To find one id
+                Book.find(13)
+                op:
+                Book Load (0.4ms)  SELECT "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2  [["id", 13], ["LIMIT", 1]]
+                => 
+                #<Book:0x00007fb637f16f40
+                id: 13,
+                name: "Book D",
+                genre: nil,
+                created_at: Thu, 30 Nov 2023 11:52:53.266127000 UTC +00:00,
+                updated_at: Thu, 30 Nov 2023 11:52:53.266127000 UTC +00:00,
+                author_id: 3>
+
+                To find multiple ids: Book.find([12,13])
+                To find using composite primary key: Model.find([id1,id2])
+
+            1.2- Take: The take method retrieves a record without any implicit ordering.
+                    
+                    Book.take
+
+                    Book Load (0.3ms)  SELECT "books".* FROM "books" LIMIT $1  [["LIMIT", 1]]
+                    => 
+                    #<Book:0x00007fb637f1ca80
+                    id: 3,
+                    name: "Rich Dad Poor Dad",
+                    genre: "Finance",
+                    created_at: Thu, 30 Nov 2023 05:15:31.096338000 UTC +00:00,
+                    updated_at: Thu, 30 Nov 2023 05:15:31.096338000 UTC +00:00,
+                    author_id: 3>
+
+                    We can also do: Book.take(3) to take 3 records.
+
+            1.3- first: to take first 1 or more records.
+
+                Book.first
+                op:
+                Book Load (0.3ms)  SELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT $1  [["LIMIT", 1]]
+                => 
+                #<Book:0x00007fb637f15500
+                id: 3,
+                name: "Rich Dad Poor Dad",
+                genre: "Finance",
+                created_at: Thu, 30 Nov 2023 05:15:31.096338000 UTC +00:00,
+                updated_at: Thu, 30 Nov 2023 05:15:31.096338000 UTC +00:00,
+                author_id: 3> 
+
+                We can also do: Book.first(3) to take first 3 records.
+
+            1.4- last: to take last 1 or more records.
+
+            1.5- order: orders on specific parameter.
+
+                3.0.0 :013 > Book.order(:name)
+
+            1.6- find_by: 3.0.0 :017 > Book.find_by(name:"The Great Gatsby")
+                op:
+                Book Load (0.5ms)  SELECT "books".* FROM "books" WHERE "books"."name" = $1 LIMIT $2  [["name", "The Great Gatsby"], ["LIMIT", 1]]
+                => 
+                #<Book:0x00007fb62b848350
+                id: 6,
+                name: "The Great Gatsby",
+                genre: nil,
+                created_at: Thu, 30 Nov 2023 10:10:34.973051000 UTC +00:00,
+                updated_at: Thu, 30 Nov 2023 10:10:34.973051000 UTC +00:00,
+                author_id: 4> 
+
+        2. Retrieve multiple objects:
+            2.1 find_each: 
+                3.0.0 :018 > Book.find_each do |book|
+                3.0.0 :019 >   puts book.name
+                3.0.0 :020 > end
+                op:
+                Book Load (0.6ms)  SELECT "books".* FROM "books" ORDER BY "books"."id" ASC LIMIT $1  [["LIMIT", 1000]]
+                Rich Dad Poor Dad
+                Song of ice and fire
+                The Great Gatsby
+                Lolita
+                Story of my life
+                Invisible Man
+                Book A
+                Book B
+                Book C
+                Book D
+                => nil 
+
+            To use conditions:
+                3.0.0 :021 > Book.where(genre:nil).find_each do |book|
+                3.0.0 :022 >   puts book.name
+                3.0.0 :023 > end
+
+            2.2: find_in_batches: The find_in_batches method is similar to find_each, since both retrieve batches of records.
+
+
 
