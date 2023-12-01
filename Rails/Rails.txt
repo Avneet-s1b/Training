@@ -1430,3 +1430,43 @@
             8.6 rewhere: resets where cond
 
             Eg: 3.0.0 :084 > Book.where(author_id: 3).rewhere(author_id:2)
+
+            8.7 regroup: resets grouping condition.
+        
+        9. Null relation: Return no output(empty relation) and fires no query.
+
+        10. read only: makes the object(var) readonly and not modifiable.
+
+            Eg: 3.0.0 :087 > book = Book.readonly.first
+
+            This will give error on saving book after modifying it.
+
+        11. Locking: Locking is helpful for preventing race conditions when updating records in the database and ensuring atomic updates.
+
+            11.1: Optimistic locking: Optimistic locking allows multiple users to access the same record for edits, and assumes a minimum of conflicts with the data. 
+             It does this by checking whether another process has made changes to a record since it was opened.
+
+             Example:In order to use optimistic locking, the table needs to have a column called lock_version of type integer. Each time the record is updated, 
+             Active Record increments the lock_version column. If an update request is made with a lower value in the lock_version field than is currently in the lock_version column in the database,
+             the update request will fail with an ActiveRecord::StaleObjectError.
+                
+                b1 = Book.first
+                b2 = Book.first
+
+                b1.name = "Rich Dad Poor Dad"
+                => "Rich Dad Poor Dad" 
+                3.0.0 :007 > b1.save
+
+                b2.name = "rich"
+                => "rich" 
+                3.0.0 :011 > b2.save
+                Attempted to update a stale object: Book. (ActiveRecord::StaleObjectError)
+
+            11.2 Pessimistice locking: Pessimistic locking uses a locking mechanism provided by the underlying database.
+                Example:
+                Book.transaction do
+                    book = Book.lock.first
+                    book.title = 'Algorithms, second edition'
+                    book.save!
+                end
+                
