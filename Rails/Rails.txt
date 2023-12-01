@@ -1313,4 +1313,55 @@
             2.2: find_in_batches: The find_in_batches method is similar to find_each, since both retrieve batches of records.
 
 
+        3. Conditions: The where method allows you to specify conditions to limit the records returned.
+
+            3.1: String cond: 3.0.0 :027 > Book.where("name = 'Book A'")
+                op:
+                  Book Load (1.1ms)  SELECT "books".* FROM "books" WHERE (name = 'Book A') /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+                 => 
+                [#<Book:0x00007fb62b655f20
+                  id: 10,
+                  name: "Book A",
+                  genre: nil,
+                  created_at: Thu, 30 Nov 2023 11:50:58.576160000 UTC +00:00,
+                  updated_at: Thu, 30 Nov 2023 11:50:58.576160000 UTC +00:00,
+                  author_id: 2>]
+
+            3.2: Array cond: 3.0.0 :033 > Book.where("name = '#{@book.name}'")
+                    op:
+                    Book Load (0.6ms)  SELECT "books".* FROM "books" WHERE (name = 'Book C') /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+                    => 
+                    [#<Book:0x00007fb62b8a7940
+                    id: 12,
+                    name: "Book C",
+                    genre: nil,
+                    created_at: Thu, 30 Nov 2023 11:51:37.828423000 UTC +00:00,
+                    updated_at: Thu, 30 Nov 2023 11:51:37.828423000 UTC +00:00,
+                    author_id: 2>] 
+
+            3.3 Like in array cond: use sanitize_sql_like to escape wildcard characters in the relevant portion of the argument:
+
+                    3.0.0 :036 > Book.where("name LIKE ?",Book.sanitize_sql_like(@book.name) + "%")
+                    op:
+                    Book Load (1.0ms)  SELECT "books".* FROM "books" WHERE (name LIKE 'Book C%') /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+                    => 
+                    [#<Book:0x00007fb62b68c6d8
+                    id: 12,
+                    name: "Book C",
+                    genre: nil,
+                    created_at: Thu, 30 Nov 2023 11:51:37.828423000 UTC +00:00,
+                    updated_at: Thu, 30 Nov 2023 11:51:37.828423000 UTC +00:00,
+                    author_id: 2>] 
+
+            3.4 Hash cond: 3.0.0 :038 > Book.where(genre:nil)
+
+                    To use range: 3.0.0 :045 > Book.where(id:(1..5))
+
+                    Not cond: 3.0.0 :046 > Book.where.not(id:(1..5))
+
+            3.5 Or cond: Customer.where(last_name: 'Smith').or(Customer.where(orders_count: [1, 3, 5]))
+
+            3.6 And cond: Customer.where(last_name: 'Smith').where(orders_count: [1, 3, 5])
+
+                          Customer.where(id: [1, 2]).and(Customer.where(id: [2, 3]))
 
