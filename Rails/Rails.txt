@@ -1581,3 +1581,78 @@
             17.2 find_or_create_by!: return error if validation not passed while object creation.
 
             17.3 find_or_initialize_by: The find_or_initialize_by method will work just like find_or_create_by but it will call new instead of create. This means that a new model instance will be created in memory but won't be saved to the database.
+
+        18. finding by sql: 3.0.0 :027 > Book.find_by_sql("select * from books where books.genre is not null")
+            op:
+            Book Load (1.0ms)  select * from books where books.genre is not null
+            => 
+            [#<Book:0x00007effe8434880
+            id: 5,
+            name: nil,
+            genre: "History",
+            created_at: Thu, 30 Nov 2023 06:58:26.740268000 UTC +00:00,
+            updated_at: Thu, 30 Nov 2023 06:58:26.740268000 UTC +00:00,
+            author_id: 2,
+            lock_version: 0>,
+            #<Book:0x00007effe8434740
+            id: 3,
+            name: nil,
+            genre: "Finance",
+            created_at: Thu, 30 Nov 2023 05:15:31.096338000 UTC +00:00,
+            updated_at: Fri, 01 Dec 2023 09:29:09.231075000 UTC +00:00,
+            author_id: 3,
+            lock_version: 1>] 
+
+            18.2 select_all: returns an array of hash of each record.
+            
+                Book.connection.select_all("select * from books where books.genre is not null").to_a
+                op:
+                (0.4ms)  select * from books where books.genre is not null
+                => 
+                [{"id"=>5,
+                "name"=>"Song of ice and fire",
+                "genre"=>"History",
+                "created_at"=>2023-11-30 06:58:26.740268 UTC,
+                "updated_at"=>2023-11-30 06:58:26.740268 UTC,
+                "author_id"=>2,
+                "lock_version"=>nil},
+                {"id"=>3,
+                "name"=>"Rich Dad Poor Dad",
+                "genre"=>"Finance",
+                "created_at"=>2023-11-30 05:15:31.096338 UTC,
+                "updated_at"=>2023-12-01 09:29:09.231075 UTC,
+                "author_id"=>3,
+                "lock_version"=>1}] 
+
+            18.3 pluck: similar to select. returns an array of result.
+
+                Eg: 3.0.0 :020 > Book.pluck(:name)
+                Book Pluck (0.5ms)  SELECT "books"."name" FROM "books"
+                => ["Invisible Man", "Song of ice and fire", "Rich Dad Poor Dad", "Lolita"] 
+
+            18.4 pick: similar to pluck just return only one output.
+
+            18.5 ids: returns array of ids.
+
+        19. existence of a record: 
+
+            Eg1: 3.0.0 :024 > Book.exists?(name:"Lolita")
+            Book Exists? (0.6ms)  SELECT 1 AS one FROM "books" WHERE "books"."name" = $1 LIMIT $2  [["name", "Lolita"],
+
+            Multiple args (will return true even if one argument is found)
+            Eg2: 3.0.0 :025 > Book.exists?(name:["Lolita","Avneet"])
+            Book Exists? (1.0ms)  SELECT 1 AS one FROM "books" WHERE "books"."name" IN ($1, $2) LIMIT $3  [["name", "Lolita"], ["name", "Avneet"], ["LIMIT", 1]]
+            => true 
+
+        20. Explain: Active Record performs a pretty printing that emulates that of the corresponding database shell. 
+         So, the same query running with the PostgreSQL adapter would yield instead
+
+            3.0.0 :032 > Book.where(id:17).explain
+            Book Load (0.4ms)  SELECT "books".* FROM "books" WHERE "books"."id" = $1  [["id", 17]]
+            => 
+            EXPLAIN SELECT "books".* FROM "books" WHERE "books"."id" = $1 [["id", 17]]
+                                            QUERY PLAN
+            --------------------------------------------------------------------------
+            Index Scan using books_pkey on books  (cost=0.15..8.17 rows=1 width=100)
+            Index Cond: (id = '17'::bigint)
+            (2 rows)
