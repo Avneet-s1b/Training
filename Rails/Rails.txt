@@ -1669,3 +1669,20 @@
             Console:
             3.0.0 :004 > Book.no_genre
             Book Load (0.3ms)  SELECT "books".* FROM "books" WHERE "books"."genre" IS NULL /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+
+            - Scope with arguments:
+
+            Eg:
+            scope :price_more_than, ->(amount){where("price > ?", amount)}
+
+            Console:
+            3.0.0 :003 > Product.price_more_than(50000)
+            Product Load (0.8ms)  SELECT "products".* FROM "products" WHERE (price > 50000) /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+            => 
+            [#<Product:0x00007fdf99f743d0
+            id: 9,
+            name: "iphone-14",
+            price: 60000,
+            created_at: Wed, 29 Nov 2023 10:29:23.232318000 UTC +00:00,
+            updated_at: Wed, 29 Nov 2023 10:29:23.232318000 UTC +00:00>] 
+            

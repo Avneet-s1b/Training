@@ -11,6 +11,8 @@ class Product < ApplicationRecord
     has_many :orders
     has_many :customers, through: :orders
 
+    scope :price_more_than, ->(amount){where("price > ?", amount)}
+
     # after_create :creation
 
     # after_validation :creation
