@@ -4,10 +4,10 @@ class Order < ApplicationRecord
     validates :customer_id , presence: true
     validates :product_id , presence: true
 
-    # after_create: 
+    before_create :upd_date
 
-    # private
-    #     def upd_date
-    #         date
-    #     end
+    private
+        def upd_date
+            self.date = Date.today.to_s
+        end
 end
