@@ -1656,3 +1656,16 @@
             Index Scan using books_pkey on books  (cost=0.15..8.17 rows=1 width=100)
             Index Cond: (id = '17'::bigint)
             (2 rows)
+
+        21. Scope: Scoping allows you to specify commonly-used queries which can be referenced as method calls on the association objects or models.
+
+            Eg: We have to find books having no genre many times so we create a scope in book model.
+
+            class Book < ApplicationRecord
+                belongs_to :author
+                scope :no_genre, -> { where(genre:nil) }
+            end
+
+            Console:
+            3.0.0 :004 > Book.no_genre
+            Book Load (0.3ms)  SELECT "books".* FROM "books" WHERE "books"."genre" IS NULL /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
