@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
     has_many :orders
     has_many :products, through: :orders
 
-    # validates :name, presence: {message:"name cant be empty"}
+    validates :name, presence: {message:"name cant be empty"}
 
     # validate do |person|
     #     errors.add :name, message: "is not cool enough"
