@@ -8,10 +8,15 @@
 
 class Customer < ApplicationRecord
 
-    has_many :orders
+    has_many :orders , after_add: :add_meth
     has_many :products, through: :orders
 
     validates :name, presence: {message:"name cant be empty"}
+
+    def add_meth(order)
+        puts "Order placed successfully!"
+    end
+
 
     # validate do |person|
     #     errors.add :name, message: "is not cool enough"
