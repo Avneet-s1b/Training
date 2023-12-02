@@ -1685,4 +1685,22 @@
             price: 60000,
             created_at: Wed, 29 Nov 2023 10:29:23.232318000 UTC +00:00,
             updated_at: Wed, 29 Nov 2023 10:29:23.232318000 UTC +00:00>] 
-            
+
+
+            - Default scope: this scope applies by default to all queries of the model.
+
+            Eg:
+            default_scope {where("price > ?", 40000)}
+
+            Console:
+            3.0.0 :006 > Product.all
+            Product Load (0.4ms)  SELECT "products".* FROM "products" WHERE (price > 40000) /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+
+            - We can use two or more scopes like in chaining.
+
+            - unscope a scope: it can be used to nullify the effect caused by the default scope or any scopes.
+
+            Eg:
+            3.0.0 :008 > Product.unscoped.all
+            Product Load (0.4ms)  SELECT "products".* FROM "products" /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
+            => 

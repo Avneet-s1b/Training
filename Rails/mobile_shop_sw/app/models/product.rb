@@ -11,7 +11,9 @@ class Product < ApplicationRecord
     has_many :orders
     has_many :customers, through: :orders
 
-    scope :price_more_than, ->(amount){where("price > ?", amount)}
+    # scope :price_more_than, ->(amount){where("price > ?", amount)}
+
+    default_scope {where("price > ?", 40000)}
 
     # after_create :creation
 
