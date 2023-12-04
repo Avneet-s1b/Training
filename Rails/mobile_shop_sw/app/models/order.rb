@@ -10,4 +10,5 @@ class Order < ApplicationRecord
         def upd_date
             self.date = Date.today.to_s
         end
+
 end

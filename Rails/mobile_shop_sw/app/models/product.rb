@@ -18,7 +18,7 @@ class Product < ApplicationRecord
 
     # default_scope {where("price > ?", 40000)}
 
-    # after_create :creation
+    after_create :creation
 
     # after_validation :creation
 
@@ -43,10 +43,10 @@ class Product < ApplicationRecord
     # #     puts "You have initialized a product object!"
     # # end
 
-    # private
-    #     def creation
-    #         puts "Product added successfully"            
-    #     end
+    private
+        def creation
+            puts "Product added successfully"            
+        end
 
     # attr_accessor :name
 
