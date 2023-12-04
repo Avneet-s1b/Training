@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root "authentication_form#home"
+  # get "authentication_form/signup"
+  match "/sign-up", :to => "authentication_form#signup", :via => :get
   # get 'authentication_form/home'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
