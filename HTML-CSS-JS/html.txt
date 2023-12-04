@@ -81,4 +81,28 @@
         - <sub> - Subscript text
         - <sup> - Superscript text
 
+    6. Links:  Links allow users to click their way from page to page.
+        - Eg: <a href="url">link text</a>
+        - target attr: The target attribute can have one of the following values:
+            - _self - Default. Opens the document in the same window/tab as it was clicked
+            - _blank - Opens the document in a new window or tab
+        
+    7. image maps: With HTML image maps, you can create clickable areas on an image.
+        Example:
+        <img src="workplace.jpg" alt="Workplace" usemap="#workmap">
+
+        <map name="workmap">
+          <area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm">
+          <area shape="rect" coords="290,172,333,250" alt="Phone" href="phone.htm">
+          <area shape="circle" coords="337,300,44" alt="Coffee" href="coffee.htm">
+        </map>
     
+    8. picture elem: The HTML <picture> element allows you to display different pictures for different devices or screen sizes.
+        Example:
+        <picture>
+        <source media="(min-width: 650px)" srcset="img_food.jpg">
+        <source media="(min-width: 465px)" srcset="img_car.jpg">
+        <img src="img_girl.jpg">
+        </picture>
+
+    9. 
