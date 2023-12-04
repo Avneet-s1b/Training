@@ -1,0 +1,84 @@
+            **** HTML ****
+
+
+    1. HTML is the standard markup language for creating Web pages. A markup language is a set of rules that defines how the layout and presentation of text and images should appear in a digital document.
+
+        Basic Declartion code for html:
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>Page Title</title>
+        </head>
+        <body>
+
+        <h1>My First Heading</h1>
+        <p>My first paragraph.</p>
+
+        </body>
+        </html>
+
+    2. Tags in html: An HTML element is defined by a start tag, some content, and an end tag
+        
+        - Headings: tags used are <h1> to <h6>. they require a closing tag.
+            Eg: <h1>This is heading 1</h1>
+        - Paragraphs: HTML paragraphs are defined with the <p> tag.
+            Eg: <p>This is a paragraph.</p>
+            
+            The browser will automatically remove any extra spaces and lines when the page is displayed in this tag.
+        - Links: HTML links are defined with the <a> tag
+            Eg: <a href="link-url">This is a link</a>
+        - horizontal rule: to add horizontal break in webpage
+            Eg: <hr>
+        - breakline: <br>
+        - pre: used to show text as specified in the tag and no formatiing of spaces like para tag.
+            Eg: <pre></pre>
+
+    3. Attributes: HTML attributes provide additional information about HTML elements.
+
+        - href: Eg: <a href="link-url">This is a link</a>
+        - src: Eg: <img src="img_girl.jpg">
+        - alt: tag specifies an alternate text for an image
+            Eg: <img src="img_girl.jpg" alt="Girl with a jacket">
+        - style: inline css 
+            Eg: <p style="color:red;">This is a red paragraph.</p>
+        - lang: You should always include the lang attribute inside the <html> tag, to declare the language of the Web page
+            Eg: <!DOCTYPE html><html lang="en">
+                <body>
+                ...
+                </body>
+                </html>
+        - title: The value of the title attribute will be displayed as a tooltip when you mouse over the element
+            Eg: <p title="I'm a tooltip">This is a paragraph.</p>
+    
+    4. Styles: style attribute is used to add styles to an element.
+
+        -background-color: 
+            Eg: 
+            <body style="background-color:powderblue;">
+
+            <h1>This is a heading</h1>
+            <p>This is a paragraph.</p>
+
+            </body>
+        - color: color property defines the text color for an HTML element
+            Eg: <p style="color:red;">This is a paragraph.</p>
+        - font-family: font-family property defines the font to be used for an HTML element
+            Eg: <h1 style="font-family:verdana;">This is a heading</h1>
+        - font-size: font-size property defines the text size for an HTML element
+            Eg: <h1 style="font-size:300%;">This is a heading</h1>
+        - text_align: text-align property defines the horizontal text alignment for an HTML element.
+            Eg: <h1 style="text-align:center;">Centered Heading</h1>
+
+    5. Formatting elements: Formatting elements were designed to display special types of text:
+        - <b> - Bold text
+        - <strong> - Important text
+        - <i> - Italic text
+        - <em> - Emphasized text
+        - <mark> - Marked text
+        - <small> - Smaller text
+        - <del> - Deleted text
+        - <ins> - Inserted text
+        - <sub> - Subscript text
+        - <sup> - Superscript text
+
+    
