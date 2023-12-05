@@ -8,16 +8,16 @@
 
 <form >
   <label for="email">E-mail:</label><br>
-  <input id="input_field" type="text" name="email"><br>
+  <input class="input_field" type="text" name="email"><br>
   <label for="name">Name:</label><br>
-  <input id="input_field" type="text" name="name"><br>
+  <input class="input_field" type="text" name="name"><br>
   <label for="phone">Phone:</label><br>
-  <input id="input_field" type="text" name="phone"><br>
+  <input class="input_field" type="text" name="phone"><br>
   <label for="password">Password:</label><br>
-  <input id="input_field" type="text" name="password"><br>
+  <input class="input_field" type="text" id = "one" name="pswd1"><br>
   <label for="cnfm-password">Confirm Password:</label><br>
-  <input id="input_field" type="text" name="cnfm-password"><br>
-  <input id="button" type="submit" value="Submit" style="margin:10px;"><br>
+  <input class="input_field" type="text" id = "two" name="pswd2"><br>
+  <input id="button" type="submit" value="Submit" style="margin:10px;" onclick=matchPassword() ><br>
 </form>
 
 <p>Already registered? <a href="/" style="color: rgb(159, 212, 245);">Sign in.</a><p>
@@ -25,3 +25,16 @@
 </div>
 
 </div>
+
+
+<script>  
+    function matchPassword() {  
+      var pw1 = document.getElementById("one").value;  
+      var pw2 = document.getElementById("two").value;  
+      if(pw1 != pw2)  
+      {   
+        alert("Passwords did not match");  
+        return false; 
+      } 
+    }  
+</script> 

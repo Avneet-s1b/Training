@@ -63,7 +63,7 @@ input,label{
     color:rgb(24, 23, 23);
 }
 
-#input_field{
+.input_field{
     padding: 5px;
     height: 30px;
     width:200px;
