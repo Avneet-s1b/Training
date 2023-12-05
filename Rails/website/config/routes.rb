@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'practice/page'
   # get 'demo/index'
   resources :demo
   # match 'demo/:id', :to => 'demo#show', :via => :get

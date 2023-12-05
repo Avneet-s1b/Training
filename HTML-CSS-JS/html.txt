@@ -105,4 +105,52 @@
         <img src="img_girl.jpg">
         </picture>
 
-    9. 
+    9. Tables: A table in HTML consists of table cells inside rows and columns.
+        Example:
+        <table>
+        <caption>Example</caption>
+        <tr>
+            <th>Company</th>
+            <th>Contact</th>
+            <th>Country</th>
+        </tr>
+        <tr>
+            <td>Amazon</td>
+            <td>Netflix</td>
+            <td>Germany</td>
+        </tr>
+        <tr>
+            <td>Netflix</td>
+            <td>Francisco</td>
+            <td>Mexico</td>
+        </tr>
+        </table>
+
+    10. Lists: HTML lists allow web developers to group a set of related items in lists.
+        There are 3 types of lists: 
+            - ordered
+            - unordered
+            - description
+        Example:
+        <h4>Unordered List</h4>
+        <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+
+        <h4>Ordered List</h4>
+        <ol>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        </ol>
+
+        <h4>Description List</h4>
+        <dl>
+        <dt><b>Coffee</b></dt>
+        <dd>- black hot drink</dd>
+        <dt><b>Milk</b></dt>
+        <dd>- white cold drink</dd>
+        </dl>
+
+    11.
