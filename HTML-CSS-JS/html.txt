@@ -153,4 +153,52 @@
         <dd>- white cold drink</dd>
         </dl>
 
-    11.
+    11. Block vs Inline elements: A block-level element always starts on a new line, and the browsers automatically add some space (a margin) before and after the element.
+        - Two commonly used block elements are: <p> and <div>.
+        - An inline element does not start on a new line.
+        - Eg: <span>,<b> etc
+
+
+    12. Class & id:  The HTML class attribute is used to specify a class for an HTML element.
+        - To create a class; write a period (.) character, followed by a class name
+        - Id: The HTML id attribute is used to specify a unique id for an HTML element.
+        - The syntax for id is: write a hash character (#), followed by an id name
+        - Difference: A class name can be used by multiple HTML elements, while an id name must only be used by one HTML element within the page
+    
+    13. IFrames: An HTML iframe is used to display a web page within a web page.
+        Example:
+        <h2>IFrames</h2>
+        <iframe src="https://www.google.com/webhp?hl=en&sa=X&ved=0ahUKEwj1vNTF4PeCAxWuzDgGHcirCwEQPAgJ" style="height:200px;width:300px;" title="Iframe Example"></iframe>
+
+
+        <h2>IFrames using target link</h2>
+        <iframe src="demo_iframe.htm" name="iframe_a" title="Iframe Example"></iframe>
+
+        <p><a href="https://www.w3schools.com" target="iframe_a">W3Schools.com</a></p>
+
+        <p>When the target attribute of a link matches the name of an iframe, the link will open in the iframe.</p>
+
+    14. Script: JS can be used inside the html page using the <script> tag.
+        Example:
+        <h2>Script Example</h2>
+        <p id="demo"></p>
+
+        <script>
+        document.getElementById("demo").innerHTML = "Hello JavaScript!";
+        </script> 
+
+        - Noscript tag can be used to display content for browser that doesnt support JS
+
+    15. Head element: The HTML <head> element is a container for the following elements: <title>, <style>, <meta>, <link>, <script>, and <base>.
+
+    16. Responsiveness: A responsive web design will automatically adjust for different screen sizes and viewports.
+
+            1. To create a responsive website, add the following <meta> tag to all your web pages:
+                - <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               This will set the viewport of your page, which will give the browser instructions on how to control the page's dimensions and scaling.
+            
+            2. Responsive images are images that scale nicely to fit any browser size. If the CSS width property is set to 100%, the image will be responsive and scale up and down
+                If the max-width property is set to 100%, the image will scale down if it has to, but never scale up to be larger than its original size
+
+            3. The text size can be set with a "vw" unit, which means the "viewport width".
+            
