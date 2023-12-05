@@ -201,4 +201,17 @@
                 If the max-width property is set to 100%, the image will scale down if it has to, but never scale up to be larger than its original size
 
             3. The text size can be set with a "vw" unit, which means the "viewport width".
-            
+
+    17. Forms: An HTML form is used to collect user input.
+        - The HTML <form> element is used to create an HTML form for user inpu
+        - The HTML <input> element is the most used form element.
+        - The <label> tag defines a label for many form elements.
+        - The <input type="submit"> defines a button for submitting the form data to a form-handler.
+        Example:
+        <form >
+        <label for="email">E-mail:</label><br>
+        <input type="text" name="email"><br>
+        <label for="password">Password:</label><br>
+        <input type="text" name="password"><br>
+        <input type="submit" value="Submit" style="margin:10px;"><br>
+        </form>
