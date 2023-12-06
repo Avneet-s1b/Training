@@ -1,0 +1,111 @@
+            **** JavaScript ****
+
+    1. word vs keyword: word = avi laddoo etc, words that dont have specified meaning in lang
+                        keyword = for if let const var etc that have assigned meaning and functionality associated with them.
+
+    2. var let const = all are variables
+        - var are globally scoped whereas let and const are block scoped
+        - var can be redefiined and re declared whereas let can only be updated not redefiened and 
+        - const cant do both
+
+        - Diff b/w var let const
+            1. old version of js only had var (es5) then new verison came with let and const(es6)
+            we study combination of es5 and es6
+
+            2. var is function scoped and let and const are braces scoped
+
+            function abcd(){
+                for(var i = 1; i<11; i++){
+                    console.log(i);
+                }
+                console.log(i); // normally programminglang will give errors but in js var is function scoped
+            }     //meaning apne parent me kahi bhi use ho skta hai yeh
+            so for ke outside i print hoga
+
+            but 
+
+            if var ki jagah let use krenge to error aega kuki vo braces scoped hai only meaning apne for vale braces
+            tkk hi defined rhegaa aki bahr error dega
+
+            3. var adds itself to the window object whereas let const doesnt add itself to window object
+            window object means js me kuch features ese bhi hai jo js ka part nhi but browser se 
+            vo use krleta hai and these features jo provide krata hai usse window object jehte hai
+            var add krelta hai means its bad since it exposes our data by adding var to window.
+
+    3. Hoisting: hoisting means whenever a var is declared it automatically moves to the top of the code
+                 var a = 12;
+                 breaks by compiler ->
+                 var a; this moves to the top everytime thats why we can do console.log(a) before declaring ans it will give undefiend
+                 a = 12;
+                 undefined means it is declared but we dont know the value
+                 not defined means it is not even declared(defined).
+
+    4. Types in js: mainly of 2 types
+                    primitve = string, int , boolean, null
+                    reference = [],{},()
+                    jab bhi refernece type pass krenge to pass hogi referenced value which means no new copy will be made
+                    jab bhi primitive value pass hogi tb new copy create hogi
+                    to new copy pr change krne se purani pr fark nhi aega primitive me
+                    magar reference me bhot fark aega coz one value.
+
+    5. conditionals: if else-if else similar like other languages.
+        Example:
+        if(cond-1){
+
+        }else if(cond-2){
+            
+        }else{
+
+        }
+
+    6. functions: made for 2 reasons:
+        - reusable code
+        - reusing same code with diff arguments
+
+        Types:
+        1. function printkr(a,b){
+                console.log(a+b);
+            }
+
+        2.  const add = function(a,b){
+                console.log(a+b);
+            }
+            add(2,3);
+
+        3.  let add = (a,b)=>a+b;
+            console.log(add(2,3));
+
+            agar return vala create krna ha to bhi ese hi hojaega simply return dalkr
+
+        4.  function kro(){
+                return "Hello";
+            }
+
+    7. Array: used to store values.
+        var a = [1,2,3,4];
+        a.push(5); adds 5 to last of array
+        a.pop(); remove last element of the array
+        a.unshift(0); adds 0 to start of array
+        a.shift(); remove first elemnt of arrray
+        a.splice(idx,number of elements to be removed); splice removes idx from between the array
+        a.splice(2,2); arr=[1,2,3,4,5] 
+        ans = arr=[1,2,5] 
+
+    8. Object: ek hi bande ke bare me baat krnaa (key value pair)
+
+        var person = {
+            name : "Avneet", // here name is property and it has value
+            age : 22,
+            profession : "Student",
+            kuchbhi : function print(){console.log("name")} // this kuchbhi is a method
+        };
+
+        how to access properties
+        //console.log(person.name);
+        person.method()
+
+        how to change value 
+        person.name = "Avneet Singh"
+
+        to delete something from obj
+        delete person.name; command is used
