@@ -193,4 +193,109 @@
             }
             abcd(b);
 
-    16. 
+    16. ASYNC JS: synchronous - means synchronously krte jaao jese 4 task hai to phle a then b then c then d
+            asynchronous - means no fix order koi function async hai eg c to it means a hoga then b hoga
+            then c chla jaegaa SIDE STACK me and background me processing krega till completion and d task
+            b ke immediately baad hojaega 
+
+            async me ese functions likhe jaate jinka pta nahi hota value kab laakr denge or vo baki 
+            tasks ko block na kre isliye unhe async banayaa jataa hau
+
+            there are two stacks:
+            main stack - yaha functions aakr output krte hai just like main memory
+            side stack - yaha functions bhje jaate hai backhround me processing krne ke liyee till completion
+            issi me rhte hai fn
+
+            event loop- checks whenever the main stack is empty ki side stack me koi hai and if koi hai or agar
+            vo complete hgya hai to mainm elaakr output kraa do and checks again till side stack empty
+
+            javascript asynchronous nhi hai since yeh single threaded lang hai means ek bari pr ek ko hi
+            cpu milega to yeh tasks ke beech me jdi jldi shift marti hai to seem fast and multi threaded
+
+            setTimeout
+            setInterval
+            promises
+            fetch
+            axios
+            XMLHttpRequest
+
+            agar inme se kuch bhi use kr rhe ho to async fn hai
+
+
+            Ab async js me do parts hote hai 
+            ek async code jo kuch kaam krta hai:
+            setTimeout
+            setInterval
+            promises
+            fetch
+            axios
+            XMLHttpRequest
+
+            and doosra callbacks jo usse output krega yaa btaega ki async
+            ka result kya rha cheez jo dhundni thi vo mili ya nahi:
+            callbacks 
+            then catch
+            async await
+
+        - Promise: ab promise ek tareeke ka async call hai jo thir party pr lagaate ki vo kuch cheez laakr de
+
+            ab yeh teen phases me rhe skta hai pehla ki pending hai, doosra ki resolve hogya promise,
+            teesra ki reject hogya promise
+
+            Syntax:
+            var ans = new Promise((res,rej)=>{
+                if(true){
+                    return res();  //return with parentheses
+                }else{
+                    return rej();
+                }
+            })
+
+            ans
+            .then(function(){
+                console.log("Resolved")
+            })
+            .catch(function(){
+                console.log("reject")
+            })
+
+            ab asynchronously me random order aata depending upon knsa task pehle khtm hua
+            BUT agar order me laana ho asynchronously to kese laaye
+
+            var ans = new Promise((res,rej)=>{
+                return res("Pehla task");
+            })
+
+            var t2 = ans.then(function(data){
+                console.log(data);
+                return new Promise((res,rej)=>{    //promise ki chain banaakr promis ke andar promise
+                    return res("doosra task")
+                })
+            })
+
+            t2.then(function(data){
+                console.log(data);
+            })
+
+            console.log("teesra rask")
+
+            output :teesra rask
+                    Pehla task
+                    doosra task
+
+        - ASYNC AWAIT: async await use hota hai jab bhi kabhi third party se data lene bhjte hai to promise 
+            kehtee ha usse ab prmise ko handle krne ke liye bht then ka use krna pdta hai
+            to itne then ka use hataane ke liye we use async await
+
+            koi bhi cheez kuch lene jaa rhi hai to use async fn and jahaa lene jaa rhi usse await bana do.
+            Example:
+            import fetch from 'node-fetch';
+            async function fn(){
+                var a = await fetch('https://randomuser.me/api')
+                var b = await a.json()
+                console.log(b)
+            }
+
+            fn()
+
+        
