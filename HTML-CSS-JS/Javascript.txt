@@ -298,4 +298,81 @@
 
             fn()
 
-        
+    17. Higher Order Fns and First Class fns: Kuch nhi bas jo fns parameters me fns accept krte hai unhe higher order fns jehte hai ya fir koi fn return krde fn hi to bhi hof hota hao
+            ans jo fns as parameters jaate hai that are first class fns. FORST CLASS KO var me bhi save kr skte
+            var abd = function(){
+                //fc fn
+            }
+
+            for eg :
+            arr.forEach(function(val){ // forEach is hof
+                something
+            })
+
+    18. Constructors: similar like class and constructors. define: jo functions me this keyword use hua ho for properties and usse access krte time new ka use kre vo constructor fn hotga hai
+
+            function abcd(color){   //CONSTRUCTOR FN
+                this.color = color;
+                this.type = "Phone";
+            }
+
+            var d1 = new abcd("red");
+            console.log(d1)
+
+    19. NEW keyword: new keyword is used to create an empty object of any function
+            eg: new class()  creates an empty object of class function.
+
+    20. prototype: it means js kuch pre provided properties and functions deta hai to user to use like object jab bhi banaegaa to kuch properties
+            jo humne nhi banayi vo hume milegi humesha for eg: var obj = {name : " Avneet"};
+            obj.hasOwnProperty("name") // output will be true
+
+            similary like array has property .length to find length
+
+    21. Prototypal inheritance: inheritance done using prototype is called prototypal inheritance
+
+            Syntax:
+
+            var human = {
+                canFly: false,
+                canTalk: true,
+                canWalk: true,
+                canTeleport: false    
+            }
+
+            var me = {
+                name: "Avneet",
+                student: true
+            }
+
+            me.__proto__ = human;  // yaha pr using __proto__ me ne human se inherit krli uski propertiues and now can use human's every property
+
+            console.log(me.canFly)  // output will be false
+
+    22. THIS keyword:this keyword value changes from scope to scope 
+
+         if global scope that is
+         console.log(this); output will be the window object
+
+         if local scope that is inside a function
+         function abcd(){
+              console.log(this)   // this will also return window object
+         }
+
+         if this keyword is used in object then this refers to the object
+
+         var obj = {
+              name : "Avneet",
+              fun: function(){
+                  console.log(this)  output will be complete object will be returned.
+              }
+         }
+
+         if used on event listeners
+
+         var button = document.querySelector("#button")
+
+         button.addEventListener("click",function(){
+             console.log(this)
+         })
+     
+         this will correspond to whatever is before addevemntlistener which in this case is button with id #button
