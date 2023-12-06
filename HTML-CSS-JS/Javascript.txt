@@ -376,3 +376,23 @@
          })
      
          this will correspond to whatever is before addevemntlistener which in this case is button with id #button
+
+
+    23. Class: Use the keyword class to create a class. Always add a method named constructor()
+
+        Example:
+        class Car{
+            constructor(name,price){
+                this.name = name
+                this.price = price
+            }
+
+            show(){
+                console.log(this.name)
+                console.log(this.price)
+            }
+        }
+
+        var car1 = new Car("Swift","600000")
+
+        car1.show()
