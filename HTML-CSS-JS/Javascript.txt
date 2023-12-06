@@ -109,3 +109,38 @@
 
         to delete something from obj
         delete person.name; command is used
+
+    9. Execution context: function ek apna execution cotext meaning ek imaginary container bana leta hai jisme 
+        teen cheeze hoti hai 
+            1. variables in fn
+            2. functions defined inside that function
+            3. lexical environment(this defines scope of cheeze jinhe hum access kr skte hai ya nahi
+            like sabse andar vala function uske bahr declared var access kr skta ha magar sabse bahr vala 
+            kisi andar ke functin me dec var use nahi kr skta)
+
+    10. Spread operator: copy reference values
+        
+        var a = [1,2,3,4,5];
+        var b = [...a]; this ... is called spread operator which says make a copy of the var whihc comes
+        after 3 dots
+        
+        var obj = {};
+        var copyobj = {...obj};
+
+    11. Truthy falsy: in js there are two types of values truthy and falsy
+        falsy = 0 false null undefined NaN document.all
+        rest all are truthy
+         if(0 means a falsy value){
+        skips this if goes to else
+         }else{
+        
+         }
+
+    12. switch: switch(1){
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                }
+
+    13. 
