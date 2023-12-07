@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   get 'practice/page'
   # get 'demo/index'
   resources :demo
