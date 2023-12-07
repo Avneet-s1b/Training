@@ -3,6 +3,14 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+
+    if params[:user_id].present?
+      @search_results = User.find_by(id: params[:user_id])
+      redirect_to user_url(@search_results.id)
+    else
+      @search_results = nil
+    end
+
   end
 
   def show

@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  get "users/search"
+  # get ":controller(/:action(/:id))"
   resources :users
   # get 'users/index'
   # get 'users/show'
   root "authentication_form#home"
   # get "authentication_form/signup"
   match "/sign-up", :to => "authentication_form#signup", :via => :get
+
   # get 'authentication_form/home'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

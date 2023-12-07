@@ -1,0 +1,5 @@
+<%= form_tag(users_path, method: :get) do %>
+    <%= label_tag :user_id, "Search by ID:" %>
+    <%= text_field_tag :user_id %>
+    <%= submit_tag "Search" %>
+<% end %>
