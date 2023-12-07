@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
+    # @user = User.new(name: params[:user][:name],address:params[:user][:address])
     respond_to do |format|
       if @user.save
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
