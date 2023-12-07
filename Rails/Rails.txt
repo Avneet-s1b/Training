@@ -1704,3 +1704,34 @@
             3.0.0 :008 > Product.unscoped.all
             Product Load (0.4ms)  SELECT "products".* FROM "products" /* loading for pp */ LIMIT $1  [["LIMIT", 11]]
             => 
+
+    36. How to search in model using forms(taking input from user):
+    search view:
+
+    <%= form_tag(users_path, method: :get) do %>
+        <%= label_tag :id, "Search by ID:" %>
+        <%= text_field_tag :id %>
+        <%= submit_tag "Search" %>
+    <% end %>
+
+
+        - in form_tag users_path is the action that is where the inputs given will be taken for processing.
+        - method specifies the type of action we want to perform from this form.
+        - ensure to keep the name attribute same here it is :id.
+
+    in users_path file that is our index action:
+    
+    def index
+        @users = User.all
+
+        if params[:id].present?
+        @search_results = User.find_by(id: params[:id])
+        redirect_to user_url(@search_results.id)
+        else
+        @search_results = nil
+        end
+
+    end
+
+        - params contains the all the input given by the user we will access the parameter id
+        and then redirect the page to show action using user_url in controller.
