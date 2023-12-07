@@ -1,0 +1,26 @@
+<div>
+
+<h1>All Users</h1>
+
+<% @users.each do |user| %>
+    <p>
+    <strong>Name:</strong>
+    <%= user.name %>
+    </p>
+
+    <p>
+        <strong>Address:</strong>
+        <%= user.address %>
+    </p>
+
+    <p>
+        <strong>Phone:</strong>
+        <%= user.phone %>
+    </p>
+
+    <%= link_to("Show User", user) %>
+
+<% end %>
+
+
+</div>
