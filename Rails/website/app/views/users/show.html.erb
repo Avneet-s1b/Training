@@ -1,6 +1,26 @@
 <p style="color: green"><%= notice %></p>
-<%= render @user %>
 
+  <!-- <%= render @user %> -->
+
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @user.address %>
+  </p>
+
+  <p>
+    <strong>Phone:</strong>
+    <%= @user.phone %>
+  </p>
+
+  <p>
+    <strong>City:</strong>
+    <%= @cities.find(@user.city_id).name %>
+  </p>
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
