@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     else
       @search_results = nil
     end
-
   end
 
   def show
@@ -36,11 +35,11 @@ class UsersController < ApplicationController
 
   private
 
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:name, :address, :phone)
-    end
+  def user_params
+    params.require(:user).permit(:name, :address, :phone)
+  end
 end
