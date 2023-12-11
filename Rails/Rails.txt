@@ -1740,3 +1740,36 @@
      When the form is submitted, the name will be passed along with the form data, and will make its way to the params in the controller 
      with the value entered by the user for that field. For example, if the form contains <%= form.text_field :query %>, 
      then you would be able to get the value of this field in the controller with params[:query]. 
+
+    
+    38. Routing: Establishing routes in rails application. In short helps in determining the routes. routes.rb has all the routes which is present in the config folder
+
+        - Types of routes:
+            -simple match route
+            -default route
+            -root route
+            -resourceful routes
+
+        Simple match route: Syntax: get "demo/index"
+                                    or
+                                    match "demo/index", :to => "demo#index", :via => :get (this is useful when we have to keep diff path name than controller name and view name)
+
+        Default route: Syntax: get ":controller(/:action(/:id))"
+                               or
+                               match ':controller(/:action(/:id))', :via => :get
+
+        root route: Syntax: root "demo#index"
+                            or
+                            match "/", :to => "demo#index", :via => :get
+
+        - Generating Paths and URLs from Code
+         get '/patients/:id', to: 'patients#show', as: 'patient'
+
+         this patient can be used during linking one view in rails application to another for eg: <%= link_to "New user", new_user_path %>
+
+         if we are using this in view we use path as suffix but if we use them in controllers we use url as suffix.
+
+         for eg:
+            if @user.save
+                format.html { redirect_to user_url(@user), notice: "User was successfully created." }
+
