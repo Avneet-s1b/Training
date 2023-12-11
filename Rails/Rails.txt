@@ -1739,4 +1739,4 @@
     37 Imp note in forms: The first parameter to these methods is always the name of the input.
      When the form is submitted, the name will be passed along with the form data, and will make its way to the params in the controller 
      with the value entered by the user for that field. For example, if the form contains <%= form.text_field :query %>, 
-     then you would be able to get the value of this field in the controller with params[:query].
+     then you would be able to get the value of this field in the controller with params[:query]. 
