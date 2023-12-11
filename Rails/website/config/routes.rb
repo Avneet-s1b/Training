@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :users
+  
+  resources :users # this line is the resourceful route
   get 'practice/page'
   # get 'demo/index'
   resources :demo

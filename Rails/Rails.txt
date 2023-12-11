@@ -1773,3 +1773,12 @@
             if @user.save
                 format.html { redirect_to user_url(@user), notice: "User was successfully created." }
 
+
+        - Resourceful routing: Resource routing allows you to quickly declare all of the common routes for a given resourceful controller. Creates 7 routes:
+            necessary routes for your index, show, new, edit, create, update, and destroy actions.
+
+            Common path and url helpers:
+            -photos_path returns /photos
+            -new_photo_path returns /photos/new
+            -edit_photo_path(:id) returns /photos/:id/edit (for instance, edit_photo_path(10) returns /photos/10/edit)
+            -photo_path(:id) returns /photos/:id (for instance, photo_path(10) returns /photos/10)
