@@ -1795,4 +1795,70 @@
             PATCH/PUT	/profile	profiles#update	update a specific profile
             DELETE	/profile	profiles#destroy	delete a specific profile
 
+        -Namespace and routing: You may wish to organize groups of controllers under a namespace. Most commonly, you might group a number of administrative controllers under an Admin:: namespace.
+         You can route to such a group by using a namespace block:
+            Eg:
+            namespace :admin do
+                resources :articles, :comments
+            end
+
+        This will create 7 routes each for Admin::ArticlesController as well as comments.
+        for eg: /admin/articles
+
+        If instead you want to route /articles (without the prefix /admin) to Admin::ArticlesController, you can specify the module with a scope block:
+
+        scope module: 'admin' do
+            resources :articles, :comments
+        end
+
+        - Nested resources: It's common to have resources that are logically children of other resources. 
+            For eg: if we have an association with name Magazines with has_many relation to ads. We can create routes as:
+                resources :magazines do
+                    resources :ads
+                end
+
+            We can create deeply nested relations too like this:
+                resources :publishers do
+                    resources :magazines do
+                        resources :photos
+                    end
+                end
+            
+            but in rails it is generally recommended to have a nesting of upto 1 level.
+
+            -Shallow nesting: We can do shallow nesting where we can only nest routes of specific actions.
+            Eg:
+            resources :articles do
+                resources :comments, only: [:index, :new, :create]
+            end
+            resources :comments, only: [:show, :edit, :update, :destroy]
+
+            or in shorter syntax:
+
+            resources :articles do
+                resources :comments, shallow: true
+            end
         
+        - Routing concerns: Routing concerns allow you to declare common routes that can be reused inside other resources and routes.
+
+            Eg:
+            concern :commentable do
+            resources :comments
+            end
+
+            concern :image_attachable do
+            resources :images, only: :index
+            end
+
+            resources :messages, concerns: :commentable
+
+            resources :articles, concerns: [:commentable, :image_attachable]
+
+        - Creating Paths and URLs from Objects: we can use url_for with a set of objects, and Rails will automatically determine which route we want.
+            For eg: <%= link_to 'Ad details', url_for([@magazine, @ad]) %>
+            
+            In helpers like link_to, you can specify just the object in place of the full url_for call:
+            <%= link_to 'Ad details', [@magazine, @ad] %>
+
+            For other actions, you just need to insert the action name as the first element of the array:
+            <%= link_to 'Edit Ad', [:edit, @magazine, @ad] %>
