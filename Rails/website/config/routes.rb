@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
   resources :users # this line is the resourceful route
+
+  resource :user #this is a singulare resource route
+  resolve('User') { [:user] }
+
   get 'practice/page'
   # get 'demo/index'
   resources :demo

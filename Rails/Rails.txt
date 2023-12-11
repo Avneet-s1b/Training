@@ -1782,3 +1782,17 @@
             -new_photo_path returns /photos/new
             -edit_photo_path(:id) returns /photos/:id/edit (for instance, edit_photo_path(10) returns /photos/10/edit)
             -photo_path(:id) returns /photos/:id (for instance, photo_path(10) returns /photos/10)
+
+        - Singular resources: Let’s take an example of user profile for a user logged in on website using Rails application. User profile is supposed to be an entity (resource) to be worked on when user is logged in.
+         We would would not want end user to know the profile ID of the user.
+         We can define routes for profile resource as: resource :profile
+
+         This will create 6 routes:
+            GET	/profile/new	profiles#new	return an HTML form for creating a new profile
+            POST	/profile	profiles#create	create a new profile
+            GET	/profile	profiles#show	display a specific profile
+            GET	/profile/edit	profiles#edit	return an HTML form for editing a profile
+            PATCH/PUT	/profile	profiles#update	update a specific profile
+            DELETE	/profile	profiles#destroy	delete a specific profile
+
+        
