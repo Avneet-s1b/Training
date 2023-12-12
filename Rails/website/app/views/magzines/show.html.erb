@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @magzine %>
+
+<div>
+  <%= link_to "Edit this magzine", edit_magzine_path(@magzine) %> |
+  <%= link_to "Back to magzines", magzines_path %>
+
+  <%= button_to "Destroy this magzine", @magzine, method: :delete %>
+</div>

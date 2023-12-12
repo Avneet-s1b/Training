@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :ads
+  resources :magzines
+  resources :magzines do
+    resources :ads
+  end
   
   resources :users # this line is the resourceful route
 
@@ -6,6 +11,8 @@ Rails.application.routes.draw do
   # resolve('User') { [:user] }
 
   resource :user , only: [:show,:new]
+
+  # match '/website', to: Website, via: :all
 
   get 'practice/page'
   # get 'demo/index'

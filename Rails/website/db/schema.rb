@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_08_113224) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_12_064536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ads", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "magzine_id", null: false
+    t.index ["magzine_id"], name: "index_ads_on_magzine_id"
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -81,6 +89,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_08_113224) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "magzines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string "subject"
     t.string "body"
@@ -121,6 +135,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_08_113224) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "ads", "magzines"
   add_foreign_key "books", "authors"
   add_foreign_key "people", "demos"
   add_foreign_key "users", "cities"

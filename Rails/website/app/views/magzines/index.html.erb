@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Magzines</h1>
+
+<div id="magzines">
+  <% @magzines.each do |magzine| %>
+    <%= render magzine %>
+    <p>
+      <%= link_to "Show this magzine", magzine %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New magzine", new_magzine_path %>
