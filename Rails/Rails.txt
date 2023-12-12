@@ -1874,4 +1874,9 @@
 
                 this will create helpers as images_path, new_image_path
 
+            - Overriding the new and edit Segments: 
+                Eg: resources :users, path_names: { new: 'make', edit: 'change' } 
+
+                The actual action names aren't changed by this option. The two paths shown would still route to the new and edit actions.
+
             
