@@ -1879,4 +1879,14 @@
 
                 The actual action names aren't changed by this option. The two paths shown would still route to the new and edit actions.
 
-            
+        - Breaking up a large routes.rb file: Rails offers a way to break a gigantic single routes.rb file into multiple small ones using the draw macro.
+
+            eg: draw(:admin)
+
+            //if we have admin.rb file.
+
+        - Testing routes: Rails offers three built-in assertions designed to make testing routes simpler:
+            - assert_generates
+            - assert_recognizes
+            - assert_routing
+                    
