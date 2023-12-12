@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   # resources :magzines do
   #   resources :ads
   # end
+
+  resources :users
   
-  resources :users, path_names: { new: 'make', edit: 'change' } # this line is the resourceful route
+  # resources :users, path_names: { new: 'make', edit: 'change' } # this line is the resourceful route
 
   # resources :avneet, controller: 'users'
   # resources :photos, controller: 'users'
