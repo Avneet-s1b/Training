@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update ]
+  before_action :set_user, only: %i[ show edit update destroy]
 
   def index
     @users = User.all
@@ -49,6 +49,12 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_url(@user)
     end
+  end
+
+  def destroy 
+    @user.destroy 
+
+    redirect_to users_url
   end
 
   private

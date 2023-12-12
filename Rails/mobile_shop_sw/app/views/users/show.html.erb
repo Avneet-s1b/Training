@@ -16,3 +16,7 @@
     <br><br>
     <%= link_to("Go to all users",users_path) %> |
     <%= link_to("edit user",edit_user_path(@user)) %>
+
+    <br>
+
+    <%= button_to "Delete this user" , @user , method: :delete %>
