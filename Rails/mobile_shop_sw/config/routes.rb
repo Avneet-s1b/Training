@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  get "users/search"
+  # get "users/search"
+  resources :users do
+    collection do
+      get 'search'
+    end
+  end 
   # get ":controller(/:action(/:id))"
   resources :users
   # get 'users/index'
