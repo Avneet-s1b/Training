@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   resources :ads
-  resources :magzines
-  resources :magzines do
+  concern :addable do
     resources :ads
   end
+  resources :magzines, concerns: :addable
+  # resources :magzines do
+  #   resources :ads
+  # end
   
   resources :users # this line is the resourceful route
 
