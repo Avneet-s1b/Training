@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   #   resources :ads
   # end
   
-  resources :users # this line is the resourceful route
+  # resources :users # this line is the resourceful route
 
+  resources :avneet, controller: 'users'
+  # resources :photos, controller: 'users'
   # resource :user #this is a singulare resource route
   # resolve('User') { [:user] }
 

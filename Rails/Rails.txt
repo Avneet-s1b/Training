@@ -1862,3 +1862,16 @@
 
             For other actions, you just need to insert the action name as the first element of the array:
             <%= link_to 'Edit Ad', [:edit, @magazine, @ad] %>
+
+        - Customizing Resourceful Routes:
+            - Specifying a Controller to Use: The :controller option lets you explicitly specify a controller to use for the resource.
+                Eg: resources :avneet, controller: 'users'
+
+                here controller users will be called whenever link will have /avneet
+
+            - Overriding the Named Route Helpers: The :as option lets you override the normal naming for the named route helpers. For example:
+                Eg: resources :photos, as: 'images'
+
+                this will create helpers as images_path, new_image_path
+
+            
