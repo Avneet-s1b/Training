@@ -1,6 +1,14 @@
 <div>
 
-<h1>All Users</h1>
+<h1>All Users</h1> 
+
+<br> 
+
+<% if current_user %>
+<%= button_to "Sign-out" , destroy_user_session_path, method: :delete %>
+<% elsif %>
+<%= button_to "Sign-in" , new_user_session_path %>
+<% end %>
 
 <% @users.each do |user| %>
     <p>
