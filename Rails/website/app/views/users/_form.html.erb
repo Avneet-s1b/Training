@@ -31,15 +31,6 @@
     <%= form.number_field :phone %>
   </div>
 
-  <div>
-   <%= form.label :city_id, style: "display: block" %>
-   <%= form.collection_select :city_id, City.order(:name), :id, :name %>
-
-    <!-- <%= fields_for :city, user.city do |user_city_form| %> 
-    <%= user_city_form.text_field :name %>
-    <% end %> -->
-
-  </div>
 
   <div>
     <%= form.submit %>

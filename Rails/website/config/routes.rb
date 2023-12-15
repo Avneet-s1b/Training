@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
-  root 'user#index'
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  resources :users
+  root 'users#index'
   resources :ads
   concern :addable do
     resources :ads
@@ -9,8 +10,6 @@ Rails.application.routes.draw do
   # resources :magzines do
   #   resources :ads
   # end
-
-  resources :users
   
   # resources :users, path_names: { new: 'make', edit: 'change' } # this line is the resourceful route
 
