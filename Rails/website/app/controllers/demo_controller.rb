@@ -5,5 +5,6 @@ class DemoController < ApplicationController
 
   def show
     @demo = Demo.find(params[:id])
+    @demo.increment!(:viewers)
   end
 end

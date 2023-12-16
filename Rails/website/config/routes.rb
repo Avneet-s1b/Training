@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   concern :addable do
     resources :ads
   end
+  resources :demo
   resources :magzines, concerns: :addable
   # resources :magzines do
   #   resources :ads
