@@ -16,7 +16,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   # def edit
-  #   super
+  #   @user = User.find_by(id: params[:id])
+  #   # update_resource @user , params
+  #   if @user.provider == "google_oauth2"
+  #     params.delete("current_password")
+  #     @user.password = params["password"]
+
+  #     @user.update_without_password(params)
+  #   else
+  #     @user.update_with_password(params)
+  #   end
   # end
 
   # PUT /resource
@@ -27,6 +36,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # DELETE /resource
   # def destroy
   #   super
+  # end
+
+  # def update_resource(resource, params)
+  #   if resource.provider == "google_oauth2"
+  #     params.delete("current_password")
+  #     resource.password = params["password"]
+
+  #     resource.update_without_password(params)
+  #   else
+  #     resource.update_with_password(params)
+  #   end
   # end
 
   # GET /resource/cancel
