@@ -10,7 +10,10 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   def show
-    render json: @article
+    if stale?(last_modified: @article.updated_at)
+      render json: @article #this block will be executed since stale checks if our record is stale that is old using last modified param and if yes then if is executed.
+    end
+
   end
 
   # POST /articles
