@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     if current_user
       @user = current_user
     end
-    @posts = Post.all
+    @posts = Post.all.page(params[:page])
   end
 
   # GET /posts/1 or /posts/1.json

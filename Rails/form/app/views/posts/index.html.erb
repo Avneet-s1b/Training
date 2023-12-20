@@ -38,7 +38,11 @@ New User?
     <hr>
   <% end %>
 
+  <br>
 
+  <%= paginate @posts %>
+
+  <br>
 <%= link_to "New post", new_post_path %>
 
 </div>
