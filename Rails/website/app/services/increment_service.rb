@@ -1,9 +1,9 @@
-class IncrementService
+class IncrementService < ApplicationService
     def initialize(resource)
         @resource = resource
     end
 
-    def increment_viewers
+    def call
         @resource.increment!(:viewers)
     end
 end
