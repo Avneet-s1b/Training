@@ -1,8 +1,8 @@
 module Api
   module V1
     class ArticlesController < ApplicationController
-      before_action :set_article, only: %i[ show update destroy ]
-      rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+      # before_action :set_article, only: %i[ show update destroy ]
+      # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
       # GET /articles
       def index
@@ -13,9 +13,14 @@ module Api
 
       # GET /articles/1
       def show
+        @article = Article.find(params[:id])
         if stale?(last_modified: @article.updated_at)
           render json: @article #this block will be executed since stale checks if our record is stale that is old using last modified param and if yes then if is executed.
         end
+      rescue ActiveRecord::RecordNotFound
+        # flash[:alert] = 'User not found'
+        redirect_to api_v1_articles_path
+        
       end
 
       # POST /articles
@@ -46,9 +51,9 @@ module Api
       private
 
       # Use callbacks to share common setup or constraints between actions.
-      def set_article
-        @article = Article.find(params[:id])
-      end
+      # def set_article
+      #   @article = Article.find(params[:id])
+      # end
 
       # Only allow a list of trusted parameters through.
       def article_params
