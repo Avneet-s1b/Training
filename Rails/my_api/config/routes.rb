@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '*unmatched_route', to: 'errors#not_found'
   namespace :api do
     namespace :v1 do
       resources :articles
