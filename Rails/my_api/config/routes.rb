@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  get '*unmatched_route', to: 'errors#not_found'
+  
+  
   namespace :api do
     namespace :v1 do
       resources :articles
+      resources :errors
+      get '/500', to: 'errors#internal_server_error'
+      get '*unmatched_route', to: 'errors#not_found'
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

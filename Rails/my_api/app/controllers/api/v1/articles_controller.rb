@@ -29,6 +29,8 @@ module Api
           render json: @article, status: :created, location: @article
         else
           render json: @article.errors, status: :unprocessable_entity
+          # redirect_to url_for(controller:'error', action:'internal_server_error')
+          # redirect_to api_v1_500_url
         end
       end
 
