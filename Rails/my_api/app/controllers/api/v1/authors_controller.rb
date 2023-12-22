@@ -2,6 +2,7 @@ module Api
   module V1
     class AuthorsController < ApplicationController
       before_action :set_author, only: %i[ show update destroy ]
+      rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
       # GET /authors
       def index
@@ -38,6 +39,7 @@ module Api
       # DELETE /authors/1
       def destroy
         @author.destroy!
+        render plain: "Author deleted successfully."
       end
 
       private
@@ -49,7 +51,12 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def author_params
-        params.fetch(:author, {})
+        params.require(:author).permit(:name)
+        # params.fetch(:author, {:name})
+      end
+
+      def record_not_found(e)
+        render json:{ errors: e }, status: :unprocessable_entity
       end
     end
   end

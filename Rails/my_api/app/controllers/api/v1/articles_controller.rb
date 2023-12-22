@@ -6,8 +6,9 @@ module Api
 
       # GET /articles
       def index
-        @articles = Article.all
-
+        # @articles = Article.all
+        a = Author.find(params[:author_id])
+        @articles = a.articles
         render json: @articles
       end
 
@@ -23,10 +24,12 @@ module Api
 
       # POST /articles
       def create
-        @article = Article.new(article_params)
+        # @article = Article.new(article_params)
+        @author = Author.find(params[:author_id])
+        @article = @author.articles.create(article_params)
 
         if @article.save
-          render json: @article, status: :created, location: @article
+          render json: @article, status: :created
         else
           render json: @article.errors, status: :unprocessable_entity
           # redirect_to url_for(controller:'error', action:'internal_server_error')
@@ -46,6 +49,10 @@ module Api
       # DELETE /articles/1
       def destroy
         @article.destroy!
+
+        render plain: "Article deleted successfully"
+        # @author = Author.find(params[:author_id])
+        # @article = @author.articles.create(article_params)
       end
 
       private
@@ -57,7 +64,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def article_params
-        params.require(:article).permit(:title, :body)
+        params.require(:article).permit(:title, :body, :author_id)
       end
 
       def record_not_found(e)
