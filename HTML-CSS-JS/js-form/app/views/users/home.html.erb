@@ -1,0 +1,11 @@
+<h1> home </h1>
+<%= @user.email %>
+
+<%= link_to "Logout", '/logout', style:"color:white; margin:10px;" %>
+
+<% if @user.profile_image.attached? %>
+<div class="image-container" >
+<%= image_tag @user.profile_image, id: "img-tag" %>
+</div>
+<% end %>
+

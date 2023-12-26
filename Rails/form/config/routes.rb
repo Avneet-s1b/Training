@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root 'posts#index'
+
+  get "posts/:id/edits" => 'posts#edits', as: 'edits_post'
   resources :posts
+
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

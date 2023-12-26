@@ -1,0 +1,41 @@
+<%= render partial: 'navbar', locals: { variable_name: @page_var } %>
+
+<div class="signin_box">
+<%= form_with(url: sessions_path)  do |form| %>
+
+    <div>
+      <img src="https://img.freepik.com/free-vector/rocket-flying-moon-cartoon-vector-icon-illustration-technology-transportation-icon-isolated_138676-5157.jpg?size=338&ext=jpg&ga=GA1.1.1546980028.1703376000&semt=ais" alt="Rocket Logo" id="logo-div">
+    </div>
+
+    <div>
+      <h4 style="margin-left:15px; font-family: 'Arial';">Log in to TestGenius</h4>
+
+      <h5 style="color:grey; margin-left:25px;">Please enter your email </h5>
+    </div>
+
+    <div>
+      <%= form.text_field :email , placeholder: "Enter your email" , class: "text-field" %>
+    </div>
+  
+    <div>
+      <%= form.text_field  :password , type:"password", placeholder: "Enter your password" , class: "text-field", id:"password" %>
+      <span class="password-toggle" onclick="myFunction()">
+        <i id="icon-tag" class="fa-solid fa-eye" ></i>
+      </span>
+      <br><br>
+    </div>
+  
+    <div>
+      <%= form.submit "Continue" , class: "login-button" %>
+    </div>
+    <% if flash[:error].present? %>
+<% end %>
+<div class="error" style="font-size:12px; margin-left:28px; color:black;">
+<%= flash[:error] %>
+</div>
+<% end %>
+</div>
+
+<script>
+
+</script>

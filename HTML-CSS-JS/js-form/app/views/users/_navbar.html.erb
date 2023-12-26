@@ -1,0 +1,14 @@
+<nav>
+    <div class="company-name">TestGenius</div>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+    <% if @page_var == 0 %>
+    
+    <%= link_to "Sign Up" , signup_path , class: "nav-signin" %>
+    <% else %>
+    
+    <%= link_to "Sign In" , signin_path , class: "nav-signin" %>
+    <% end %>
+</nav>

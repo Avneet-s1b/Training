@@ -1,0 +1,67 @@
+<%= render partial: 'navbar', locals: { variable_name: @page_var } %>
+
+<div class="signup_box">
+<%= form_with(model: @user, html: { id: 'registrationForm'}) do |form| %>
+
+    <div>
+      <img src="https://img.freepik.com/free-vector/rocket-flying-moon-cartoon-vector-icon-illustration-technology-transportation-icon-isolated_138676-5157.jpg?size=338&ext=jpg&ga=GA1.1.1546980028.1703376000&semt=ais" alt="Rocket Logo" id="logo-div">
+    </div>
+
+    <div>
+      <h4 style="margin-left:15px; font-family: 'Arial';">Register to TestGenius</h4>
+
+      <h5 style="color:grey; margin-left:25px;">Please enter asked details </h5>
+    </div>
+
+    <div style="display:flex; flex-direction:column; margin-bottom:5px; ">
+      <%= form.text_field :email , placeholder: "Enter your email", class: "text-field", id:"email"  %>
+      <span id="email-error-message" class="error-message" style="color:red; font-size:10px; margin-top:0;"></span>
+    </div>
+  
+    <div>
+      <%= form.text_field :name , placeholder: "Enter your first name", class: "text-field"  %>
+    </div>
+
+    <div>
+      <%= form.text_field :phone , placeholder: "Enter phone number", class: "text-field", id:"phone"  %>
+    </div>
+  
+    <div>
+      <%= form.text_field :password , placeholder: "Enter password", class: "text-field", id:"password" %>
+    </div>
+
+    <div style="display:flex; flex-direction:column; margin-bottom:5px; ">
+      <%= form.text_field :confirm_password , placeholder: "Confirm your password", class: "text-field", id:"confirm_password" %>
+      <span id="password-match-error-message" class="error-message" style="color:red; font-size:10px; margin-top:0;" ></span>
+    </div>
+
+    <%= form.label :gender %>
+    <div class="radio-buttons">
+      <%= form.radio_button :gender, 'Male' %>
+      <%= form.label :gender_male, 'Male' %>
+
+      <%= form.radio_button :gender, 'Female' %>
+      <%= form.label :gender_female, 'Female' %>
+
+    </div>
+
+    <div class="field">
+        <%= form.label :country %>
+        <%= form.select :country, ['India', 'Mexico', 'US', 'UK'] %>
+    </div>
+
+    <br>
+    
+    <div>
+      <%= form.label :profile_image %>
+      <br>
+      <%= form.file_field :profile_image %>
+    </div>
+  
+    <div style="margin-top:10px;">
+      <%= form.submit "Continue" , class: "login-button" %>
+    </div>
+<% end %>
+</div>
+
+
