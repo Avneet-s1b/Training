@@ -69,7 +69,7 @@ nav a {
 
 .signup_box{
     padding-top: 5px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     padding-left: 55px;
     padding-right: 0;
     height: fit-content;
@@ -80,7 +80,7 @@ nav a {
     align-items: center;
     background-color: #fcf8f8;
     border: 1px solid black;
-    border-radius: 10%;
+    border-radius: 40px;
     color: black;
 }
 
